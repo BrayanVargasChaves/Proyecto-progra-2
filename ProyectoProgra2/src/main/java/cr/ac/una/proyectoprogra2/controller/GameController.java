@@ -4,8 +4,11 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -14,6 +17,17 @@ import javafx.fxml.Initializable;
  * @author Usuario
  */
 public class GameController extends Controller implements  Initializable {
+
+    @FXML
+    private MFXButton btnJuegoNuevo;
+    @FXML
+    private MFXButton btnSolucion;
+    @FXML
+    private MFXButton btnPista;
+    @FXML
+    private MFXButton btnDeshacerTodo;
+    @FXML
+    private MFXButton btnDeshacer;
 
     /**
      * Initializes the controller class.
@@ -25,6 +39,26 @@ public class GameController extends Controller implements  Initializable {
 
     @Override
     public void initialize() {
+    }
+
+    @FXML
+    private void onActionBtnJuegoNuevo(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnSolucion(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnPista(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnDeshacerTodo(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnDeshacer(ActionEvent event) {
     }
     
 }
