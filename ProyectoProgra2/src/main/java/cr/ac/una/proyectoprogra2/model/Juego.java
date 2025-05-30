@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -20,10 +20,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -65,6 +62,7 @@ public class Juego implements Serializable {
     @Basic(optional = false)
     @Column(name = "TIEMPO_TRANSCURRIDO")
     private Integer tiempoTranscurrido;
+    @Version
     @Basic(optional = false)
     @Column(name = "VERSION")
     private Long version;

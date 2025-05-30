@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,8 +17,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -27,22 +24,22 @@ import java.util.List;
  * @author emena
  */
 @Entity
-@Table(name = "MAZO", schema="UNA")
+@Table(name = "COLUMNA_TABLERO", schema="UNA")
 @NamedQueries({
-    @NamedQuery(name = "Mazo.findAll", query = "SELECT m FROM Mazo m"),
-    @NamedQuery(name = "Mazo.findByIdMazo", query = "SELECT m FROM Mazo m WHERE m.idMazo = :idMazo"),
-    @NamedQuery(name = "Mazo.findByEstado", query = "SELECT m FROM Mazo m WHERE m.estado = :estado"),
-    @NamedQuery(name = "Mazo.findByVersion", query = "SELECT m FROM Mazo m WHERE m.version = :version")})
-public class Mazo implements Serializable {
+    @NamedQuery(name = "ColumnaTablero.findAll", query = "SELECT c FROM ColumnaTablero c"),
+    @NamedQuery(name = "ColumnaTablero.findByIdColumnaTablero", query = "SELECT c FROM ColumnaTablero c WHERE c.idColumnaTablero = :idColumnaTablero"),
+    @NamedQuery(name = "ColumnaTablero.findByIndiceColumna", query = "SELECT c FROM ColumnaTablero c WHERE c.indiceColumna = :indiceColumna"),
+    @NamedQuery(name = "ColumnaTablero.findByVersion", query = "SELECT c FROM ColumnaTablero c WHERE c.version = :version")})
+public class ColumnaTablero implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "ID_MAZO")
+    @Column(name = "ID_COLUMNA_TABLERO")
     private Long id;
-    @Column(name = "ESTADO")
-    private Short estado;
+    @Column(name = "INDICE_COLUMNA")
+    private Integer indiceColumna;
     @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
@@ -50,18 +47,18 @@ public class Mazo implements Serializable {
     @JoinColumn(name = "FK_JUEGO", referencedColumnName = "ID_JUEGO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Juego fkJuego;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkMazo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "fkColumnaTablero", fetch = FetchType.LAZY)
     private List<Carta> cartas;
 
-    public Mazo() {
+    public ColumnaTablero() {
     }
 
-    public Mazo(Long id) {
+    public ColumnaTablero(Long id) {
         this.id = id;
     }
 /*
-    public Mazo(BigDecimal idMazo, BigInteger version) {
-        this.id = idMazo;
+    public ColumnaTablero(BigDecimal idColumnaTablero, BigInteger version) {
+        this.id = idColumnaTablero;
         this.version = version;
     }
 */
@@ -73,12 +70,12 @@ public class Mazo implements Serializable {
         this.id = id;
     }
 
-    public Short getEstado() {
-        return estado;
+    public Integer getIndiceColumna() {
+        return indiceColumna;
     }
 
-    public void setEstado(Short estado) {
-        this.estado = estado;
+    public void setIndiceColumna(Integer indiceColumna) {
+        this.indiceColumna = indiceColumna;
     }
 
     public Long getVersion() {
@@ -115,10 +112,10 @@ public class Mazo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Mazo)) {
+        if (!(object instanceof ColumnaTablero)) {
             return false;
         }
-        Mazo other = (Mazo) object;
+        ColumnaTablero other = (ColumnaTablero) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -127,7 +124,7 @@ public class Mazo implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Mazo[ idMazo=" + id + " ]";
+        return "cr.ac.una.unaplanilla.model.ColumnaTablero[ idColumnaTablero=" + id + " ]";
     }
     
 }

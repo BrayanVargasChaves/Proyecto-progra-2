@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,36 +14,35 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  *
  * @author emena
  */
 @Entity
-@Table(name = "MOVIMIENTO", schema="UNA")
+@Table(name = "MAZO", schema="UNA")
 @NamedQueries({
-    @NamedQuery(name = "Movimiento.findAll", query = "SELECT m FROM Movimiento m"),
-    @NamedQuery(name = "Movimiento.findByIdMovimiento", query = "SELECT m FROM Movimiento m WHERE m.idMovimiento = :idMovimiento"),
-    @NamedQuery(name = "Movimiento.findByIndiceColumna", query = "SELECT m FROM Movimiento m WHERE m.indiceColumna = :indiceColumna"),
-    @NamedQuery(name = "Movimiento.findByIndiceCarta", query = "SELECT m FROM Movimiento m WHERE m.indiceCarta = :indiceCarta"),
-    @NamedQuery(name = "Movimiento.findByVersion", query = "SELECT m FROM Movimiento m WHERE m.version = :version")})
-public class Movimiento implements Serializable {
+    @NamedQuery(name = "Mazo.findAll", query = "SELECT m FROM Mazo m"),
+    @NamedQuery(name = "Mazo.findByIdMazo", query = "SELECT m FROM Mazo m WHERE m.idMazo = :idMazo"),
+    @NamedQuery(name = "Mazo.findByEstado", query = "SELECT m FROM Mazo m WHERE m.estado = :estado"),
+    @NamedQuery(name = "Mazo.findByVersion", query = "SELECT m FROM Mazo m WHERE m.version = :version")})
+public class Mazo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "ID_MOVIMIENTO")
+    @Column(name = "ID_MAZO")
     private Long id;
-    @Column(name = "INDICE_COLUMNA")
-    private Integer indiceColumna;
-    @Column(name = "INDICE_CARTA")
-    private Integer indiceCarta;
+    @Column(name = "ESTADO")
+    private Short estado;
     @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
@@ -50,16 +50,18 @@ public class Movimiento implements Serializable {
     @JoinColumn(name = "FK_JUEGO", referencedColumnName = "ID_JUEGO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Juego fkJuego;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkMazo", fetch = FetchType.LAZY)
+    private List<Carta> cartas;
 
-    public Movimiento() {
+    public Mazo() {
     }
 
-    public Movimiento(Long id) {
+    public Mazo(Long id) {
         this.id = id;
     }
 /*
-    public Movimiento(BigDecimal idMovimiento, BigInteger version) {
-        this.id = idMovimiento;
+    public Mazo(BigDecimal idMazo, BigInteger version) {
+        this.id = idMazo;
         this.version = version;
     }
 */
@@ -71,20 +73,12 @@ public class Movimiento implements Serializable {
         this.id = id;
     }
 
-    public Integer getIndiceColumna() {
-        return indiceColumna;
+    public Short getEstado() {
+        return estado;
     }
 
-    public void setIndiceColumna(Integer indiceColumna) {
-        this.indiceColumna = indiceColumna;
-    }
-
-    public Integer getIndiceCarta() {
-        return indiceCarta;
-    }
-
-    public void setIndiceCarta(Integer indiceCarta) {
-        this.indiceCarta = indiceCarta;
+    public void setEstado(Short estado) {
+        this.estado = estado;
     }
 
     public Long getVersion() {
@@ -103,6 +97,14 @@ public class Movimiento implements Serializable {
         this.fkJuego = fkJuego;
     }
 
+    public List<Carta> getCartas() {
+        return cartas;
+    }
+
+    public void setCartas(List<Carta> cartas) {
+        this.cartas = cartas;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -113,10 +115,10 @@ public class Movimiento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Movimiento)) {
+        if (!(object instanceof Mazo)) {
             return false;
         }
-        Movimiento other = (Movimiento) object;
+        Mazo other = (Mazo) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -125,7 +127,7 @@ public class Movimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Movimiento[ idMovimiento=" + id + " ]";
+        return "cr.ac.una.unaplanilla.model.Mazo[ idMazo=" + id + " ]";
     }
     
 }
