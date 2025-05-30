@@ -48,19 +48,13 @@ public class EscaleraCompletada implements Serializable {
     private Juego fkJuego;
     @OneToMany(mappedBy = "fkEscalera", fetch = FetchType.LAZY)
     private List<Carta> cartas;
-
     public EscaleraCompletada() {
     }
 
     public EscaleraCompletada(Long idEscalera) {
         this.id = idEscalera;
     }
-/*
-    public EscaleraCompletada(BigDecimal idEscalera, BigInteger version) {
-        this.id = idEscalera;
-        this.version = version;
-    }
-*/
+
     public Long getId() {
         return id;
     }
@@ -84,6 +78,7 @@ public class EscaleraCompletada implements Serializable {
     public void setFkJuego(Juego fkJuego) {
         this.fkJuego = fkJuego;
     }
+
 
     public List<Carta> getCartas() {
         return cartas;

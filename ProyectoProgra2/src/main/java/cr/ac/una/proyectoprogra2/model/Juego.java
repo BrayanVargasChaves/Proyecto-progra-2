@@ -78,7 +78,6 @@ public class Juego implements Serializable {
     private List<Mazo> mazos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
     private List<Movimiento> movimientos;
-
     public Juego() {
     }
 
@@ -86,17 +85,6 @@ public class Juego implements Serializable {
         this.id = id;
     }
 
-    /*
-    public Juego(BigDecimal idJuego, Date fechaHora, Character dificultad, String estado, BigInteger puntaje, BigInteger tiempoTranscurrido, BigInteger version) {
-        this.id = idJuego;
-        this.fechaHora = fechaHora;
-        this.dificultad = dificultad;
-        this.estado = estado;
-        this.puntaje = puntaje;
-        this.tiempoTranscurrido = tiempoTranscurrido;
-        this.version = version;
-    }
-     */
     public Long getId() {
         return id;
     }
@@ -217,5 +205,4 @@ public class Juego implements Serializable {
     public String toString() {
         return "cr.ac.una.unaplanilla.model.Juego[ idJuego=" + id + " ]";
     }
-
 }

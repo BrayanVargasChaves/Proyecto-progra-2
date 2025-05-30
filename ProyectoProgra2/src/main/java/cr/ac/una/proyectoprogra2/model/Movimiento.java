@@ -57,12 +57,7 @@ public class Movimiento implements Serializable {
     public Movimiento(Long id) {
         this.id = id;
     }
-/*
-    public Movimiento(BigDecimal idMovimiento, BigInteger version) {
-        this.id = idMovimiento;
-        this.version = version;
-    }
-*/
+    
     public Long getId() {
         return id;
     }

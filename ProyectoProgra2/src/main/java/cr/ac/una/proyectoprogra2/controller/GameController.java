@@ -20,13 +20,9 @@ import javafx.scene.layout.AnchorPane;
 public class GameController extends Controller implements  Initializable {
 
     @FXML
-    private MFXButton btnJuegoNuevo;
-    @FXML
-    private MFXButton btnSolucion;
-    @FXML
     private MFXButton btnPista;
     @FXML
-    private MFXButton btnDeshacerTodo;
+    private MFXButton btnRendirce;
     @FXML
     private MFXButton btnDeshacer;
     @FXML
@@ -44,24 +40,14 @@ public class GameController extends Controller implements  Initializable {
     public void initialize() {
     }
 
-    @FXML
-    private void onActionBtnJuegoNuevo(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnSolucion(ActionEvent event) {
-    }
 
     @FXML
     private void onActionBtnPista(ActionEvent event) {
     }
 
     @FXML
-    private void onActionBtnDeshacerTodo(ActionEvent event) {
+    private void onActionBtnRendirce(ActionEvent event) {
     }
 
-    @FXML
-    private void onActionBtnDeshacer(ActionEvent event) {
-    }
     
 }

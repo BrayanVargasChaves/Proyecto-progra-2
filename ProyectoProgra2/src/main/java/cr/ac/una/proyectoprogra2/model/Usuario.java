@@ -70,23 +70,13 @@ public class Usuario implements Serializable {
     private Long version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkUsuario", fetch = FetchType.LAZY)
     private List<Juego> juegos;
-
     public Usuario() {
     }
 
     public Usuario(Long id) {
         this.id = id;
     }
-/*
-    public Usuario(BigDecimal idUsuario, String nombreUsuario, BigInteger puntajeTotal, BigInteger partidasPerdidas, BigInteger partidasGanadas, BigInteger version) {
-        this.id = idUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.puntajeTotal = puntajeTotal;
-        this.partidasPerdidas = partidasPerdidas;
-        this.partidasGanadas = partidasGanadas;
-        this.version = version;
-    }
-*/
+
     public Long getId() {
         return id;
     }

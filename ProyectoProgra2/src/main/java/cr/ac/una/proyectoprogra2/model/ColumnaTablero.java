@@ -49,19 +49,13 @@ public class ColumnaTablero implements Serializable {
     private Juego fkJuego;
     @OneToMany(mappedBy = "fkColumnaTablero", fetch = FetchType.LAZY)
     private List<Carta> cartas;
-
     public ColumnaTablero() {
     }
 
     public ColumnaTablero(Long id) {
         this.id = id;
     }
-/*
-    public ColumnaTablero(BigDecimal idColumnaTablero, BigInteger version) {
-        this.id = idColumnaTablero;
-        this.version = version;
-    }
-*/
+
     public Long getId() {
         return id;
     }

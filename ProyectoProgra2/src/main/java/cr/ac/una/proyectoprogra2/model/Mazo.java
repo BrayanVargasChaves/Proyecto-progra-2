@@ -52,7 +52,6 @@ public class Mazo implements Serializable {
     private Juego fkJuego;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkMazo", fetch = FetchType.LAZY)
     private List<Carta> cartas;
-
     public Mazo() {
     }
 

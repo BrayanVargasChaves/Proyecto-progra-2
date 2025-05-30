@@ -71,14 +71,7 @@ public class Carta implements Serializable {
     public Carta(Long id) {
         this.id = id;
     }
-/*
-    public Carta(BigDecimal idCarta, BigInteger numeroCarta, String paloCarta, BigInteger version) {
-        this.id = idCarta;
-        this.numeroCarta = numeroCarta;
-        this.paloCarta = paloCarta;
-        this.version = version;
-    }
-*/
+
     public Long getId() {
         return id;
     }
