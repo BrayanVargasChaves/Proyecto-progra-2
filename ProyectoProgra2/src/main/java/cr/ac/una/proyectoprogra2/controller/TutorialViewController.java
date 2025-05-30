@@ -6,7 +6,9 @@ package cr.ac.una.proyectoprogra2.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -14,6 +16,9 @@ import javafx.fxml.Initializable;
  * @author Usuario
  */
 public class TutorialViewController extends Controller implements Initializable {
+
+    @FXML
+    private AnchorPane root;
 
     /**
      * Initializes the controller class.

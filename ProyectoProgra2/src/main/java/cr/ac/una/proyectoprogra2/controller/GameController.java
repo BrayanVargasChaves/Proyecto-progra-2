@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -28,6 +29,8 @@ public class GameController extends Controller implements  Initializable {
     private MFXButton btnDeshacerTodo;
     @FXML
     private MFXButton btnDeshacer;
+    @FXML
+    private AnchorPane root;
 
     /**
      * Initializes the controller class.

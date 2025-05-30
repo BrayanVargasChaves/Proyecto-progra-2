@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -23,6 +24,8 @@ public class AjustesController extends Controller implements Initializable {
     private MFXToggleButton toggleBtnTemaOscuro;
     @FXML
     private Label estadoTemaOscuro;
+    @FXML
+    private ScrollPane root;
 
     /**
      * Initializes the controller class.
