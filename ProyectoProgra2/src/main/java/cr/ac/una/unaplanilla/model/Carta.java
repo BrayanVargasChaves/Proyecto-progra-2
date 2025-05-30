@@ -14,16 +14,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
  *
- * @author Usuario
+ * @author emena
  */
 @Entity
-@Table(name = "CARTA")
+@Table(name = "CARTA", schema="UNA")
 @NamedQueries({
     @NamedQuery(name = "Carta.findAll", query = "SELECT c FROM Carta c"),
     @NamedQuery(name = "Carta.findByIdCarta", query = "SELECT c FROM Carta c WHERE c.idCarta = :idCarta"),
@@ -39,20 +40,21 @@ public class Carta implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_CARTA")
-    private BigDecimal idCarta;
+    private Long id;
     @Column(name = "INDICE_POS_CARTA")
-    private BigInteger indicePosCarta;
+    private Integer indicePosCarta;
     @Basic(optional = false)
     @Column(name = "NUMERO_CARTA")
-    private BigInteger numeroCarta;
+    private Integer numeroCarta;
     @Basic(optional = false)
     @Column(name = "PALO_CARTA")
     private String paloCarta;
     @Column(name = "BOCA_ARRIBA")
     private Short bocaArriba;
     @Basic(optional = false)
+    @Version
     @Column(name = "VERSION")
-    private BigInteger version;
+    private Long version;
     @JoinColumn(name = "FK_COLUMNA_TABLERO", referencedColumnName = "ID_COLUMNA_TABLERO")
     @ManyToOne(fetch = FetchType.LAZY)
     private ColumnaTablero fkColumnaTablero;
@@ -66,38 +68,31 @@ public class Carta implements Serializable {
     public Carta() {
     }
 
-    public Carta(BigDecimal idCarta) {
-        this.idCarta = idCarta;
+    public Carta(Long id) {
+        this.id = id;
     }
 
-    public Carta(BigDecimal idCarta, BigInteger numeroCarta, String paloCarta, BigInteger version) {
-        this.idCarta = idCarta;
-        this.numeroCarta = numeroCarta;
-        this.paloCarta = paloCarta;
-        this.version = version;
+    public Long getId() {
+        return id;
     }
 
-    public BigDecimal getIdCarta() {
-        return idCarta;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setIdCarta(BigDecimal idCarta) {
-        this.idCarta = idCarta;
-    }
-
-    public BigInteger getIndicePosCarta() {
+    public Integer getIndicePosCarta() {
         return indicePosCarta;
     }
 
-    public void setIndicePosCarta(BigInteger indicePosCarta) {
+    public void setIndicePosCarta(Integer indicePosCarta) {
         this.indicePosCarta = indicePosCarta;
     }
 
-    public BigInteger getNumeroCarta() {
+    public Integer getNumeroCarta() {
         return numeroCarta;
     }
 
-    public void setNumeroCarta(BigInteger numeroCarta) {
+    public void setNumeroCarta(Integer numeroCarta) {
         this.numeroCarta = numeroCarta;
     }
 
@@ -117,11 +112,11 @@ public class Carta implements Serializable {
         this.bocaArriba = bocaArriba;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -152,7 +147,7 @@ public class Carta implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCarta != null ? idCarta.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -163,7 +158,7 @@ public class Carta implements Serializable {
             return false;
         }
         Carta other = (Carta) object;
-        if ((this.idCarta == null && other.idCarta != null) || (this.idCarta != null && !this.idCarta.equals(other.idCarta))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -171,7 +166,7 @@ public class Carta implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Carta[ idCarta=" + idCarta + " ]";
+        return "cr.ac.una.unaplanilla.model.Carta[ idCarta=" + id + " ]";
     }
     
 }

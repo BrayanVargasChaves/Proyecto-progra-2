@@ -15,6 +15,7 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -22,10 +23,10 @@ import java.util.List;
 
 /**
  *
- * @author Usuario
+ * @author emena
  */
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "USUARIO", schema="UNA" )
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
@@ -42,55 +43,46 @@ public class Usuario implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_USUARIO")
-    private BigDecimal idUsuario;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "NOMBRE_USUARIO")
     private String nombreUsuario;
     @Lob
     @Column(name = "IMAGEN_CARTA")
-    private String imagenCarta;
+    private byte[] imagenCarta;
     @Lob
     @Column(name = "CARA_CARTA_IMG")
-    private Serializable caraCartaImg;
+    private byte[] caraCartaImg;
     @Basic(optional = false)
     @Column(name = "PUNTAJE_TOTAL")
-    private BigInteger puntajeTotal;
+    private Integer puntajeTotal;
     @Basic(optional = false)
     @Column(name = "PARTIDAS_PERDIDAS")
-    private BigInteger partidasPerdidas;
+    private Integer partidasPerdidas;
     @Basic(optional = false)
     @Column(name = "PARTIDAS_GANADAS")
-    private BigInteger partidasGanadas;
+    private Integer partidasGanadas;
     @Column(name = "MODO_OSCURO")
     private String modoOscuro;
     @Basic(optional = false)
+    @Version
     @Column(name = "VERSION")
-    private BigInteger version;
+    private Long version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkUsuario", fetch = FetchType.LAZY)
-    private List<Juego> juegoList;
-
+    private List<Juego> juegos;
     public Usuario() {
     }
 
-    public Usuario(BigDecimal idUsuario) {
-        this.idUsuario = idUsuario;
+    public Usuario(Long id) {
+        this.id = id;
     }
 
-    public Usuario(BigDecimal idUsuario, String nombreUsuario, BigInteger puntajeTotal, BigInteger partidasPerdidas, BigInteger partidasGanadas, BigInteger version) {
-        this.idUsuario = idUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.puntajeTotal = puntajeTotal;
-        this.partidasPerdidas = partidasPerdidas;
-        this.partidasGanadas = partidasGanadas;
-        this.version = version;
+    public Long getId() {
+        return id;
     }
 
-    public BigDecimal getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(BigDecimal idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombreUsuario() {
@@ -101,43 +93,35 @@ public class Usuario implements Serializable {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getImagenCarta() {
+    public byte[] getImagenCarta() {
         return imagenCarta;
     }
 
-    public void setImagenCarta(String imagenCarta) {
+    public void setImagenCarta(byte[] imagenCarta) {
         this.imagenCarta = imagenCarta;
     }
 
-    public Serializable getCaraCartaImg() {
-        return caraCartaImg;
-    }
-
-    public void setCaraCartaImg(Serializable caraCartaImg) {
-        this.caraCartaImg = caraCartaImg;
-    }
-
-    public BigInteger getPuntajeTotal() {
+    public Integer getPuntajeTotal() {
         return puntajeTotal;
     }
 
-    public void setPuntajeTotal(BigInteger puntajeTotal) {
+    public void setPuntajeTotal(Integer puntajeTotal) {
         this.puntajeTotal = puntajeTotal;
     }
 
-    public BigInteger getPartidasPerdidas() {
+    public Integer getPartidasPerdidas() {
         return partidasPerdidas;
     }
 
-    public void setPartidasPerdidas(BigInteger partidasPerdidas) {
+    public void setPartidasPerdidas(Integer partidasPerdidas) {
         this.partidasPerdidas = partidasPerdidas;
     }
 
-    public BigInteger getPartidasGanadas() {
+    public Integer getPartidasGanadas() {
         return partidasGanadas;
     }
 
-    public void setPartidasGanadas(BigInteger partidasGanadas) {
+    public void setPartidasGanadas(Integer partidasGanadas) {
         this.partidasGanadas = partidasGanadas;
     }
 
@@ -149,26 +133,34 @@ public class Usuario implements Serializable {
         this.modoOscuro = modoOscuro;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
-    public List<Juego> getJuegoList() {
-        return juegoList;
+    public byte[] getCaraCartaImg() {
+        return caraCartaImg;
     }
 
-    public void setJuegoList(List<Juego> juegoList) {
-        this.juegoList = juegoList;
+    public void setCaraCartaImg(byte[] caraCartaImg) {
+        this.caraCartaImg = caraCartaImg;
+    }
+
+    public List<Juego> getJuegos() {
+        return juegos;
+    }
+
+    public void setJuegos(List<Juego> juegos) {
+        this.juegos = juegos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -179,7 +171,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -187,7 +179,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "cr.ac.una.unaplanilla.model.Usuario[ idUsuario=" + id + " ]";
     }
     
 }

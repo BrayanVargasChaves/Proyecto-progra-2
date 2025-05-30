@@ -18,18 +18,20 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author Usuario
+ * @author emena
  */
 @Entity
-@Table(name = "JUEGO")
+@Table(name = "JUEGO", schema = "UNA")
 @NamedQueries({
     @NamedQuery(name = "Juego.findAll", query = "SELECT j FROM Juego j"),
     @NamedQuery(name = "Juego.findByIdJuego", query = "SELECT j FROM Juego j WHERE j.idJuego = :idJuego"),
@@ -46,76 +48,66 @@ public class Juego implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_JUEGO")
-    private BigDecimal idJuego;
-    @Basic(optional = false)
-    @Column(name = "FECHA_HORA")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaHora;
+    private Long id;
     @Basic(optional = false)
     @Column(name = "DIFICULTAD")
-    private Character dificultad;
+    private String dificultad;
     @Basic(optional = false)
     @Column(name = "ESTADO")
     private String estado;
     @Basic(optional = false)
+    @Column(name = "FECHA_HORA")
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDate fechaHora;
+    @Basic(optional = false)
     @Column(name = "PUNTAJE")
-    private BigInteger puntaje;
+    private Integer puntaje;
     @Basic(optional = false)
     @Column(name = "TIEMPO_TRANSCURRIDO")
-    private BigInteger tiempoTranscurrido;
+    private Integer tiempoTranscurrido;
     @Basic(optional = false)
     @Column(name = "VERSION")
-    private BigInteger version;
+    private Long version;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
-    private List<ColumnaTablero> columnaTableroList;
+    private List<ColumnaTablero> columnasTablero;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
-    private List<EscaleraCompletada> escaleraCompletadaList;
+    private List<EscaleraCompletada> escalerasCompletadas;
     @JoinColumn(name = "FK_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuario fkUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
-    private List<Mazo> mazoList;
+    private List<Mazo> mazos;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
-    private List<Movimiento> movimientoList;
-
+    private List<Movimiento> movimientos;
     public Juego() {
     }
 
-    public Juego(BigDecimal idJuego) {
-        this.idJuego = idJuego;
+    public Juego(Long id) {
+        this.id = id;
     }
 
-    public Juego(BigDecimal idJuego, Date fechaHora, Character dificultad, String estado, BigInteger puntaje, BigInteger tiempoTranscurrido, BigInteger version) {
-        this.idJuego = idJuego;
-        this.fechaHora = fechaHora;
-        this.dificultad = dificultad;
-        this.estado = estado;
-        this.puntaje = puntaje;
-        this.tiempoTranscurrido = tiempoTranscurrido;
-        this.version = version;
+    public Long getId() {
+        return id;
     }
 
-    public BigDecimal getIdJuego() {
-        return idJuego;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setIdJuego(BigDecimal idJuego) {
-        this.idJuego = idJuego;
-    }
-
-    public Date getFechaHora() {
+    public LocalDate getFechaHora() {
         return fechaHora;
     }
 
-    public void setFechaHora(Date fechaHora) {
+    public void setFechaHora(LocalDate fechaHora) {
         this.fechaHora = fechaHora;
     }
 
-    public Character getDificultad() {
+    public String getDificultad() {
         return dificultad;
     }
 
-    public void setDificultad(Character dificultad) {
+    public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
     }
 
@@ -127,44 +119,44 @@ public class Juego implements Serializable {
         this.estado = estado;
     }
 
-    public BigInteger getPuntaje() {
+    public Integer getPuntaje() {
         return puntaje;
     }
 
-    public void setPuntaje(BigInteger puntaje) {
+    public void setPuntaje(Integer puntaje) {
         this.puntaje = puntaje;
     }
 
-    public BigInteger getTiempoTranscurrido() {
+    public Integer getTiempoTranscurrido() {
         return tiempoTranscurrido;
     }
 
-    public void setTiempoTranscurrido(BigInteger tiempoTranscurrido) {
+    public void setTiempoTranscurrido(Integer tiempoTranscurrido) {
         this.tiempoTranscurrido = tiempoTranscurrido;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
-    public List<ColumnaTablero> getColumnaTableroList() {
-        return columnaTableroList;
+    public List<ColumnaTablero> getColumnasTablero() {
+        return columnasTablero;
     }
 
-    public void setColumnaTableroList(List<ColumnaTablero> columnaTableroList) {
-        this.columnaTableroList = columnaTableroList;
+    public void setColumnasTablero(List<ColumnaTablero> columnasTablero) {
+        this.columnasTablero = columnasTablero;
     }
 
-    public List<EscaleraCompletada> getEscaleraCompletadaList() {
-        return escaleraCompletadaList;
+    public List<EscaleraCompletada> getEscalerasCompletadas() {
+        return escalerasCompletadas;
     }
 
-    public void setEscaleraCompletadaList(List<EscaleraCompletada> escaleraCompletadaList) {
-        this.escaleraCompletadaList = escaleraCompletadaList;
+    public void setEscalerasCompletadas(List<EscaleraCompletada> escalerasCompletadas) {
+        this.escalerasCompletadas = escalerasCompletadas;
     }
 
     public Usuario getFkUsuario() {
@@ -175,26 +167,26 @@ public class Juego implements Serializable {
         this.fkUsuario = fkUsuario;
     }
 
-    public List<Mazo> getMazoList() {
-        return mazoList;
+    public List<Mazo> getMazos() {
+        return mazos;
     }
 
-    public void setMazoList(List<Mazo> mazoList) {
-        this.mazoList = mazoList;
+    public void setMazos(List<Mazo> mazos) {
+        this.mazos = mazos;
     }
 
-    public List<Movimiento> getMovimientoList() {
-        return movimientoList;
+    public List<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
-    public void setMovimientoList(List<Movimiento> movimientoList) {
-        this.movimientoList = movimientoList;
+    public void setMovimientos(List<Movimiento> movimientos) {
+        this.movimientos = movimientos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idJuego != null ? idJuego.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -205,7 +197,7 @@ public class Juego implements Serializable {
             return false;
         }
         Juego other = (Juego) object;
-        if ((this.idJuego == null && other.idJuego != null) || (this.idJuego != null && !this.idJuego.equals(other.idJuego))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -213,7 +205,6 @@ public class Juego implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Juego[ idJuego=" + idJuego + " ]";
+        return "cr.ac.una.unaplanilla.model.Juego[ idJuego=" + id + " ]";
     }
-    
 }

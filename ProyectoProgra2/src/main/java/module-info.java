@@ -8,6 +8,9 @@ module cr.ac.una.proyectoprogra2 {
 
     opens cr.ac.una.proyectoprogra2 to javafx.fxml;
     opens cr.ac.una.proyectoprogra2.util to javafx.fxml;
+    opens cr.ac.una.proyectoprogra2.view to javafx.fxml;
+    opens cr.ac.una.proyectoprogra2.controller to javafx.fxml;
+    
     exports cr.ac.una.proyectoprogra2;
     exports cr.ac.una.proyectoprogra2.util;
     exports cr.ac.una.proyectoprogra2.controller;

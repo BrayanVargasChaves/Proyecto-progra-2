@@ -15,6 +15,7 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -22,10 +23,10 @@ import java.util.List;
 
 /**
  *
- * @author Usuario
+ * @author emena
  */
 @Entity
-@Table(name = "ESCALERA_COMPLETADA")
+@Table(name = "ESCALERA_COMPLETADA", schema="UNA")
 @NamedQueries({
     @NamedQuery(name = "EscaleraCompletada.findAll", query = "SELECT e FROM EscaleraCompletada e"),
     @NamedQuery(name = "EscaleraCompletada.findByIdEscalera", query = "SELECT e FROM EscaleraCompletada e WHERE e.idEscalera = :idEscalera"),
@@ -37,41 +38,36 @@ public class EscaleraCompletada implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_ESCALERA")
-    private BigDecimal idEscalera;
+    private Long id;
     @Basic(optional = false)
+    @Version
     @Column(name = "VERSION")
-    private BigInteger version;
+    private Long version;
     @JoinColumn(name = "FK_JUEGO", referencedColumnName = "ID_JUEGO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Juego fkJuego;
     @OneToMany(mappedBy = "fkEscalera", fetch = FetchType.LAZY)
-    private List<Carta> cartaList;
-
+    private List<Carta> cartas;
     public EscaleraCompletada() {
     }
 
-    public EscaleraCompletada(BigDecimal idEscalera) {
-        this.idEscalera = idEscalera;
+    public EscaleraCompletada(Long idEscalera) {
+        this.id = idEscalera;
     }
 
-    public EscaleraCompletada(BigDecimal idEscalera, BigInteger version) {
-        this.idEscalera = idEscalera;
-        this.version = version;
+    public Long getId() {
+        return id;
     }
 
-    public BigDecimal getIdEscalera() {
-        return idEscalera;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setIdEscalera(BigDecimal idEscalera) {
-        this.idEscalera = idEscalera;
-    }
-
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -83,18 +79,19 @@ public class EscaleraCompletada implements Serializable {
         this.fkJuego = fkJuego;
     }
 
-    public List<Carta> getCartaList() {
-        return cartaList;
+
+    public List<Carta> getCartas() {
+        return cartas;
     }
 
-    public void setCartaList(List<Carta> cartaList) {
-        this.cartaList = cartaList;
+    public void setCartas(List<Carta> cartas) {
+        this.cartas = cartas;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idEscalera != null ? idEscalera.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -105,7 +102,7 @@ public class EscaleraCompletada implements Serializable {
             return false;
         }
         EscaleraCompletada other = (EscaleraCompletada) object;
-        if ((this.idEscalera == null && other.idEscalera != null) || (this.idEscalera != null && !this.idEscalera.equals(other.idEscalera))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -113,7 +110,7 @@ public class EscaleraCompletada implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.EscaleraCompletada[ idEscalera=" + idEscalera + " ]";
+        return "cr.ac.una.unaplanilla.model.EscaleraCompletada[ idEscalera=" + id + " ]";
     }
     
 }

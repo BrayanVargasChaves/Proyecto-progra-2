@@ -16,6 +16,7 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -23,10 +24,10 @@ import java.util.List;
 
 /**
  *
- * @author Usuario
+ * @author emena
  */
 @Entity
-@Table(name = "MAZO")
+@Table(name = "MAZO", schema="UNA")
 @NamedQueries({
     @NamedQuery(name = "Mazo.findAll", query = "SELECT m FROM Mazo m"),
     @NamedQuery(name = "Mazo.findByIdMazo", query = "SELECT m FROM Mazo m WHERE m.idMazo = :idMazo"),
@@ -39,36 +40,36 @@ public class Mazo implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_MAZO")
-    private BigDecimal idMazo;
+    private Long id;
     @Column(name = "ESTADO")
     private Short estado;
     @Basic(optional = false)
+    @Version
     @Column(name = "VERSION")
-    private BigInteger version;
+    private Long version;
     @JoinColumn(name = "FK_JUEGO", referencedColumnName = "ID_JUEGO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Juego fkJuego;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkMazo", fetch = FetchType.LAZY)
-    private List<Carta> cartaList;
-
+    private List<Carta> cartas;
     public Mazo() {
     }
 
-    public Mazo(BigDecimal idMazo) {
-        this.idMazo = idMazo;
+    public Mazo(Long id) {
+        this.id = id;
     }
-
+/*
     public Mazo(BigDecimal idMazo, BigInteger version) {
-        this.idMazo = idMazo;
+        this.id = idMazo;
         this.version = version;
     }
-
-    public BigDecimal getIdMazo() {
-        return idMazo;
+*/
+    public Long getId() {
+        return id;
     }
 
-    public void setIdMazo(BigDecimal idMazo) {
-        this.idMazo = idMazo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Short getEstado() {
@@ -79,11 +80,11 @@ public class Mazo implements Serializable {
         this.estado = estado;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -95,18 +96,18 @@ public class Mazo implements Serializable {
         this.fkJuego = fkJuego;
     }
 
-    public List<Carta> getCartaList() {
-        return cartaList;
+    public List<Carta> getCartas() {
+        return cartas;
     }
 
-    public void setCartaList(List<Carta> cartaList) {
-        this.cartaList = cartaList;
+    public void setCartas(List<Carta> cartas) {
+        this.cartas = cartas;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idMazo != null ? idMazo.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -117,7 +118,7 @@ public class Mazo implements Serializable {
             return false;
         }
         Mazo other = (Mazo) object;
-        if ((this.idMazo == null && other.idMazo != null) || (this.idMazo != null && !this.idMazo.equals(other.idMazo))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -125,7 +126,7 @@ public class Mazo implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Mazo[ idMazo=" + idMazo + " ]";
+        return "cr.ac.una.unaplanilla.model.Mazo[ idMazo=" + id + " ]";
     }
     
 }

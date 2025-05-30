@@ -24,6 +24,8 @@ public class GameController extends Controller implements  Initializable {
     @FXML
     private MFXButton btnRendirce;
     @FXML
+    private MFXButton btnDeshacer;
+    @FXML
     private AnchorPane root;
 
     /**

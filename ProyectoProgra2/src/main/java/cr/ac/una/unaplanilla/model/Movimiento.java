@@ -14,16 +14,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
  *
- * @author Usuario
+ * @author emena
  */
 @Entity
-@Table(name = "MOVIMIENTO")
+@Table(name = "MOVIMIENTO", schema="UNA")
 @NamedQueries({
     @NamedQuery(name = "Movimiento.findAll", query = "SELECT m FROM Movimiento m"),
     @NamedQuery(name = "Movimiento.findByIdMovimiento", query = "SELECT m FROM Movimiento m WHERE m.idMovimiento = :idMovimiento"),
@@ -37,14 +38,15 @@ public class Movimiento implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID_MOVIMIENTO")
-    private BigDecimal idMovimiento;
+    private Long id;
     @Column(name = "INDICE_COLUMNA")
-    private BigInteger indiceColumna;
+    private Integer indiceColumna;
     @Column(name = "INDICE_CARTA")
-    private BigInteger indiceCarta;
+    private Integer indiceCarta;
     @Basic(optional = false)
+    @Version
     @Column(name = "VERSION")
-    private BigInteger version;
+    private Long version;
     @JoinColumn(name = "FK_JUEGO", referencedColumnName = "ID_JUEGO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Juego fkJuego;
@@ -52,44 +54,39 @@ public class Movimiento implements Serializable {
     public Movimiento() {
     }
 
-    public Movimiento(BigDecimal idMovimiento) {
-        this.idMovimiento = idMovimiento;
+    public Movimiento(Long id) {
+        this.id = id;
+    }
+    
+    public Long getId() {
+        return id;
     }
 
-    public Movimiento(BigDecimal idMovimiento, BigInteger version) {
-        this.idMovimiento = idMovimiento;
-        this.version = version;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public BigDecimal getIdMovimiento() {
-        return idMovimiento;
-    }
-
-    public void setIdMovimiento(BigDecimal idMovimiento) {
-        this.idMovimiento = idMovimiento;
-    }
-
-    public BigInteger getIndiceColumna() {
+    public Integer getIndiceColumna() {
         return indiceColumna;
     }
 
-    public void setIndiceColumna(BigInteger indiceColumna) {
+    public void setIndiceColumna(Integer indiceColumna) {
         this.indiceColumna = indiceColumna;
     }
 
-    public BigInteger getIndiceCarta() {
+    public Integer getIndiceCarta() {
         return indiceCarta;
     }
 
-    public void setIndiceCarta(BigInteger indiceCarta) {
+    public void setIndiceCarta(Integer indiceCarta) {
         this.indiceCarta = indiceCarta;
     }
 
-    public BigInteger getVersion() {
+    public Long getVersion() {
         return version;
     }
 
-    public void setVersion(BigInteger version) {
+    public void setVersion(Long version) {
         this.version = version;
     }
 
@@ -104,7 +101,7 @@ public class Movimiento implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idMovimiento != null ? idMovimiento.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -115,7 +112,7 @@ public class Movimiento implements Serializable {
             return false;
         }
         Movimiento other = (Movimiento) object;
-        if ((this.idMovimiento == null && other.idMovimiento != null) || (this.idMovimiento != null && !this.idMovimiento.equals(other.idMovimiento))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -123,7 +120,7 @@ public class Movimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Movimiento[ idMovimiento=" + idMovimiento + " ]";
+        return "cr.ac.una.unaplanilla.model.Movimiento[ idMovimiento=" + id + " ]";
     }
     
 }
