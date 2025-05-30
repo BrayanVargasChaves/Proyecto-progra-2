@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -19,15 +20,11 @@ import javafx.fxml.Initializable;
 public class GameController extends Controller implements  Initializable {
 
     @FXML
-    private MFXButton btnJuegoNuevo;
-    @FXML
-    private MFXButton btnSolucion;
-    @FXML
     private MFXButton btnPista;
     @FXML
-    private MFXButton btnDeshacerTodo;
+    private MFXButton btnRendirce;
     @FXML
-    private MFXButton btnDeshacer;
+    private AnchorPane root;
 
     /**
      * Initializes the controller class.
@@ -41,24 +38,14 @@ public class GameController extends Controller implements  Initializable {
     public void initialize() {
     }
 
-    @FXML
-    private void onActionBtnJuegoNuevo(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionBtnSolucion(ActionEvent event) {
-    }
 
     @FXML
     private void onActionBtnPista(ActionEvent event) {
     }
 
     @FXML
-    private void onActionBtnDeshacerTodo(ActionEvent event) {
+    private void onActionBtnRendirce(ActionEvent event) {
     }
 
-    @FXML
-    private void onActionBtnDeshacer(ActionEvent event) {
-    }
     
 }
