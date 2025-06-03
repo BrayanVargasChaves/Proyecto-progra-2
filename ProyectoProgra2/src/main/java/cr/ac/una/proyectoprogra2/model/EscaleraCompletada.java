@@ -17,8 +17,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -112,5 +110,4 @@ public class EscaleraCompletada implements Serializable {
     public String toString() {
         return "cr.ac.una.unaplanilla.model.EscaleraCompletada[ idEscalera=" + id + " ]";
     }
-    
 }
