@@ -25,7 +25,9 @@ public class JuegoDto {
     private LongProperty fkUsuarioId;
     private Boolean modificado;
 
-    /** Constructor por defecto, inicializa propiedades con valores por defecto. */
+    /**
+     * Constructor por defecto, inicializa propiedades con valores por defecto.
+     */
     public JuegoDto() {
         this.id = new SimpleStringProperty("");
         this.dificultad = new SimpleStringProperty("");
@@ -37,7 +39,9 @@ public class JuegoDto {
         this.modificado = false;
     }
 
-    /** Constructor que mapea desde la entidad Juego */
+    /**
+     * Constructor que mapea desde la entidad Juego
+     */
     public JuegoDto(Juego juego) {
         this();
         if (juego.getId() != null) {
@@ -71,6 +75,7 @@ public class JuegoDto {
         }
         return null;
     }
+
     public void setId(Long id) {
         this.id.set(id.toString());
     }
@@ -78,6 +83,7 @@ public class JuegoDto {
     public String getDificultad() {
         return dificultad.get();
     }
+
     public void setDificultad(String dificultad) {
         this.dificultad.set(dificultad);
     }
@@ -85,6 +91,7 @@ public class JuegoDto {
     public String getEstado() {
         return estado.get();
     }
+
     public void setEstado(String estado) {
         this.estado.set(estado);
     }
@@ -92,6 +99,7 @@ public class JuegoDto {
     public LocalDate getFechaHora() {
         return fechaHora.get();
     }
+
     public void setFechaHora(LocalDate fechaHora) {
         this.fechaHora.set(fechaHora);
     }
@@ -99,6 +107,7 @@ public class JuegoDto {
     public int getPuntaje() {
         return puntaje.get();
     }
+
     public void setPuntaje(int puntaje) {
         this.puntaje.set(puntaje);
     }
@@ -106,6 +115,7 @@ public class JuegoDto {
     public int getTiempoTranscurrido() {
         return tiempoTranscurrido.get();
     }
+
     public void setTiempoTranscurrido(int tiempoTranscurrido) {
         this.tiempoTranscurrido.set(tiempoTranscurrido);
     }
@@ -113,6 +123,7 @@ public class JuegoDto {
     public Long getVersion() {
         return version;
     }
+
     public void setVersion(Long version) {
         this.version = version;
     }
@@ -120,6 +131,7 @@ public class JuegoDto {
     public Long getFkUsuarioId() {
         return fkUsuarioId.get();
     }
+
     public void setFkUsuarioId(Long usuarioId) {
         this.fkUsuarioId.set(usuarioId);
     }
@@ -127,6 +139,7 @@ public class JuegoDto {
     public Boolean getModificado() {
         return modificado;
     }
+
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
     }
@@ -135,21 +148,27 @@ public class JuegoDto {
     public StringProperty idProperty() {
         return id;
     }
+
     public StringProperty dificultadProperty() {
         return dificultad;
     }
+
     public StringProperty estadoProperty() {
         return estado;
     }
+
     public ObjectProperty<LocalDate> fechaHoraProperty() {
         return fechaHora;
     }
+
     public IntegerProperty puntajeProperty() {
         return puntaje;
     }
+
     public IntegerProperty tiempoTranscurridoProperty() {
         return tiempoTranscurrido;
     }
+
     public LongProperty fkUsuarioIdProperty() {
         return fkUsuarioId;
     }
@@ -159,19 +178,25 @@ public class JuegoDto {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof JuegoDto)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof JuegoDto)) {
+            return false;
+        }
         JuegoDto other = (JuegoDto) obj;
         return Objects.equals(getId(), other.getId());
     }
+
     @Override
     public String toString() {
-        return "JuegoDto{" +
-                "id=" + id.get() +
-                ", dificultad=" + dificultad.get() +
-                ", estado=" + estado.get() +
-                '}';
+        return "JuegoDto{"
+                + "id=" + id.get()
+                + ", dificultad=" + dificultad.get()
+                + ", estado=" + estado.get()
+                + '}';
     }
 }

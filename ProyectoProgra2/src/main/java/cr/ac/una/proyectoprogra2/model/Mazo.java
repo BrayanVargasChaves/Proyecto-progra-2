@@ -27,15 +27,13 @@ import java.util.List;
  * @author emena
  */
 @Entity
-@Table(name = "MAZO", schema="UNA")
+@Table(name = "MAZO", schema = "UNA")
 @NamedQueries({
     @NamedQuery(name = "Mazo.findAll", query = "SELECT m FROM Mazo m"),
     @NamedQuery(name = "Mazo.findByIdMazo", query = "SELECT m FROM Mazo m WHERE m.idMazo = :idMazo"),
     @NamedQuery(name = "Mazo.findByEstado", query = "SELECT m FROM Mazo m WHERE m.estado = :estado"),
     @NamedQuery(name = "Mazo.findByVersion", query = "SELECT m FROM Mazo m WHERE m.version = :version")})
 public class Mazo implements Serializable {
-
-    
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -53,18 +51,20 @@ public class Mazo implements Serializable {
     private Juego fkJuego;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkMazo", fetch = FetchType.LAZY)
     private List<Carta> cartas;
+
     public Mazo() {
     }
 
     public Mazo(Long id) {
         this.id = id;
     }
-/*
+
+    /*
     public Mazo(BigDecimal idMazo, BigInteger version) {
         this.id = idMazo;
         this.version = version;
     }
-*/
+     */
     public Long getId() {
         return id;
     }
@@ -80,7 +80,6 @@ public class Mazo implements Serializable {
     public void setEstado(Short estado) {
         this.estado = estado;
     }
-
 
     public Juego getFkJuego() {
         return fkJuego;
@@ -130,5 +129,5 @@ public class Mazo implements Serializable {
     public void setVersion(Long version) {
         this.version = version;
     }
-    
+
 }

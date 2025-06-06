@@ -40,8 +40,6 @@ import java.util.List;
     @NamedQuery(name = "Juego.findByVersion", query = "SELECT j FROM Juego j WHERE j.version = :version")})
 public class Juego implements Serializable {
 
-    
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -77,6 +75,7 @@ public class Juego implements Serializable {
     private Usuario fkUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
     private List<Mazo> mazos;
+
     public Juego() {
     }
 
@@ -116,7 +115,6 @@ public class Juego implements Serializable {
         this.estado = estado;
     }
 
-
     public Integer getTiempoTranscurrido() {
         return tiempoTranscurrido;
     }
@@ -124,7 +122,6 @@ public class Juego implements Serializable {
     public void setTiempoTranscurrido(Integer tiempoTranscurrido) {
         this.tiempoTranscurrido = tiempoTranscurrido;
     }
-
 
     public List<ColumnaTablero> getColumnasTablero() {
         return columnasTablero;

@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Usuario
  */
-public class GameController extends Controller implements  Initializable {
+public class GameController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnPista;
@@ -34,12 +34,11 @@ public class GameController extends Controller implements  Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @Override
     public void initialize() {
     }
-
 
     @FXML
     private void onActionBtnPista(ActionEvent event) {
@@ -49,5 +48,4 @@ public class GameController extends Controller implements  Initializable {
     private void onActionBtnRendirce(ActionEvent event) {
     }
 
-    
 }

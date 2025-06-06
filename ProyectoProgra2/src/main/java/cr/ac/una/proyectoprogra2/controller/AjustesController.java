@@ -33,7 +33,7 @@ public class AjustesController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @Override
     public void initialize() {
@@ -41,12 +41,11 @@ public class AjustesController extends Controller implements Initializable {
 
     @FXML
     private void onActionToggleBtnTemaOscuro(MouseEvent event) {
-       if(toggleBtnTemaOscuro.isSelected()){
-           estadoTemaOscuro.setText("Activado");
-       }
-       else{
-           estadoTemaOscuro.setText("Desactivado");
-       }
+        if (toggleBtnTemaOscuro.isSelected()) {
+            estadoTemaOscuro.setText("Activado");
+        } else {
+            estadoTemaOscuro.setText("Desactivado");
+        }
     }
-    
+
 }
