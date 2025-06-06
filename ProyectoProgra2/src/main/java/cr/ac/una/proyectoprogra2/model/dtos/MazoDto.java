@@ -17,7 +17,6 @@ public class MazoDto {
     private StringProperty id;
     private ObjectProperty<Short> estado;
     private Long version;
-    private LongProperty fkJuegoId;
     private Boolean modificado;
 
     /**
@@ -26,7 +25,6 @@ public class MazoDto {
     public MazoDto() {
         this.id = new SimpleStringProperty("");
         this.estado = new SimpleObjectProperty<>((short) 0);
-        this.fkJuegoId = new SimpleLongProperty(0L);
         this.modificado = false;
     }
 
@@ -42,9 +40,6 @@ public class MazoDto {
             this.estado.set(mazo.getEstado());
         }
         this.version = mazo.getVersion();
-        if (mazo.getFkJuego() != null && mazo.getFkJuego().getId() != null) {
-            this.fkJuegoId.set(mazo.getFkJuego().getId());
-        }
     }
 
     // Getters y setters de valor
@@ -75,14 +70,6 @@ public class MazoDto {
         this.version = version;
     }
 
-    public Long getFkJuegoId() {
-        return fkJuegoId.get();
-    }
-
-    public void setFkJuegoId(Long juegoId) {
-        this.fkJuegoId.set(juegoId);
-    }
-
     public Boolean getModificado() {
         return modificado;
     }
@@ -98,10 +85,6 @@ public class MazoDto {
 
     public ObjectProperty<Short> estadoProperty() {
         return estado;
-    }
-
-    public LongProperty fkJuegoIdProperty() {
-        return fkJuegoId;
     }
 
     // equals, hashCode y toString

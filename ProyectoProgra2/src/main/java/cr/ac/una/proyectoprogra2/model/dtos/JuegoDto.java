@@ -22,7 +22,6 @@ public class JuegoDto {
     private IntegerProperty puntaje;
     private IntegerProperty tiempoTranscurrido;
     private Long version;
-    private LongProperty fkUsuarioId;
     private Boolean modificado;
 
     /**
@@ -35,7 +34,6 @@ public class JuegoDto {
         this.fechaHora = new SimpleObjectProperty<>(LocalDate.now());
         this.puntaje = new SimpleIntegerProperty(0);
         this.tiempoTranscurrido = new SimpleIntegerProperty(0);
-        this.fkUsuarioId = new SimpleLongProperty(0L);
         this.modificado = false;
     }
 
@@ -63,9 +61,6 @@ public class JuegoDto {
             this.tiempoTranscurrido.set(juego.getTiempoTranscurrido());
         }
         this.version = juego.getVersion();
-        if (juego.getFkUsuario() != null && juego.getFkUsuario().getId() != null) {
-            this.fkUsuarioId.set(juego.getFkUsuario().getId());
-        }
     }
 
     // Getters y setters de valor
@@ -128,14 +123,6 @@ public class JuegoDto {
         this.version = version;
     }
 
-    public Long getFkUsuarioId() {
-        return fkUsuarioId.get();
-    }
-
-    public void setFkUsuarioId(Long usuarioId) {
-        this.fkUsuarioId.set(usuarioId);
-    }
-
     public Boolean getModificado() {
         return modificado;
     }
@@ -167,10 +154,6 @@ public class JuegoDto {
 
     public IntegerProperty tiempoTranscurridoProperty() {
         return tiempoTranscurrido;
-    }
-
-    public LongProperty fkUsuarioIdProperty() {
-        return fkUsuarioId;
     }
 
     // equals, hashCode y toString
