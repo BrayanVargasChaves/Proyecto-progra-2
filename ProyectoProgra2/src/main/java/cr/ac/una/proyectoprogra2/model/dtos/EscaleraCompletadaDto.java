@@ -17,7 +17,6 @@ public class EscaleraCompletadaDto {
 
     private StringProperty id;
     private Long version;
-    private LongProperty fkJuegoId;
     private Boolean modificado;
 
     /**
@@ -25,7 +24,6 @@ public class EscaleraCompletadaDto {
      */
     public EscaleraCompletadaDto() {
         this.id = new SimpleStringProperty("");
-        this.fkJuegoId = new SimpleLongProperty(0L);
         this.modificado = false;
     }
 
@@ -38,9 +36,6 @@ public class EscaleraCompletadaDto {
             this.id.set(escalera.getId().toString());
         }
         this.version = escalera.getVersion();
-        if (escalera.getFkJuego() != null && escalera.getFkJuego().getId() != null) {
-            this.fkJuegoId.set(escalera.getFkJuego().getId());
-        }
     }
 
     // Getters y setters de valor
@@ -63,14 +58,6 @@ public class EscaleraCompletadaDto {
         this.version = version;
     }
 
-    public Long getFkJuegoId() {
-        return fkJuegoId.get();
-    }
-
-    public void setFkJuegoId(Long juegoId) {
-        this.fkJuegoId.set(juegoId);
-    }
-
     public Boolean getModificado() {
         return modificado;
     }
@@ -82,10 +69,6 @@ public class EscaleraCompletadaDto {
     // Property getters para binding
     public StringProperty idProperty() {
         return id;
-    }
-
-    public LongProperty fkJuegoIdProperty() {
-        return fkJuegoId;
     }
 
     // equals, hashCode y toString

@@ -21,7 +21,6 @@ public class ColumnaTableroDto {
     private StringProperty id;
     private IntegerProperty indiceColumna;
     private Long version;
-    private LongProperty fkJuegoId;
     private Boolean modificado;
 
     /**
@@ -30,7 +29,6 @@ public class ColumnaTableroDto {
     public ColumnaTableroDto() {
         this.id = new SimpleStringProperty("");
         this.indiceColumna = new SimpleIntegerProperty(0);
-        this.fkJuegoId = new SimpleLongProperty(0L);
         this.modificado = false;
     }
 
@@ -46,9 +44,6 @@ public class ColumnaTableroDto {
             this.indiceColumna.set(col.getIndiceColumna());
         }
         this.version = col.getVersion();
-        if (col.getFkJuego() != null && col.getFkJuego().getId() != null) {
-            this.fkJuegoId.set(col.getFkJuego().getId());
-        }
     }
 
     // Getters y setters de valor
@@ -79,14 +74,6 @@ public class ColumnaTableroDto {
         this.version = version;
     }
 
-    public Long getFkJuegoId() {
-        return fkJuegoId.get();
-    }
-
-    public void setFkJuegoId(Long juegoId) {
-        this.fkJuegoId.set(juegoId);
-    }
-
     public Boolean getModificado() {
         return modificado;
     }
@@ -102,10 +89,6 @@ public class ColumnaTableroDto {
 
     public IntegerProperty indiceColumnaProperty() {
         return indiceColumna;
-    }
-
-    public LongProperty fkJuegoIdProperty() {
-        return fkJuegoId;
     }
 
     // equals, hashCode y toString

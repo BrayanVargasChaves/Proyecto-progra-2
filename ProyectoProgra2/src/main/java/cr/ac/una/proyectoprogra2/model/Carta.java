@@ -45,7 +45,7 @@ public class Carta implements Serializable {
     @Column(name = "PALO_CARTA")
     private String paloCarta;
     @Column(name = "BOCA_ARRIBA")
-    private Short bocaArriba;
+    private Integer bocaArriba;
     @Column(name = "INDICE_POS_CARTA")
     private Integer indicePosCarta;
     @Basic(optional = false)
@@ -104,11 +104,11 @@ public class Carta implements Serializable {
         this.paloCarta = paloCarta;
     }
 
-    public Short getBocaArriba() {
+    public Integer getBocaArriba() {
         return bocaArriba;
     }
 
-    public void setBocaArriba(Short bocaArriba) {
+    public void setBocaArriba(Integer bocaArriba) {
         this.bocaArriba = bocaArriba;
     }
 

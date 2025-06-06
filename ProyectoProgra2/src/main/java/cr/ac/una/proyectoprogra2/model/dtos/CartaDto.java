@@ -21,11 +21,8 @@ public class CartaDto {
     private IntegerProperty indicePosCarta;
     private IntegerProperty numeroCarta;
     private StringProperty paloCarta;
-    private ObjectProperty<Short> bocaArriba;
+    private IntegerProperty bocaArriba;
     private Long version;
-    private LongProperty fkColumnaTableroId;
-    private LongProperty fkEscaleraId;
-    private LongProperty fkMazoId;
     private Boolean modificado;
 
     /**
@@ -36,10 +33,7 @@ public class CartaDto {
         this.indicePosCarta = new SimpleIntegerProperty(0);
         this.numeroCarta = new SimpleIntegerProperty(0);
         this.paloCarta = new SimpleStringProperty("");
-        this.bocaArriba = new SimpleObjectProperty<>((short) 0);
-        this.fkColumnaTableroId = new SimpleLongProperty(0);
-        this.fkEscaleraId = new SimpleLongProperty(0);
-        this.fkMazoId = new SimpleLongProperty(0);
+        this.bocaArriba = new SimpleIntegerProperty(0);
         this.modificado = false;
     }
 
@@ -60,15 +54,6 @@ public class CartaDto {
             this.bocaArriba.set(carta.getBocaArriba());
         }
         this.version = carta.getVersion();
-        if (carta.getFkColumnaTablero() != null && carta.getFkColumnaTablero().getId() != null) {
-            this.fkColumnaTableroId.set(carta.getFkColumnaTablero().getId());
-        }
-        if (carta.getFkEscalera() != null && carta.getFkEscalera().getId() != null) {
-            this.fkEscaleraId.set(carta.getFkEscalera().getId());
-        }
-        if (carta.getFkMazo() != null && carta.getFkMazo().getId() != null) {
-            this.fkMazoId.set(carta.getFkMazo().getId());
-        }
         this.modificado = false;
     }
 
@@ -108,11 +93,11 @@ public class CartaDto {
         this.paloCarta.set(paloCarta);
     }
 
-    public Short getBocaArriba() {
+    public Integer getBocaArriba() {
         return bocaArriba.get();
     }
 
-    public void setBocaArriba(Short bocaArriba) {
+    public void setBocaArriba(Integer bocaArriba) {
         this.bocaArriba.set(bocaArriba);
     }
 
@@ -122,30 +107,6 @@ public class CartaDto {
 
     public void setVersion(Long version) {
         this.version = version;
-    }
-
-    public Long getFkColumnaTableroId() {
-        return fkColumnaTableroId.get();
-    }
-
-    public void setFkColumnaTableroId(Long id) {
-        this.fkColumnaTableroId.set(id);
-    }
-
-    public Long getFkEscaleraId() {
-        return fkEscaleraId.get();
-    }
-
-    public void setFkEscaleraId(Long id) {
-        this.fkEscaleraId.set(id);
-    }
-
-    public Long getFkMazoId() {
-        return fkMazoId.get();
-    }
-
-    public void setFkMazoId(Long id) {
-        this.fkMazoId.set(id);
     }
 
     public Boolean getModificado() {
@@ -173,20 +134,8 @@ public class CartaDto {
         return paloCarta;
     }
 
-    public ObjectProperty<Short> bocaArribaProperty() {
+    public IntegerProperty bocaArribaProperty() {
         return bocaArriba;
-    }
-
-    public LongProperty fkColumnaTableroIdProperty() {
-        return fkColumnaTableroId;
-    }
-
-    public LongProperty fkEscaleraIdProperty() {
-        return fkEscaleraId;
-    }
-
-    public LongProperty fkMazoIdProperty() {
-        return fkMazoId;
     }
 
     // equals, hashCode y toString
