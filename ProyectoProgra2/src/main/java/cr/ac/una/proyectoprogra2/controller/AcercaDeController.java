@@ -40,14 +40,14 @@ public class AcercaDeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cargarCreditos();
         animarCreditos();
-       
-    }    
+
+    }
 
     private void cargarCreditos() {
         VbCreditos.getChildren().addAll(
                 new Label("Proyecto de programacion 2"),
                 new Label(""),
-                new Label("Desarrollado por: "), 
+                new Label("Desarrollado por: "),
                 new Label(""),
                 new Label("Andres Cortez Victor"),
                 new Label(""),
@@ -84,5 +84,5 @@ public class AcercaDeController implements Initializable {
     @FXML
     private void onActionBtnCerrar(ActionEvent event) {
     }
-    
+
 }

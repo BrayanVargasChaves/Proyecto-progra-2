@@ -27,7 +27,7 @@ public class EntityManagerHelper {
             throw e;
         }
     }
-    
+
     public static EntityManagerHelper getInstance() {
 
         return SINGLENTON;

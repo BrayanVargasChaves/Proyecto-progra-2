@@ -28,7 +28,7 @@ public class Mensaje {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-    
+
     public Boolean showConfirmation(String titulo, Window padre, String mensaje) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(titulo);

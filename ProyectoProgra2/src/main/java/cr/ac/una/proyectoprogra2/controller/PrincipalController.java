@@ -40,7 +40,7 @@ public class PrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void onActionBtnJugar(ActionEvent event) {
@@ -61,5 +61,5 @@ public class PrincipalController implements Initializable {
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
     }
-    
+
 }

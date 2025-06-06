@@ -24,7 +24,7 @@ import java.math.BigInteger;
  * @author emena
  */
 @Entity
-@Table(name = "CARTA", schema="UNA")
+@Table(name = "CARTA", schema = "UNA")
 @NamedQueries({
     @NamedQuery(name = "Carta.findAll", query = "SELECT c FROM Carta c"),
     @NamedQuery(name = "Carta.findByIdCarta", query = "SELECT c FROM Carta c WHERE c.idCarta = :idCarta"),
@@ -34,8 +34,6 @@ import java.math.BigInteger;
     @NamedQuery(name = "Carta.findByBocaArriba", query = "SELECT c FROM Carta c WHERE c.bocaArriba = :bocaArriba"),
     @NamedQuery(name = "Carta.findByVersion", query = "SELECT c FROM Carta c WHERE c.version = :version")})
 public class Carta implements Serializable {
-
-   
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -48,7 +46,7 @@ public class Carta implements Serializable {
     private String paloCarta;
     @Column(name = "BOCA_ARRIBA")
     private Short bocaArriba;
-     @Column(name = "INDICE_POS_CARTA")
+    @Column(name = "INDICE_POS_CARTA")
     private Integer indicePosCarta;
     @Basic(optional = false)
     @Column(name = "NUMERO_CARTA")
@@ -56,7 +54,7 @@ public class Carta implements Serializable {
     @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
-    private Long version;  
+    private Long version;
     @JoinColumn(name = "FK_COLUMNA_TABLERO", referencedColumnName = "ID_COLUMNA_TABLERO")
     @ManyToOne(fetch = FetchType.LAZY)
     private ColumnaTablero fkColumnaTablero;
@@ -171,5 +169,4 @@ public class Carta implements Serializable {
         return "cr.ac.una.unaplanilla.model.Carta[ idCarta=" + id + " ]";
     }
 
-    
 }

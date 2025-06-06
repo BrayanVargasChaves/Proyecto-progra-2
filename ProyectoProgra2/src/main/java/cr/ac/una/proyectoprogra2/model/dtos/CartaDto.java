@@ -28,20 +28,24 @@ public class CartaDto {
     private LongProperty fkMazoId;
     private Boolean modificado;
 
-    /** Constructor por defecto, inicializa propiedades con valores por defecto. */
+    /**
+     * Constructor por defecto, inicializa propiedades con valores por defecto.
+     */
     public CartaDto() {
         this.id = new SimpleStringProperty("");
         this.indicePosCarta = new SimpleIntegerProperty(0);
         this.numeroCarta = new SimpleIntegerProperty(0);
         this.paloCarta = new SimpleStringProperty("");
-        this.bocaArriba = new SimpleObjectProperty<>((short)0);
+        this.bocaArriba = new SimpleObjectProperty<>((short) 0);
         this.fkColumnaTableroId = new SimpleLongProperty(0);
         this.fkEscaleraId = new SimpleLongProperty(0);
         this.fkMazoId = new SimpleLongProperty(0);
         this.modificado = false;
     }
 
-    /** Constructor desde la entidad Carta */
+    /**
+     * Constructor desde la entidad Carta
+     */
     public CartaDto(Carta carta) {
         this();
         if (carta.getId() != null) {
@@ -69,7 +73,6 @@ public class CartaDto {
     }
 
     // Getters y setters
-
     public Long getId() {
         if (this.id.get() != null && !this.id.get().isBlank()) {
             return Long.valueOf(this.id.get());
@@ -154,7 +157,6 @@ public class CartaDto {
     }
 
     // Property getters para binding
-
     public StringProperty idProperty() {
         return id;
     }
@@ -188,7 +190,6 @@ public class CartaDto {
     }
 
     // equals, hashCode y toString
-
     @Override
     public int hashCode() {
         return Objects.hash(getId());
@@ -196,19 +197,22 @@ public class CartaDto {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof CartaDto)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof CartaDto)) {
+            return false;
+        }
         CartaDto other = (CartaDto) obj;
         return Objects.equals(getId(), other.getId());
     }
 
     @Override
     public String toString() {
-        return "CartaDto{" +
-               "id=" + id.get() +
-               ", numeroCarta=" + numeroCarta.get() +
-               ", paloCarta=" + paloCarta.get() +
-               '}';
+        return "CartaDto{"
+                + "id=" + id.get()
+                + ", numeroCarta=" + numeroCarta.get()
+                + ", paloCarta=" + paloCarta.get()
+                + '}';
     }
 }
-

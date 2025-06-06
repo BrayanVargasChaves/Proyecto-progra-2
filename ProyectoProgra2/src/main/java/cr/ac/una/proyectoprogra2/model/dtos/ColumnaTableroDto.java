@@ -13,7 +13,8 @@ import javafx.beans.property.*;
 import java.util.Objects;
 
 /**
- * DTO para la entidad ColumnaTablero, usando propiedades JavaFX para binding en UI.
+ * DTO para la entidad ColumnaTablero, usando propiedades JavaFX para binding en
+ * UI.
  */
 public class ColumnaTableroDto {
 
@@ -23,7 +24,9 @@ public class ColumnaTableroDto {
     private LongProperty fkJuegoId;
     private Boolean modificado;
 
-    /** Constructor por defecto, inicializa propiedades con valores por defecto. */
+    /**
+     * Constructor por defecto, inicializa propiedades con valores por defecto.
+     */
     public ColumnaTableroDto() {
         this.id = new SimpleStringProperty("");
         this.indiceColumna = new SimpleIntegerProperty(0);
@@ -31,7 +34,9 @@ public class ColumnaTableroDto {
         this.modificado = false;
     }
 
-    /** Constructor desde la entidad ColumnaTablero */
+    /**
+     * Constructor desde la entidad ColumnaTablero
+     */
     public ColumnaTableroDto(ColumnaTablero col) {
         this();
         if (col.getId() != null) {
@@ -53,6 +58,7 @@ public class ColumnaTableroDto {
         }
         return null;
     }
+
     public void setId(Long id) {
         this.id.set(id.toString());
     }
@@ -60,6 +66,7 @@ public class ColumnaTableroDto {
     public int getIndiceColumna() {
         return indiceColumna.get();
     }
+
     public void setIndiceColumna(int indice) {
         this.indiceColumna.set(indice);
     }
@@ -67,6 +74,7 @@ public class ColumnaTableroDto {
     public Long getVersion() {
         return version;
     }
+
     public void setVersion(Long version) {
         this.version = version;
     }
@@ -74,6 +82,7 @@ public class ColumnaTableroDto {
     public Long getFkJuegoId() {
         return fkJuegoId.get();
     }
+
     public void setFkJuegoId(Long juegoId) {
         this.fkJuegoId.set(juegoId);
     }
@@ -81,6 +90,7 @@ public class ColumnaTableroDto {
     public Boolean getModificado() {
         return modificado;
     }
+
     public void setModificado(Boolean mod) {
         this.modificado = mod;
     }
@@ -89,9 +99,11 @@ public class ColumnaTableroDto {
     public StringProperty idProperty() {
         return id;
     }
+
     public IntegerProperty indiceColumnaProperty() {
         return indiceColumna;
     }
+
     public LongProperty fkJuegoIdProperty() {
         return fkJuegoId;
     }
@@ -101,19 +113,24 @@ public class ColumnaTableroDto {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof ColumnaTableroDto)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ColumnaTableroDto)) {
+            return false;
+        }
         ColumnaTableroDto other = (ColumnaTableroDto) obj;
         return Objects.equals(getId(), other.getId());
     }
+
     @Override
     public String toString() {
-        return "ColumnaTableroDto{" +
-               "id=" + id.get() +
-               ", indiceColumna=" + indiceColumna.get() +
-               '}';
+        return "ColumnaTableroDto{"
+                + "id=" + id.get()
+                + ", indiceColumna=" + indiceColumna.get()
+                + '}';
     }
 }
-

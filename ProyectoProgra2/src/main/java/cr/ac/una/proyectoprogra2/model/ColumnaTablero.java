@@ -32,8 +32,6 @@ import java.util.List;
     @NamedQuery(name = "ColumnaTablero.findByVersion", query = "SELECT c FROM ColumnaTablero c WHERE c.version = :version")})
 public class ColumnaTablero implements Serializable {
 
-    
-
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id

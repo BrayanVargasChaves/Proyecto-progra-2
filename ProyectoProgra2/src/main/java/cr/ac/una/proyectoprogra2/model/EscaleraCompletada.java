@@ -24,14 +24,12 @@ import java.util.List;
  * @author emena
  */
 @Entity
-@Table(name = "ESCALERA_COMPLETADA", schema="UNA")
+@Table(name = "ESCALERA_COMPLETADA", schema = "UNA")
 @NamedQueries({
     @NamedQuery(name = "EscaleraCompletada.findAll", query = "SELECT e FROM EscaleraCompletada e"),
     @NamedQuery(name = "EscaleraCompletada.findByIdEscalera", query = "SELECT e FROM EscaleraCompletada e WHERE e.idEscalera = :idEscalera"),
     @NamedQuery(name = "EscaleraCompletada.findByVersion", query = "SELECT e FROM EscaleraCompletada e WHERE e.version = :version")})
 public class EscaleraCompletada implements Serializable {
-
-   
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -47,6 +45,7 @@ public class EscaleraCompletada implements Serializable {
     private Juego fkJuego;
     @OneToMany(mappedBy = "fkEscalera", fetch = FetchType.LAZY)
     private List<Carta> cartas;
+
     public EscaleraCompletada() {
     }
 
@@ -62,7 +61,6 @@ public class EscaleraCompletada implements Serializable {
         this.id = id;
     }
 
-
     public Juego getFkJuego() {
         return fkJuego;
     }
@@ -70,7 +68,6 @@ public class EscaleraCompletada implements Serializable {
     public void setFkJuego(Juego fkJuego) {
         this.fkJuego = fkJuego;
     }
-
 
     public List<Carta> getCartas() {
         return cartas;

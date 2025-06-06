@@ -106,12 +106,12 @@ public class FlowController {
         }
         switch (location) {
             case "Center":
-                
+
                 BorderPane borderPane = (BorderPane) stage.getScene().getRoot();
-                VBox vBox = (VBox)borderPane.getCenter();
+                VBox vBox = (VBox) borderPane.getCenter();
                 vBox.getChildren().clear();
                 vBox.getChildren().add(loader.getRoot());
-                        
+
                 /*VBox vBox = ((VBox) ((BorderPane) stage.getScene().getRoot()).getCenter());
                 vBox.getChildren().clear();
                 vBox.getChildren().add(loader.getRoot());*/
@@ -135,7 +135,7 @@ public class FlowController {
         controller.setStage(stage);
         stage.getScene().setRoot(loader.getRoot());
         MFXThemeManager.addOn(stage.getScene(), Themes.DEFAULT, Themes.LEGACY);
-        
+
     }
 
     public void goViewInWindow(String viewName) {
@@ -185,15 +185,15 @@ public class FlowController {
     public Controller getController(String viewName) {
         return getLoader(viewName).getController();
     }
-    
-    public void limpiarLoader(String view){
+
+    public void limpiarLoader(String view) {
         this.loaders.remove(view);
     }
 
     public static void setIdioma(ResourceBundle idioma) {
         FlowController.idioma = idioma;
     }
-    
+
     public void initialize() {
         this.loaders.clear();
     }

@@ -25,7 +25,9 @@ public class UsuarioDto {
     private Long version;
     private Boolean modificado;
 
-    /** Constructor por defecto, inicializa propiedades con valores por defecto. */
+    /**
+     * Constructor por defecto, inicializa propiedades con valores por defecto.
+     */
     public UsuarioDto() {
         this.id = new SimpleStringProperty("");
         this.nombreUsuario = new SimpleStringProperty("");
@@ -38,7 +40,9 @@ public class UsuarioDto {
         this.modificado = false;
     }
 
-    /** Constructor que mapea desde la entidad Usuario */
+    /**
+     * Constructor que mapea desde la entidad Usuario
+     */
     public UsuarioDto(Usuario usuario) {
         this();
         if (usuario.getId() != null) {
@@ -75,6 +79,7 @@ public class UsuarioDto {
         }
         return null;
     }
+
     public void setId(Long id) {
         this.id.set(id.toString());
     }
@@ -82,6 +87,7 @@ public class UsuarioDto {
     public String getNombreUsuario() {
         return nombreUsuario.get();
     }
+
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario.set(nombreUsuario);
     }
@@ -89,6 +95,7 @@ public class UsuarioDto {
     public String getImagenCarta() {
         return imagenCarta.get();
     }
+
     public void setImagenCarta(String imagenCarta) {
         this.imagenCarta.set(imagenCarta);
     }
@@ -96,6 +103,7 @@ public class UsuarioDto {
     public String getCaraCartaImg() {
         return caraCartaImg.get();
     }
+
     public void setCaraCartaImg(String caraCartaImg) {
         this.caraCartaImg.set(caraCartaImg);
     }
@@ -103,6 +111,7 @@ public class UsuarioDto {
     public int getPuntajeTotal() {
         return puntajeTotal.get();
     }
+
     public void setPuntajeTotal(int puntajeTotal) {
         this.puntajeTotal.set(puntajeTotal);
     }
@@ -110,6 +119,7 @@ public class UsuarioDto {
     public int getPartidasPerdidas() {
         return partidasPerdidas.get();
     }
+
     public void setPartidasPerdidas(int partidasPerdidas) {
         this.partidasPerdidas.set(partidasPerdidas);
     }
@@ -117,6 +127,7 @@ public class UsuarioDto {
     public int getPartidasGanadas() {
         return partidasGanadas.get();
     }
+
     public void setPartidasGanadas(int partidasGanadas) {
         this.partidasGanadas.set(partidasGanadas);
     }
@@ -124,6 +135,7 @@ public class UsuarioDto {
     public String getModoOscuro() {
         return modoOscuro.get();
     }
+
     public void setModoOscuro(String modoOscuro) {
         this.modoOscuro.set(modoOscuro);
     }
@@ -131,6 +143,7 @@ public class UsuarioDto {
     public Long getVersion() {
         return version;
     }
+
     public void setVersion(Long version) {
         this.version = version;
     }
@@ -138,6 +151,7 @@ public class UsuarioDto {
     public Boolean getModificado() {
         return modificado;
     }
+
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
     }
@@ -146,24 +160,31 @@ public class UsuarioDto {
     public StringProperty idProperty() {
         return id;
     }
+
     public StringProperty nombreUsuarioProperty() {
         return nombreUsuario;
     }
+
     public StringProperty imagenCartaProperty() {
         return imagenCarta;
     }
+
     public StringProperty caraCartaImgProperty() {
         return caraCartaImg;
     }
+
     public IntegerProperty puntajeTotalProperty() {
         return puntajeTotal;
     }
+
     public IntegerProperty partidasPerdidasProperty() {
         return partidasPerdidas;
     }
+
     public IntegerProperty partidasGanadasProperty() {
         return partidasGanadas;
     }
+
     public StringProperty modoOscuroProperty() {
         return modoOscuro;
     }
@@ -173,19 +194,24 @@ public class UsuarioDto {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof UsuarioDto)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof UsuarioDto)) {
+            return false;
+        }
         UsuarioDto other = (UsuarioDto) obj;
         return Objects.equals(getId(), other.getId());
     }
+
     @Override
     public String toString() {
-        return "UsuarioDto{" +
-                "id=" + id.get() +
-                ", nombreUsuario=" + nombreUsuario.get() +
-                '}';
+        return "UsuarioDto{"
+                + "id=" + id.get()
+                + ", nombreUsuario=" + nombreUsuario.get()
+                + '}';
     }
 }
-

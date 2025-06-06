@@ -9,5 +9,5 @@ package cr.ac.una.proyectoprogra2.service;
  * @author emena
  */
 public class EscaleraCompletadaService {
-    
+
 }

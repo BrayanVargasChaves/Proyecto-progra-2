@@ -20,15 +20,19 @@ public class MazoDto {
     private LongProperty fkJuegoId;
     private Boolean modificado;
 
-    /** Constructor por defecto, inicializa propiedades con valores por defecto. */
+    /**
+     * Constructor por defecto, inicializa propiedades con valores por defecto.
+     */
     public MazoDto() {
         this.id = new SimpleStringProperty("");
-        this.estado = new SimpleObjectProperty<>((short)0);
+        this.estado = new SimpleObjectProperty<>((short) 0);
         this.fkJuegoId = new SimpleLongProperty(0L);
         this.modificado = false;
     }
 
-    /** Constructor que mapea desde la entidad Mazo */
+    /**
+     * Constructor que mapea desde la entidad Mazo
+     */
     public MazoDto(Mazo mazo) {
         this();
         if (mazo.getId() != null) {
@@ -50,6 +54,7 @@ public class MazoDto {
         }
         return null;
     }
+
     public void setId(Long id) {
         this.id.set(id.toString());
     }
@@ -57,6 +62,7 @@ public class MazoDto {
     public Short getEstado() {
         return estado.get();
     }
+
     public void setEstado(Short estado) {
         this.estado.set(estado);
     }
@@ -64,6 +70,7 @@ public class MazoDto {
     public Long getVersion() {
         return version;
     }
+
     public void setVersion(Long version) {
         this.version = version;
     }
@@ -71,6 +78,7 @@ public class MazoDto {
     public Long getFkJuegoId() {
         return fkJuegoId.get();
     }
+
     public void setFkJuegoId(Long juegoId) {
         this.fkJuegoId.set(juegoId);
     }
@@ -78,6 +86,7 @@ public class MazoDto {
     public Boolean getModificado() {
         return modificado;
     }
+
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
     }
@@ -100,19 +109,24 @@ public class MazoDto {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof MazoDto)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof MazoDto)) {
+            return false;
+        }
         MazoDto other = (MazoDto) obj;
         return Objects.equals(getId(), other.getId());
     }
+
     @Override
     public String toString() {
-        return "MazoDto{" +
-                "id=" + id.get() +
-                ", estado=" + estado.get() +
-                '}';
+        return "MazoDto{"
+                + "id=" + id.get()
+                + ", estado=" + estado.get()
+                + '}';
     }
 }
-
