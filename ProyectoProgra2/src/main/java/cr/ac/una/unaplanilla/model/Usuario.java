@@ -72,7 +72,7 @@ public class Usuario implements Serializable {
     private List<Juego> juegos;
     public Usuario() {
     }
-
+    
     public Usuario(Long id) {
         this.id = id;
     }

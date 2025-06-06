@@ -14,5 +14,4 @@ module cr.ac.una.proyectoprogra2 {
     exports cr.ac.una.proyectoprogra2;
     exports cr.ac.una.proyectoprogra2.util;
     exports cr.ac.una.proyectoprogra2.controller;
-    //exports cr.ac.una.proyectoprogra2.view;
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.ConfiguracionesController">
+   <children>
+      <HBox layoutX="77.0" layoutY="137.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="50.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <MFXTextField fx:id="txfNombreUsuario" floatingText="Nombre de Usuario" maxWidth="1.7976931348623157E308" onAction="#onActionTxfNombreUsuario" prefHeight="50.0" prefWidth="200.0" />
+                        <MFXButton fx:id="btnIniciarSesion" onAction="#onActionBtnIniciarSesion" text="Iniciar Sesion" />
+                        <MFXToggleButton fx:id="TbtnTemaOscuro" text="Tema Oscuro" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </VBox>
+                  <HBox prefHeight="50.0" prefWidth="200.0">
+                     <children>
+                        <MFXButton fx:id="btnVolver" onAction="#onActionBtnVolver" prefHeight="50.0" prefWidth="75.0" text="Volver" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="50.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <MFXButton fx:id="btnAnadirUsuario" onAction="#onActionBtnAnadirUsuario" prefHeight="50.0" prefWidth="150.0" text="Añadir Usuario" />
+                  <MFXButton fx:id="btnPersonalizarUsuario" layoutX="108.0" layoutY="185.0" onAction="#onActionBtnPersinalizarUsuario" prefHeight="50.0" prefWidth="150.0" text="Personalizar Usuario" />
+                  <MFXComboBox fx:id="CbxElejirUsuario" floatingText="Seleccionar Usuario" onAction="#onActionCbxElejirUsuario" prefHeight="50.0" prefWidth="150.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
