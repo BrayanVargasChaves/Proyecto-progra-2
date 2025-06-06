@@ -16,8 +16,8 @@ public class UsuarioDto {
 
     private StringProperty id;
     private StringProperty nombreUsuario;
-    private ObjectProperty<byte[]> imagenCarta;
-    private ObjectProperty<byte[]> caraCartaImg;
+    private StringProperty imagenCarta;
+    private StringProperty caraCartaImg;
     private IntegerProperty puntajeTotal;
     private IntegerProperty partidasPerdidas;
     private IntegerProperty partidasGanadas;
@@ -29,8 +29,8 @@ public class UsuarioDto {
     public UsuarioDto() {
         this.id = new SimpleStringProperty("");
         this.nombreUsuario = new SimpleStringProperty("");
-        this.imagenCarta = new SimpleObjectProperty<>(new byte[0]);
-        this.caraCartaImg = new SimpleObjectProperty<>(new byte[0]);
+        this.imagenCarta = new SimpleStringProperty("");
+        this.caraCartaImg = new SimpleStringProperty("");
         this.puntajeTotal = new SimpleIntegerProperty(0);
         this.partidasPerdidas = new SimpleIntegerProperty(0);
         this.partidasGanadas = new SimpleIntegerProperty(0);
@@ -86,17 +86,17 @@ public class UsuarioDto {
         this.nombreUsuario.set(nombreUsuario);
     }
 
-    public byte[] getImagenCarta() {
+    public String getImagenCarta() {
         return imagenCarta.get();
     }
-    public void setImagenCarta(byte[] imagenCarta) {
+    public void setImagenCarta(String imagenCarta) {
         this.imagenCarta.set(imagenCarta);
     }
 
-    public byte[] getCaraCartaImg() {
+    public String getCaraCartaImg() {
         return caraCartaImg.get();
     }
-    public void setCaraCartaImg(byte[] caraCartaImg) {
+    public void setCaraCartaImg(String caraCartaImg) {
         this.caraCartaImg.set(caraCartaImg);
     }
 
@@ -149,10 +149,10 @@ public class UsuarioDto {
     public StringProperty nombreUsuarioProperty() {
         return nombreUsuario;
     }
-    public ObjectProperty<byte[]> imagenCartaProperty() {
+    public StringProperty imagenCartaProperty() {
         return imagenCarta;
     }
-    public ObjectProperty<byte[]> caraCartaImgProperty() {
+    public StringProperty caraCartaImgProperty() {
         return caraCartaImg;
     }
     public IntegerProperty puntajeTotalProperty() {

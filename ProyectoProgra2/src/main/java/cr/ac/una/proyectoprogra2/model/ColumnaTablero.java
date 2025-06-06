@@ -24,13 +24,15 @@ import java.util.List;
  * @author emena
  */
 @Entity
-@Table(name = "COLUMNA_TABLERO", schema="UNA")
+@Table(name = "COLUMNA_TABLERO", schema = "UNA")
 @NamedQueries({
     @NamedQuery(name = "ColumnaTablero.findAll", query = "SELECT c FROM ColumnaTablero c"),
     @NamedQuery(name = "ColumnaTablero.findByIdColumnaTablero", query = "SELECT c FROM ColumnaTablero c WHERE c.idColumnaTablero = :idColumnaTablero"),
     @NamedQuery(name = "ColumnaTablero.findByIndiceColumna", query = "SELECT c FROM ColumnaTablero c WHERE c.indiceColumna = :indiceColumna"),
     @NamedQuery(name = "ColumnaTablero.findByVersion", query = "SELECT c FROM ColumnaTablero c WHERE c.version = :version")})
 public class ColumnaTablero implements Serializable {
+
+    
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -49,6 +51,7 @@ public class ColumnaTablero implements Serializable {
     private Juego fkJuego;
     @OneToMany(mappedBy = "fkColumnaTablero", fetch = FetchType.LAZY)
     private List<Carta> cartas;
+
     public ColumnaTablero() {
     }
 
@@ -72,14 +75,6 @@ public class ColumnaTablero implements Serializable {
         this.indiceColumna = indiceColumna;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
     public Juego getFkJuego() {
         return fkJuego;
     }
@@ -94,6 +89,14 @@ public class ColumnaTablero implements Serializable {
 
     public void setCartas(List<Carta> cartas) {
         this.cartas = cartas;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override
@@ -120,5 +123,5 @@ public class ColumnaTablero implements Serializable {
     public String toString() {
         return "cr.ac.una.unaplanilla.model.ColumnaTablero[ idColumnaTablero=" + id + " ]";
     }
-    
+
 }

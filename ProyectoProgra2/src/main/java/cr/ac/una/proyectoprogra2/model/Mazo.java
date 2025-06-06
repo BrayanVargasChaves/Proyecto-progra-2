@@ -35,6 +35,8 @@ import java.util.List;
     @NamedQuery(name = "Mazo.findByVersion", query = "SELECT m FROM Mazo m WHERE m.version = :version")})
 public class Mazo implements Serializable {
 
+    
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -43,7 +45,6 @@ public class Mazo implements Serializable {
     private Long id;
     @Column(name = "ESTADO")
     private Short estado;
-    @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
     private Long version;
@@ -80,13 +81,6 @@ public class Mazo implements Serializable {
         this.estado = estado;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
 
     public Juego getFkJuego() {
         return fkJuego;
@@ -127,6 +121,14 @@ public class Mazo implements Serializable {
     @Override
     public String toString() {
         return "cr.ac.una.unaplanilla.model.Mazo[ idMazo=" + id + " ]";
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
     
 }

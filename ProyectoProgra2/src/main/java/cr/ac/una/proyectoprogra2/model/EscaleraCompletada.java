@@ -31,13 +31,14 @@ import java.util.List;
     @NamedQuery(name = "EscaleraCompletada.findByVersion", query = "SELECT e FROM EscaleraCompletada e WHERE e.version = :version")})
 public class EscaleraCompletada implements Serializable {
 
+   
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_ESCALERA")
     private Long id;
-    @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
     private Long version;
@@ -61,13 +62,6 @@ public class EscaleraCompletada implements Serializable {
         this.id = id;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
 
     public Juego getFkJuego() {
         return fkJuego;
@@ -109,5 +103,13 @@ public class EscaleraCompletada implements Serializable {
     @Override
     public String toString() {
         return "cr.ac.una.unaplanilla.model.EscaleraCompletada[ idEscalera=" + id + " ]";
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }
