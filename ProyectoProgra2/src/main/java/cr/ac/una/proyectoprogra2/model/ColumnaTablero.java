@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -17,8 +17,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -26,19 +24,24 @@ import java.util.List;
  * @author emena
  */
 @Entity
-@Table(name = "ESCALERA_COMPLETADA", schema="UNA")
+@Table(name = "COLUMNA_TABLERO", schema = "UNA")
 @NamedQueries({
-    @NamedQuery(name = "EscaleraCompletada.findAll", query = "SELECT e FROM EscaleraCompletada e"),
-    @NamedQuery(name = "EscaleraCompletada.findByIdEscalera", query = "SELECT e FROM EscaleraCompletada e WHERE e.idEscalera = :idEscalera"),
-    @NamedQuery(name = "EscaleraCompletada.findByVersion", query = "SELECT e FROM EscaleraCompletada e WHERE e.version = :version")})
-public class EscaleraCompletada implements Serializable {
+    @NamedQuery(name = "ColumnaTablero.findAll", query = "SELECT c FROM ColumnaTablero c"),
+    @NamedQuery(name = "ColumnaTablero.findByIdColumnaTablero", query = "SELECT c FROM ColumnaTablero c WHERE c.idColumnaTablero = :idColumnaTablero"),
+    @NamedQuery(name = "ColumnaTablero.findByIndiceColumna", query = "SELECT c FROM ColumnaTablero c WHERE c.indiceColumna = :indiceColumna"),
+    @NamedQuery(name = "ColumnaTablero.findByVersion", query = "SELECT c FROM ColumnaTablero c WHERE c.version = :version")})
+public class ColumnaTablero implements Serializable {
+
+    
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "ID_ESCALERA")
+    @Column(name = "ID_COLUMNA_TABLERO")
     private Long id;
+    @Column(name = "INDICE_COLUMNA")
+    private Integer indiceColumna;
     @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
@@ -46,13 +49,14 @@ public class EscaleraCompletada implements Serializable {
     @JoinColumn(name = "FK_JUEGO", referencedColumnName = "ID_JUEGO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Juego fkJuego;
-    @OneToMany(mappedBy = "fkEscalera", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "fkColumnaTablero", fetch = FetchType.LAZY)
     private List<Carta> cartas;
-    public EscaleraCompletada() {
+
+    public ColumnaTablero() {
     }
 
-    public EscaleraCompletada(Long idEscalera) {
-        this.id = idEscalera;
+    public ColumnaTablero(Long id) {
+        this.id = id;
     }
 
     public Long getId() {
@@ -63,12 +67,12 @@ public class EscaleraCompletada implements Serializable {
         this.id = id;
     }
 
-    public Long getVersion() {
-        return version;
+    public Integer getIndiceColumna() {
+        return indiceColumna;
     }
 
-    public void setVersion(Long version) {
-        this.version = version;
+    public void setIndiceColumna(Integer indiceColumna) {
+        this.indiceColumna = indiceColumna;
     }
 
     public Juego getFkJuego() {
@@ -79,13 +83,20 @@ public class EscaleraCompletada implements Serializable {
         this.fkJuego = fkJuego;
     }
 
-
     public List<Carta> getCartas() {
         return cartas;
     }
 
     public void setCartas(List<Carta> cartas) {
         this.cartas = cartas;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 
     @Override
@@ -98,10 +109,10 @@ public class EscaleraCompletada implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof EscaleraCompletada)) {
+        if (!(object instanceof ColumnaTablero)) {
             return false;
         }
-        EscaleraCompletada other = (EscaleraCompletada) object;
+        ColumnaTablero other = (ColumnaTablero) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -110,7 +121,7 @@ public class EscaleraCompletada implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.EscaleraCompletada[ idEscalera=" + id + " ]";
+        return "cr.ac.una.unaplanilla.model.ColumnaTablero[ idColumnaTablero=" + id + " ]";
     }
-    
+
 }

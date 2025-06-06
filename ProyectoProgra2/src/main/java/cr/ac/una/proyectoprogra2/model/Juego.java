@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -20,10 +20,7 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,6 +39,8 @@ import java.util.List;
     @NamedQuery(name = "Juego.findByTiempoTranscurrido", query = "SELECT j FROM Juego j WHERE j.tiempoTranscurrido = :tiempoTranscurrido"),
     @NamedQuery(name = "Juego.findByVersion", query = "SELECT j FROM Juego j WHERE j.version = :version")})
 public class Juego implements Serializable {
+
+    
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -66,9 +65,9 @@ public class Juego implements Serializable {
     @Column(name = "TIEMPO_TRANSCURRIDO")
     private Integer tiempoTranscurrido;
     @Basic(optional = false)
+    @Version
     @Column(name = "VERSION")
     private Long version;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
     private List<ColumnaTablero> columnasTablero;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
@@ -78,8 +77,6 @@ public class Juego implements Serializable {
     private Usuario fkUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
     private List<Mazo> mazos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkJuego", fetch = FetchType.LAZY)
-    private List<Movimiento> movimientos;
     public Juego() {
     }
 
@@ -119,13 +116,6 @@ public class Juego implements Serializable {
         this.estado = estado;
     }
 
-    public Integer getPuntaje() {
-        return puntaje;
-    }
-
-    public void setPuntaje(Integer puntaje) {
-        this.puntaje = puntaje;
-    }
 
     public Integer getTiempoTranscurrido() {
         return tiempoTranscurrido;
@@ -135,13 +125,6 @@ public class Juego implements Serializable {
         this.tiempoTranscurrido = tiempoTranscurrido;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
 
     public List<ColumnaTablero> getColumnasTablero() {
         return columnasTablero;
@@ -175,14 +158,6 @@ public class Juego implements Serializable {
         this.mazos = mazos;
     }
 
-    public List<Movimiento> getMovimientos() {
-        return movimientos;
-    }
-
-    public void setMovimientos(List<Movimiento> movimientos) {
-        this.movimientos = movimientos;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -206,5 +181,21 @@ public class Juego implements Serializable {
     @Override
     public String toString() {
         return "cr.ac.una.unaplanilla.model.Juego[ idJuego=" + id + " ]";
+    }
+
+    public Integer getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(Integer puntaje) {
+        this.puntaje = puntaje;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

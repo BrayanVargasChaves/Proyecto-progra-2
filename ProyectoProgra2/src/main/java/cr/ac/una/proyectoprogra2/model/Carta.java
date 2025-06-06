@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -35,26 +35,28 @@ import java.math.BigInteger;
     @NamedQuery(name = "Carta.findByVersion", query = "SELECT c FROM Carta c WHERE c.version = :version")})
 public class Carta implements Serializable {
 
+   
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "ID_CARTA")
     private Long id;
-    @Column(name = "INDICE_POS_CARTA")
-    private Integer indicePosCarta;
-    @Basic(optional = false)
-    @Column(name = "NUMERO_CARTA")
-    private Integer numeroCarta;
     @Basic(optional = false)
     @Column(name = "PALO_CARTA")
     private String paloCarta;
     @Column(name = "BOCA_ARRIBA")
     private Short bocaArriba;
+     @Column(name = "INDICE_POS_CARTA")
+    private Integer indicePosCarta;
+    @Basic(optional = false)
+    @Column(name = "NUMERO_CARTA")
+    private Integer numeroCarta;
     @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
-    private Long version;
+    private Long version;  
     @JoinColumn(name = "FK_COLUMNA_TABLERO", referencedColumnName = "ID_COLUMNA_TABLERO")
     @ManyToOne(fetch = FetchType.LAZY)
     private ColumnaTablero fkColumnaTablero;
@@ -168,5 +170,6 @@ public class Carta implements Serializable {
     public String toString() {
         return "cr.ac.una.unaplanilla.model.Carta[ idCarta=" + id + " ]";
     }
+
     
 }

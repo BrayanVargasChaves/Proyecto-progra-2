@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -26,7 +26,7 @@ import java.util.List;
  * @author emena
  */
 @Entity
-@Table(name = "USUARIO", schema="UNA" )
+@Table(name = "USUARIO", schema = "UNA")
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
@@ -47,12 +47,12 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "NOMBRE_USUARIO")
     private String nombreUsuario;
-    @Lob
+    @Column(name = "MODO_OSCURO")
+    private String modoOscuro;
     @Column(name = "IMAGEN_CARTA")
-    private byte[] imagenCarta;
-    @Lob
+    private String imagenCarta;
     @Column(name = "CARA_CARTA_IMG")
-    private byte[] caraCartaImg;
+    private String caraCartaImg;
     @Basic(optional = false)
     @Column(name = "PUNTAJE_TOTAL")
     private Integer puntajeTotal;
@@ -62,14 +62,13 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "PARTIDAS_GANADAS")
     private Integer partidasGanadas;
-    @Column(name = "MODO_OSCURO")
-    private String modoOscuro;
     @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
     private Long version;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkUsuario", fetch = FetchType.LAZY)
     private List<Juego> juegos;
+
     public Usuario() {
     }
     
@@ -91,14 +90,6 @@ public class Usuario implements Serializable {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
-    }
-
-    public byte[] getImagenCarta() {
-        return imagenCarta;
-    }
-
-    public void setImagenCarta(byte[] imagenCarta) {
-        this.imagenCarta = imagenCarta;
     }
 
     public Integer getPuntajeTotal() {
@@ -133,20 +124,28 @@ public class Usuario implements Serializable {
         this.modoOscuro = modoOscuro;
     }
 
+    public String getImagenCarta() {
+        return imagenCarta;
+    }
+
+    public void setImagenCarta(String imagenCarta) {
+        this.imagenCarta = imagenCarta;
+    }
+
+    public String getCaraCartaImg() {
+        return caraCartaImg;
+    }
+
+    public void setCaraCartaImg(String caraCartaImg) {
+        this.caraCartaImg = caraCartaImg;
+    }
+
     public Long getVersion() {
         return version;
     }
 
     public void setVersion(Long version) {
         this.version = version;
-    }
-
-    public byte[] getCaraCartaImg() {
-        return caraCartaImg;
-    }
-
-    public void setCaraCartaImg(byte[] caraCartaImg) {
-        this.caraCartaImg = caraCartaImg;
     }
 
     public List<Juego> getJuegos() {
@@ -181,5 +180,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "cr.ac.una.unaplanilla.model.Usuario[ idUsuario=" + id + " ]";
     }
-    
+
 }

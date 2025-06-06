@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package cr.ac.una.unaplanilla.model;
+package cr.ac.una.proyectoprogra2.model;
 
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,8 +17,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -27,43 +24,36 @@ import java.util.List;
  * @author emena
  */
 @Entity
-@Table(name = "MAZO", schema="UNA")
+@Table(name = "ESCALERA_COMPLETADA", schema="UNA")
 @NamedQueries({
-    @NamedQuery(name = "Mazo.findAll", query = "SELECT m FROM Mazo m"),
-    @NamedQuery(name = "Mazo.findByIdMazo", query = "SELECT m FROM Mazo m WHERE m.idMazo = :idMazo"),
-    @NamedQuery(name = "Mazo.findByEstado", query = "SELECT m FROM Mazo m WHERE m.estado = :estado"),
-    @NamedQuery(name = "Mazo.findByVersion", query = "SELECT m FROM Mazo m WHERE m.version = :version")})
-public class Mazo implements Serializable {
+    @NamedQuery(name = "EscaleraCompletada.findAll", query = "SELECT e FROM EscaleraCompletada e"),
+    @NamedQuery(name = "EscaleraCompletada.findByIdEscalera", query = "SELECT e FROM EscaleraCompletada e WHERE e.idEscalera = :idEscalera"),
+    @NamedQuery(name = "EscaleraCompletada.findByVersion", query = "SELECT e FROM EscaleraCompletada e WHERE e.version = :version")})
+public class EscaleraCompletada implements Serializable {
+
+   
 
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
-    @Column(name = "ID_MAZO")
+    @Column(name = "ID_ESCALERA")
     private Long id;
-    @Column(name = "ESTADO")
-    private Short estado;
-    @Basic(optional = false)
     @Version
     @Column(name = "VERSION")
     private Long version;
     @JoinColumn(name = "FK_JUEGO", referencedColumnName = "ID_JUEGO")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Juego fkJuego;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkMazo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "fkEscalera", fetch = FetchType.LAZY)
     private List<Carta> cartas;
-    public Mazo() {
+    public EscaleraCompletada() {
     }
 
-    public Mazo(Long id) {
-        this.id = id;
+    public EscaleraCompletada(Long idEscalera) {
+        this.id = idEscalera;
     }
-/*
-    public Mazo(BigDecimal idMazo, BigInteger version) {
-        this.id = idMazo;
-        this.version = version;
-    }
-*/
+
     public Long getId() {
         return id;
     }
@@ -72,21 +62,6 @@ public class Mazo implements Serializable {
         this.id = id;
     }
 
-    public Short getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Short estado) {
-        this.estado = estado;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
 
     public Juego getFkJuego() {
         return fkJuego;
@@ -95,6 +70,7 @@ public class Mazo implements Serializable {
     public void setFkJuego(Juego fkJuego) {
         this.fkJuego = fkJuego;
     }
+
 
     public List<Carta> getCartas() {
         return cartas;
@@ -114,10 +90,10 @@ public class Mazo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Mazo)) {
+        if (!(object instanceof EscaleraCompletada)) {
             return false;
         }
-        Mazo other = (Mazo) object;
+        EscaleraCompletada other = (EscaleraCompletada) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +102,14 @@ public class Mazo implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Mazo[ idMazo=" + id + " ]";
+        return "cr.ac.una.unaplanilla.model.EscaleraCompletada[ idEscalera=" + id + " ]";
     }
-    
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 }
