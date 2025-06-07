@@ -94,7 +94,9 @@ public class ColumnaTableroDto {
     // equals, hashCode y toString
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     @Override
@@ -102,11 +104,14 @@ public class ColumnaTableroDto {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof ColumnaTableroDto)) {
+        if (obj == null) {
             return false;
         }
-        ColumnaTableroDto other = (ColumnaTableroDto) obj;
-        return Objects.equals(getId(), other.getId());
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ColumnaTableroDto other = (ColumnaTableroDto) obj;
+        return Objects.equals(this.id.get(), other.id.get());
     }
 
     @Override

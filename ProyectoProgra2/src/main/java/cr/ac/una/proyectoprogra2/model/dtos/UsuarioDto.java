@@ -189,10 +189,11 @@ public class UsuarioDto {
         return modoOscuro;
     }
 
-    // equals, hashCode y toString
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     @Override
@@ -200,11 +201,14 @@ public class UsuarioDto {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof UsuarioDto)) {
+        if (obj == null) {
             return false;
         }
-        UsuarioDto other = (UsuarioDto) obj;
-        return Objects.equals(getId(), other.getId());
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UsuarioDto other = (UsuarioDto) obj;
+        return Objects.equals(this.id.get(), other.id.get());
     }
 
     @Override

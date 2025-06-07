@@ -42,7 +42,7 @@ public class Mazo implements Serializable {
     @Column(name = "ID_MAZO")
     private Long id;
     @Column(name = "ESTADO")
-    private Short estado;
+    private Integer estado;
     @Version
     @Column(name = "VERSION")
     private Long version;
@@ -73,11 +73,11 @@ public class Mazo implements Serializable {
         this.id = id;
     }
 
-    public Short getEstado() {
+    public Integer getEstado() {
         return estado;
     }
 
-    public void setEstado(Short estado) {
+    public void setEstado(Integer estado) {
         this.estado = estado;
     }
 

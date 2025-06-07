@@ -71,10 +71,11 @@ public class EscaleraCompletadaDto {
         return id;
     }
 
-    // equals, hashCode y toString
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     @Override
@@ -82,11 +83,14 @@ public class EscaleraCompletadaDto {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof EscaleraCompletadaDto)) {
+        if (obj == null) {
             return false;
         }
-        EscaleraCompletadaDto other = (EscaleraCompletadaDto) obj;
-        return Objects.equals(getId(), other.getId());
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final EscaleraCompletadaDto other = (EscaleraCompletadaDto) obj;
+        return Objects.equals(this.id.get(), other.id.get());
     }
 
     @Override

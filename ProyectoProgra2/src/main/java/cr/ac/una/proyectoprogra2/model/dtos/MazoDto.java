@@ -15,7 +15,7 @@ import java.util.Objects;
 public class MazoDto {
 
     private StringProperty id;
-    private ObjectProperty<Short> estado;
+    private IntegerProperty estado;
     private Long version;
     private Boolean modificado;
 
@@ -24,7 +24,7 @@ public class MazoDto {
      */
     public MazoDto() {
         this.id = new SimpleStringProperty("");
-        this.estado = new SimpleObjectProperty<>((short) 0);
+        this.estado = new SimpleIntegerProperty(0);
         this.modificado = false;
     }
 
@@ -54,11 +54,11 @@ public class MazoDto {
         this.id.set(id.toString());
     }
 
-    public Short getEstado() {
+    public Integer getEstado() {
         return estado.get();
     }
 
-    public void setEstado(Short estado) {
+    public void setEstado(Integer estado) {
         this.estado.set(estado);
     }
 
@@ -79,18 +79,19 @@ public class MazoDto {
     }
 
     // Property getters para binding
-    public StringProperty idProperty() {
+    public StringProperty getIdProperty() {
         return id;
     }
 
-    public ObjectProperty<Short> estadoProperty() {
+    public IntegerProperty getEstadoProperty() {
         return estado;
     }
 
-    // equals, hashCode y toString
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     @Override
@@ -98,11 +99,14 @@ public class MazoDto {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof MazoDto)) {
+        if (obj == null) {
             return false;
         }
-        MazoDto other = (MazoDto) obj;
-        return Objects.equals(getId(), other.getId());
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MazoDto other = (MazoDto) obj;
+        return Objects.equals(this.id.get(), other.id.get());
     }
 
     @Override
