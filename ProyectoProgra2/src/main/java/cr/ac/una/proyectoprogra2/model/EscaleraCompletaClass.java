@@ -4,10 +4,13 @@
  */
 package cr.ac.una.proyectoprogra2.model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author emena
  */
 public class EscaleraCompletaClass {
-    
+    private ObservableList<Card> cartas = FXCollections.observableArrayList();
 }

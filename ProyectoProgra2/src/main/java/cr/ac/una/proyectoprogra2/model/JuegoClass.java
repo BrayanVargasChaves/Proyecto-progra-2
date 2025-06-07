@@ -5,6 +5,8 @@
 package cr.ac.una.proyectoprogra2.model;
 
 import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -17,6 +19,8 @@ public class JuegoClass {
     private LocalDate fechaHora;
     private Integer puntaje;
     private Integer tiempoTranscurrido;
+    private ObservableList<ColumnaClass> cartas = FXCollections.observableArrayList();
+
 
     public JuegoClass(String dificultad, String estado, LocalDate fechaHora, Integer puntaje, Integer tiempoTranscurrido) {
         this.dificultad = dificultad;
