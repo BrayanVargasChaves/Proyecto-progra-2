@@ -39,11 +39,6 @@
             </HBox>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Pane fx:id="pnBaraja" layoutX="546.0" layoutY="213.0" prefHeight="50.0" prefWidth="39.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="20.0">
-                     <children>
-                        <MFXButton fx:id="btnDeck" onAction="#onActionBtnDeck" prefHeight="50.0" prefWidth="40.0" />
-                     </children>
-                  </Pane>
                   <Pane fx:id="pnPila1" layoutX="14.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
                   <Pane fx:id="pnPila2" layoutX="63.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
                   <Pane fx:id="pnPila3" layoutX="113.0" layoutY="209.0" prefHeight="50.0" prefWidth="39.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
@@ -62,6 +57,7 @@
                   <Pane fx:id="pnFila8" layoutX="413.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
                   <Pane fx:id="pnFila9" layoutX="470.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
                   <Pane fx:id="pnFila10" layoutX="528.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
+                  <MFXButton fx:id="btnDeck" layoutX="697.0" layoutY="409.0" onAction="#onActionBtnDeck" prefHeight="50.0" prefWidth="40.0" />
                </children>
             </AnchorPane>
             <HBox alignment="CENTER" maxHeight="75.0" maxWidth="1.7976931348623157E308" prefHeight="75.0" prefWidth="200.0" spacing="40.0">
