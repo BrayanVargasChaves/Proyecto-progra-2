@@ -56,5 +56,23 @@ public class Card {
     public void setBocaArriba(Integer bocaArriba) {
         this.bocaArriba = bocaArriba;
     }
+public String getValue() {
+    // Mapea el número de la carta a su valor textual
+    switch (numeroCarta) {
+        case 1:  return "A";
+        case 11: return "J";
+        case 12: return "Q";
+        case 13: return "K";
+        default: return String.valueOf(numeroCarta);
+    }
+}
 
+public String getSuit() {
+    // Si ya usas nombres como "spades", "hearts", etc. directamente, solo retorna
+    return paloCarta.toLowerCase();
+}
+
+public boolean isIsFlip() {
+    return bocaArriba != null && bocaArriba == 1;
+}
 }
