@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
  *
  * @author monge
  */
-public class AcercaDeController implements Initializable {
+public class AcercaDeController extends Controller implements Initializable {
 
     @FXML
     private MFXScrollPane scrollPane;
@@ -83,6 +83,10 @@ public class AcercaDeController implements Initializable {
 
     @FXML
     private void onActionBtnCerrar(ActionEvent event) {
+    }
+
+    @Override
+    public void initialize() {
     }
 
 }

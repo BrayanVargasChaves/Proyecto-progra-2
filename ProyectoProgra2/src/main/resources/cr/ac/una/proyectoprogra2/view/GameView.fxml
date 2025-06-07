@@ -8,28 +8,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.GameController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.GameController">
    <children>
       <!-- Fondo -->
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 
       <!-- 💡 Capa de animación -->
-      <AnchorPane fx:id="animationLayer"
-                  pickOnBounds="false"
-                  style="-fx-background-color: transparent;"
-                  AnchorPane.bottomAnchor="0.0"
-                  AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0"
-                  AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="animationLayer" pickOnBounds="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <!-- Rectángulos de ayuda visual -->
+            <Rectangle fx:id="recHintStart" arcHeight="10.0" arcWidth="10.0" fill="rgba(255,255,0,0.4)" stroke="yellow" strokeWidth="2" visible="false" />
+            <Rectangle fx:id="recHintEnd" arcHeight="10.0" arcWidth="10.0" fill="rgba(0,255,0,0.4)" stroke="limegreen" strokeWidth="2" visible="false" />
+            <Rectangle fx:id="recSelectedCard" arcHeight="10.0" arcWidth="10.0" fill="rgba(0,0,255,0.2)" stroke="blue" strokeWidth="2" visible="false" />
+         </children>
+      </AnchorPane>
 
       <!-- Interfaz principal -->
-      <VBox alignment="CENTER" layoutX="209.0" layoutY="125.0"
-            maxHeight="1.7976931348623157E308"
-            maxWidth="1.7976931348623157E308"
-            prefHeight="200.0" prefWidth="100.0"
-            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="209.0" layoutY="125.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" maxHeight="50.0" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0">
                <children>
@@ -42,7 +39,11 @@
             </HBox>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Pane fx:id="pnBaraja" layoutX="546.0" layoutY="213.0" prefHeight="50.0" prefWidth="39.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="20.0" />
+                  <Pane fx:id="pnBaraja" layoutX="546.0" layoutY="213.0" prefHeight="50.0" prefWidth="39.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="20.0">
+                     <children>
+                        <MFXButton fx:id="btnDeck" onAction="#onActionBtnDeck" prefHeight="50.0" prefWidth="40.0" />
+                     </children>
+                  </Pane>
                   <Pane fx:id="pnPila1" layoutX="14.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
                   <Pane fx:id="pnPila2" layoutX="63.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
                   <Pane fx:id="pnPila3" layoutX="113.0" layoutY="209.0" prefHeight="50.0" prefWidth="39.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />

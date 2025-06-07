@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
  *
  * @author monge
  */
-public class PrincipalController implements Initializable {
+public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private MFXButton btnJugar;
@@ -60,6 +60,10 @@ public class PrincipalController implements Initializable {
 
     @FXML
     private void onActionBtnSalir(ActionEvent event) {
+    }
+
+    @Override
+    public void initialize() {
     }
 
 }
