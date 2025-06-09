@@ -78,8 +78,8 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnEstadisticas(ActionEvent event) {
-                //FlowController.getInstance().goViewInWindow("LogInView");
-        //((Stage) root.getScene().getWindow()).close();
+                FlowController.getInstance().goViewInWindow("EstadisticasView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
