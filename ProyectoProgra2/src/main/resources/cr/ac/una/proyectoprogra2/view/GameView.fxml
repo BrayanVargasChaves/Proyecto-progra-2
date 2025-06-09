@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.GameController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.GameController">
    <children>
       <!-- Fondo -->
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
 
       <!-- 💡 Capa de animación -->
-      <AnchorPane fx:id="animationLayer" pickOnBounds="false" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="animationLayer" pickOnBounds="false" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <!-- Rectángulos de ayuda visual -->
             <Rectangle fx:id="recHintStart" arcHeight="10.0" arcWidth="10.0" fill="rgba(255,255,0,0.4)" stroke="yellow" strokeWidth="2" visible="false" />
@@ -37,27 +37,32 @@
                   <Label fx:id="lbTime" text="00:00" />
                </children>
             </HBox>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <AnchorPane fx:id="GamePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Pane fx:id="pnPila1" layoutX="14.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnPila2" layoutX="63.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnPila3" layoutX="113.0" layoutY="209.0" prefHeight="50.0" prefWidth="39.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnPila4" layoutX="161.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnPila5" layoutX="209.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnPila6" layoutX="260.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnPila7" layoutX="309.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnPila8" layoutX="356.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" />
-                  <Pane fx:id="pnFila1" layoutX="14.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila2" layoutX="71.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila3" layoutX="127.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila4" layoutX="184.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila5" layoutX="242.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila6" layoutX="300.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila7" layoutX="356.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila8" layoutX="413.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila9" layoutX="470.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <Pane fx:id="pnFila10" layoutX="528.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" style="-fx-background-color: red;" />
-                  <MFXButton fx:id="btnDeck" layoutX="697.0" layoutY="409.0" onAction="#onActionBtnDeck" prefHeight="50.0" prefWidth="40.0" />
+                  <Pane fx:id="pnPila1" layoutX="14.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnPila2" layoutX="63.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnPila3" layoutX="113.0" layoutY="209.0" prefHeight="50.0" prefWidth="39.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnPila4" layoutX="161.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnPila5" layoutX="209.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnPila6" layoutX="260.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnPila7" layoutX="309.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnPila8" layoutX="356.0" layoutY="209.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" />
+                  <Pane fx:id="pnFila1" layoutX="14.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
+                  <Pane fx:id="pnFila2" layoutX="71.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
+                  <Pane fx:id="pnFila3" layoutX="127.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
+                  <Pane fx:id="pnFila4" layoutX="184.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" AnchorPane.topAnchor="14.0" />
+                  <Pane fx:id="pnFila5" layoutX="242.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" AnchorPane.topAnchor="14.4" />
+                  <Pane fx:id="pnFila6" layoutX="300.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" AnchorPane.topAnchor="14.4" />
+                  <Pane fx:id="pnFila7" layoutX="356.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
+                  <Pane fx:id="pnFila8" layoutX="413.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
+                  <Pane fx:id="pnFila9" layoutX="470.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
+                  <Pane fx:id="pnFila10" layoutX="528.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
+                  <Pane fx:id="pnBaraja" layoutX="533.0" layoutY="208.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                        <MFXButton fx:id="btnDeck" onAction="#onActionBtnDeck" prefHeight="50.0" prefWidth="40.0" style="-fx-opacity: 0;" />
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
             <HBox alignment="CENTER" maxHeight="75.0" maxWidth="1.7976931348623157E308" prefHeight="75.0" prefWidth="200.0" spacing="40.0">
