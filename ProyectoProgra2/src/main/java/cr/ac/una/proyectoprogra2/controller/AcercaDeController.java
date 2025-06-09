@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import java.net.URL;
@@ -15,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -32,6 +35,8 @@ public class AcercaDeController extends Controller implements Initializable {
     private MFXButton btnCerrar;
     @FXML
     private ImageView imvFondo;
+    @FXML
+    private AnchorPane root;
 
     /**
      * Initializes the controller class.
@@ -83,6 +88,8 @@ public class AcercaDeController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnCerrar(ActionEvent event) {
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @Override

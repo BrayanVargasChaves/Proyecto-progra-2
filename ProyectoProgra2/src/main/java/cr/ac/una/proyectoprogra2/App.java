@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -17,7 +18,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("GameView"), 640, 480);
+       // stage.getIcons().add(new Image("cr/ac/una/proyectoprogra2/resources/LogoUNArojo.png"));
+        stage.setTitle("UNA Planilla");
+        scene = new Scene(loadFXML("PrincipalView"), 640, 480);
         stage.setScene(scene);
         stage.show();
     }

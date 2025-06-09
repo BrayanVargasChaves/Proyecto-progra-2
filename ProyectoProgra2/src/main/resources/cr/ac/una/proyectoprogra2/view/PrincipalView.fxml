@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.mfxcore.controls.Label?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.PrincipalController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="jfx-Panel-Borde" stylesheets="@TemaClaro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.PrincipalController">
    <children>
-      <ImageView fx:id="ImvFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <VBox alignment="CENTER" layoutX="236.8" prefHeight="400.0" prefWidth="126.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="237.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="ImvFondo" fitHeight="400.0" fitWidth="600.0" layoutX="-46.0" layoutY="-50.666666666666664" pickOnBounds="true" styleClass="jfx-fondoPrincipal" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox alignment="CENTER" layoutX="208.0" layoutY="47.0" prefHeight="319.0" prefWidth="195.0" spacing="10.0" AnchorPane.bottomAnchor="46.333333333333314" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="209.33333333333337" AnchorPane.topAnchor="47.0">
          <children>
-            <MFXButton fx:id="btnJugar" buttonType="RAISED" depthLevel="LEVEL4" onAction="#onActionBtnJugar" prefHeight="49.0" prefWidth="126.0" text="Jugar" VBox.vgrow="ALWAYS" />
-            <MFXButton fx:id="btnAcercaDe" buttonType="RAISED" depthLevel="LEVEL4" layoutX="10.0" layoutY="10.0" onAction="#onActionBtnAcercaDe" prefHeight="49.0" prefWidth="126.0" text="Acerca de" VBox.vgrow="ALWAYS" />
-            <MFXButton fx:id="btnConfiguraciones" buttonType="RAISED" depthLevel="LEVEL4" layoutX="10.0" layoutY="60.0" onAction="#onActionBtnConfiguraciones" prefHeight="49.0" prefWidth="126.0" text="Configuraciones" VBox.vgrow="ALWAYS" />
-            <MFXButton fx:id="btnEstadisticas" buttonType="RAISED" depthLevel="LEVEL4" layoutX="10.0" layoutY="109.0" onAction="#onActionBtnEstadisticas" prefHeight="49.0" prefWidth="126.0" text="Estadisticas" VBox.vgrow="ALWAYS" />
+            <MFXButton fx:id="btnJugar" buttonType="RAISED" depthLevel="LEVEL4" onAction="#onActionBtnJugar" prefHeight="55.0" prefWidth="164.0" styleClass="jfx-button-empezar" text="Jugar" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></MFXButton>
+            <MFXButton fx:id="btnAcercaDe" buttonType="RAISED" depthLevel="LEVEL4" layoutX="10.0" layoutY="10.0" onAction="#onActionBtnAcercaDe" prefHeight="55.0" prefWidth="164.0" styleClass="jfx-button-acercaDe" text="Acerca de" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></MFXButton>
+            <MFXButton fx:id="btnConfiguraciones" buttonType="RAISED" depthLevel="LEVEL4" layoutX="10.0" layoutY="60.0" onAction="#onActionBtnConfiguraciones" prefHeight="55.0" prefWidth="164.0" styleClass="jfx-button-ajustes" text="Configuraciones" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></MFXButton>
+            <MFXButton fx:id="btnEstadisticas" buttonType="RAISED" depthLevel="LEVEL4" layoutX="10.0" layoutY="109.0" onAction="#onActionBtnEstadisticas" prefHeight="55.0" prefWidth="164.0" styleClass="jfx-button-Estadistica" text="Estadisticas" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic></MFXButton>
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <MFXButton fx:id="btnSalir" buttonType="RAISED" depthLevel="LEVEL4" layoutX="14.0" layoutY="336.0" onAction="#onActionBtnSalir" prefHeight="49.0" prefWidth="126.0" text="Salir" AnchorPane.bottomAnchor="14.399999999999999" AnchorPane.leftAnchor="14.0" />
-      <HBox alignment="CENTER_LEFT" layoutX="451.0" layoutY="14.0" prefHeight="100.0" prefWidth="135.0" spacing="5.0" AnchorPane.rightAnchor="13.800000000000011" AnchorPane.topAnchor="14.0">
+      <MFXButton fx:id="btnSalir" buttonType="RAISED" depthLevel="LEVEL4" layoutX="14.0" layoutY="336.0" onAction="#onActionBtnSalir" prefHeight="49.0" prefWidth="126.0" styleClass="jfx-button-salir" text="Salir" AnchorPane.bottomAnchor="14.399999999999999" AnchorPane.leftAnchor="14.0">
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+         </graphic></MFXButton>
+      <HBox alignment="CENTER_LEFT" layoutX="474.0" layoutY="14.0" prefHeight="49.0" prefWidth="135.0" spacing="5.0" AnchorPane.rightAnchor="10.666666666666629" AnchorPane.topAnchor="14.0">
          <children>
-            <ImageView fx:id="imvUsario" fitHeight="60.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
-            <Label fx:id="lblNombre" prefHeight="30.0" prefWidth="70.0" text="*Invitado*" HBox.hgrow="ALWAYS" />
+            <ImageView fx:id="imvUsario" fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" styleClass="jfx-usuarioImg" HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblUsuario" styleClass="jfx-basic-labels" text="Invitado" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -34,6 +49,6 @@
       </HBox>
    </children>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
    </padding>
 </AnchorPane>

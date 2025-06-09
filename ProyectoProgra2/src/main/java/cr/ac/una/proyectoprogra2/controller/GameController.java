@@ -29,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class GameController extends Controller implements Initializable {
 
@@ -113,7 +114,7 @@ public class GameController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        recHintStart.setVisible(false);
+        /* recHintStart.setVisible(false);
         recHintEnd.setVisible(false);
         recSelectedCard.setVisible(false);
 
@@ -147,17 +148,20 @@ public class GameController extends Controller implements Initializable {
                 columnPanes,
                 btnDeck, // use button as source
                 this
-        );
+        ); */
     }
 
     @FXML
     private void onActionTerminarMasTarde(ActionEvent e) {
         // TODO: implement save state and exit logic
+
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
     private void onActionBtnDeck(ActionEvent e) {
-        if (cardsInDeck.isEmpty()) {
+        /* if (cardsInDeck.isEmpty()) {
             return;
         }
 
@@ -188,52 +192,52 @@ public class GameController extends Controller implements Initializable {
             assignDragAndClickEventsToEachCard();
             updateHintPositions();
         });
-        seq.play();
+        seq.play();  */
     }
 
     @FXML
     private void onActionBtnRendirce(ActionEvent e) {
-        gameFailed.set(true);
+        // gameFailed.set(true);
     }
 
     @FXML
     private void onActionBtnPista(ActionEvent e) {
-        updateHintPositions();
+        //  updateHintPositions();
     }
 
     private void attachGameWonListener() {
-        gameWon.addListener((o, oldVal, newVal) -> {
+        /*   gameWon.addListener((o, oldVal, newVal) -> {
             if (newVal) {
                 animationService.playVictoryAnimation(
                         foundationPanes, animationLayer
                 );
             }
-        });
+        });  */
     }
 
     private void attachGameFailedListener() {
-        gameFailed.addListener((o, oldVal, newVal) -> {
+        /*  gameFailed.addListener((o, oldVal, newVal) -> {
             if (newVal) {
                 animationService.defeatAnimation(
                         columnPanes, btnDeck, foundationPanes
                 );
             }
-        });
+        }); */
     }
 
     private void buildCardValues() {
-        cardValues = new HashMap<>();
+        /*   cardValues = new HashMap<>();
         List<String> ranks = Arrays.asList(
                 "A", "2", "3", "4", "5", "6",
                 "7", "8", "9", "10", "J", "Q", "K"
         );
         for (int i = 0; i < ranks.size(); i++) {
             cardValues.put(ranks.get(i), i + 1);
-        }
+        }  */
     }
 
     public void renderColumns() {
-        recHintStart.setVisible(false);
+        /*  recHintStart.setVisible(false);
         recHintEnd.setVisible(false);
         for (int i = 0; i < columnPanes.size(); i++) {
             Pane p = columnPanes.get(i);
@@ -244,11 +248,11 @@ public class GameController extends Controller implements Initializable {
                 iv.setLayoutY(j * OFFSET_Y);
                 p.getChildren().add(iv);
             }
-        }
+        }  */
     }
 
     void onActionLbHint(ActionEvent event) {
-        // Verificar si algún valor es -1 (significa que hay que clickear el deck)
+        /*    // Verificar si algún valor es -1 (significa que hay que clickear el deck)
         if (hintSourceColumnIndex == -1 || hintCardIndex == -1 || hintTargetColumnIndex == -1) {
             // Solo mostrar el rectángulo de hint en el deck
             recHintStart.setVisible(true);
@@ -334,11 +338,11 @@ public class GameController extends Controller implements Initializable {
             recHintEnd.setLayoutY(endBoundsInLayer.getMinY());
             recHintEnd.setWidth(endBoundsInLayer.getWidth());
             recHintEnd.setHeight(endBoundsInLayer.getHeight());
-        }
+        }   */
     }
 
     public void updateHintPositions() {
-        // Se recorre cada columna
+        /*   // Se recorre cada columna
         for (int sourceColIndex = 0; sourceColIndex < cardsInBoard.size(); sourceColIndex++) {
             // Se obtiene la columna a trabajar
             List<Card> sourceColumn = cardsInBoard.get(sourceColIndex);
@@ -400,7 +404,7 @@ public class GameController extends Controller implements Initializable {
             hintTargetColumnIndex = -1;
             return;
         }
-        gameFailed.set(true);
+        gameFailed.set(true);  */
     }
 
     @Override
@@ -410,16 +414,16 @@ public class GameController extends Controller implements Initializable {
 
     // Metodo para crear las imv de las cartas que van en el mazo
     public void renderDeck() {
-        pnDeck.getChildren().clear();
+        /*   pnDeck.getChildren().clear();
         for (Card card : cardsInDeck) {
             ImageView imvCard = createCardImageView(card);
             pnDeck.getChildren().add(imvCard);
-        }
+        }   */
     }
 
     // Metodo para crear las imv de las cartas que van en las pilas
     private void renderFoundations() {
-        for (int foundation = 0; foundation < cardsInFoundations.size(); foundation++) {
+        /*   for (int foundation = 0; foundation < cardsInFoundations.size(); foundation++) {
             Pane foundationPane = foundationPanes.get(foundation);
             foundationPane.getChildren().clear();
             List<Card> cards = cardsInFoundations.get(foundation);
@@ -427,21 +431,20 @@ public class GameController extends Controller implements Initializable {
                 ImageView imvCard = createCardImageView(cards.get(i));
                 foundationPane.getChildren().add(imvCard);
             }
-        }
+        }  */
     }
 
     // Metodo para obtener la imagen de la carta sabiendo su valor
-    public ImageView createCardImageView(Card card) {
-        ImageView imv = new ImageView(loadCardImage(card, card.isIsFlip()));
+    //public ImageView createCardImageView(Card card) {
+    /*  ImageView imv = new ImageView(loadCardImage(card, card.isIsFlip()));
         imv.setFitWidth(80);
-        imv.setPreserveRatio(true);
-        return imv;
-    }
-
+        imv.setPreserveRatio(true); 
+        return imv;      */
+    // }
     // Metodo para obtener el path de la carta
     //NOTA: CUANDO SE TENGA LA OPCION 2 DEL FRENTE, SE DEBE MODIFICAR ESTO
-    public Image loadCardImage(Card card, boolean isFlip) {
-        String cardValue = card.getValue();
+    //   public Image loadCardImage(Card card, boolean isFlip) {
+    /*  String cardValue = card.getValue();
         String rawSuit   = card.getSuit();
         // Si sigues usando A_Hearts.png:
         String cardName  = cardValue + "_" + rawSuit.substring(0,1).toUpperCase()
@@ -458,17 +461,14 @@ public class GameController extends Controller implements Initializable {
 /*
             throw new IllegalArgumentException(
                     "No encontré la imagen en el classpath: " + fullPath);
-                    */
- 
-        }
-        return new Image(imageUrl.toExternalForm());
-    }
-
-
+     */
+    // }
+    // return new Image(imageUrl.toExternalForm());
+    //  }
     /*Asigna a cada carta de forma indivual un evento para arrastrar con el click
       sostenido o un evento con el click individual*/
     public void assignDragAndClickEventsToEachCard() {
-        // Se recorre cada columna
+        /*   // Se recorre cada columna
         for (int col = 0; col < columnPanes.size(); col++) {
             Pane pane = columnPanes.get(col);
             List<Card> cards = cardsInBoard.get(col);
@@ -481,12 +481,12 @@ public class GameController extends Controller implements Initializable {
                 // Se llama el metodo para asignar cada evento
                 addDragAndClickHandlers(imv, card, columnIndex, cardIndex);
             }
-        }
+        }   */
     }
 
     //Metodo que asigna cada metodo a cada carta correspondiente
     private void addDragAndClickHandlers(ImageView imv, Card card, int columnIndex, int cardIndex) {
-        // Flag mutable para saber si el usuario arrastró la carta
+        /*   // Flag mutable para saber si el usuario arrastró la carta
         final boolean[] dragging = {false};
         // Offset entre la posición del cursor y la esquina superior de la imagen
         final double[] dragOffset = new double[2];
@@ -540,19 +540,19 @@ public class GameController extends Controller implements Initializable {
                 // Aquí el click rápido
                 handleCardClick(card, columnIndex, cardIndex);
             }
-        });
+        });  */
     }
 
     //Metodo para mover cartas con el click
     private void handleCardClick(Card card, int columnIndex, int cardIndex) {
-        if (!canMoveSequence(columnIndex, cardIndex)) {
+        /*   if (!canMoveSequence(columnIndex, cardIndex)) {
             System.out.println("Movimiento invalido: la secuencia no esta ordenada");
             selectedCardValue = null;
             return;
         }
 
         /* Si selectedCardValue es nulo, quiere decir que no hay ninguna seleccionada
-           entonces se actualizan todos los valores necesarios para mover la carta*/
+           entonces se actualizan todos los valores necesarios para mover la carta
         if (selectedCardValue == null) {
             Integer cardValue = cardValues.get(card.getValue());
             selectedColumnIndex = columnIndex;
@@ -604,19 +604,19 @@ public class GameController extends Controller implements Initializable {
 
             // Se quita la seleccion para volver a empezar el ciclo
             selectedCardValue = null;
-        }
+        }  */
     }
 
     //Metodo para saber si se puede mover una carta
-    private boolean canMoveSequence(int columnIndex, int cardIndex) {
-        List<Card> column = cardsInBoard.get(columnIndex);
+    // private boolean canMoveSequence(int columnIndex, int cardIndex) {
+    /*  List<Card> column = cardsInBoard.get(columnIndex);
         int columSize = column.size();
         //Si la carta es la ultima, siempre se va a poder mover
         if (cardIndex == columSize - 1) {
             return true;
         }
         /*Si la carta esta en medio, entonces se revisa si hay una escalera del
-          mismo palo*/
+          mismo palo
         //Se crea una carta previa para comparar
         Card previousCard = column.get(cardIndex);
         String cardSuit = previousCard.getSuit();
@@ -626,20 +626,19 @@ public class GameController extends Controller implements Initializable {
             Card currentCard = column.get(i);
             int currentValue = cardValues.get(currentCard.getValue());
             /*Si la carta actual es de un diferente palo o si el valor no es uno
-              menor a la carta previa, quiere decir que no hay escalera*/
+              menor a la carta previa, quiere decir que no hay escalera
             if (!currentCard.getSuit().equals(cardSuit)
                     || currentValue != previousValue - 1) {
                 return false;
             }
             previousValue = currentValue;
         }
-        return true;
-    }
-
+        return true; */
+    //  }
     // Metodo para hacer que las cartas sigan al mouse
     //comentar
     private void enableCardFollowMouse(MouseEvent e, double[] dragOffset, int columnIndex, int cardIndex) {
-        List<Card> column = cardsInBoard.get(columnIndex);
+        /* List<Card> column = cardsInBoard.get(columnIndex);
         double baseX = e.getSceneX() - dragOffset[0];
         double baseY = e.getSceneY() - dragOffset[1];
         for (int i = cardIndex; i < column.size(); i++) {
@@ -769,8 +768,8 @@ public class GameController extends Controller implements Initializable {
         SequentialTransition seq = new SequentialTransition();
         Pane targetPane = getFirstAvailableFoundationPane();
         /* stack sirve para saber si las cartas se deben mover una detras de
-           otra o forma de escalera*/
-        boolean stack = false;
+           otra o forma de escalera 
+        boolean stack = false
         // Hacemos 13 animaciones, movimiento la ultima en cada ciclo
         for (int cardIndex = 1; cardIndex <= 13; cardIndex++) {
             // Obtenemos el imv de la ultima carta
@@ -781,7 +780,7 @@ public class GameController extends Controller implements Initializable {
             TranslateTransition tt = animationService.moveCardToPane(sourcePane,
                     targetPane, cardImageView, stack, animationLayer);
             /* Cuando termine la animacion movemos la carta a la pila y la
-               quitamos de la columna*/
+               quitamos de la columna
             tt.setOnFinished(evt -> {
                 transferCardToFoundation(toRemove);
                 column.remove(toRemove);
@@ -791,9 +790,9 @@ public class GameController extends Controller implements Initializable {
         }
         /* Al finalizar las 13 animaciones, se comprueba primero si hay que girar
            la ultima carta que queda para luego hacer render, si no, simplemente
-           se llaman los renders normalmente*/
+           se llaman los renders normalmente
         seq.setOnFinished(evt -> {
-            /* Comprobacion si hay que girar una carta*/
+            //Comprobacion si hay que girar una carta
             if (column.size() >= 1 && !column.get(column.size() - 1).isIsFlip()) {
                 Card cardToFlip = column.get(column.size() - 1);
 
@@ -876,5 +875,9 @@ public class GameController extends Controller implements Initializable {
 
     public Button getDeckPane() {
         return btnDeck;
+    }
+
+         */
+
     }
 }

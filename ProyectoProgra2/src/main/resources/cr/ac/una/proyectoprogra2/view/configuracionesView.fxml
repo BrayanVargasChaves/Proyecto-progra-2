@@ -3,7 +3,6 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,7 +19,6 @@
                      <children>
                         <MFXTextField fx:id="txfNombreUsuario" floatingText="Nombre de Usuario" maxWidth="1.7976931348623157E308" onAction="#onActionTxfNombreUsuario" prefHeight="50.0" prefWidth="200.0" />
                         <MFXButton fx:id="btnIniciarSesion" onAction="#onActionBtnIniciarSesion" text="Iniciar Sesion" />
-                        <MFXToggleButton fx:id="TbtnTemaOscuro" text="Tema Oscuro" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -33,6 +31,9 @@
                      <children>
                         <MFXButton fx:id="btnVolver" onAction="#onActionBtnVolver" prefHeight="50.0" prefWidth="75.0" text="Volver" />
                      </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>

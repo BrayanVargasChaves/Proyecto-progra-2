@@ -25,8 +25,8 @@ public class GameAnimationsService {
                                   List<Pane> columnPanes, Pane deckPane, GameController controller) {
         deckPane.getChildren().clear();
         for (Card card : cardsInDeck) {
-            ImageView imvCard = controller.createCardImageView(card);
-            deckPane.getChildren().add(imvCard);
+          //  ImageView imvCard = controller.createCardImageView(card);
+          //  deckPane.getChildren().add(imvCard);
         }
 
         for (int i = 0; i < cardsInBoard.size(); i++) {
@@ -34,9 +34,9 @@ public class GameAnimationsService {
             Pane pane = columnPanes.get(i);
             pane.getChildren().clear();
             for (int j = 0; j < column.size(); j++) {
-                ImageView imv = controller.createCardImageView(column.get(j));
-                imv.setLayoutY(j * OFFSET_Y);
-                pane.getChildren().add(imv);
+          //      ImageView imv = controller.createCardImageView(column.get(j));
+          //      imv.setLayoutY(j * OFFSET_Y);
+          //      pane.getChildren().add(imv);
             }
         }
     }
@@ -70,7 +70,7 @@ public class GameAnimationsService {
     public ScaleTransition flipCard(ImageView cardView, Card card, GameController controller) {
         ScaleTransition scale1 = new ScaleTransition(Duration.millis(100), cardView);
         scale1.setToX(0);
-        scale1.setOnFinished(evt -> cardView.setImage(controller.loadCardImage(card, true)));
+      //  scale1.setOnFinished(evt -> cardView.setImage(controller.loadCardImage(card, true)));
 
         ScaleTransition scale2 = new ScaleTransition(Duration.millis(100), cardView);
         scale2.setToX(1);

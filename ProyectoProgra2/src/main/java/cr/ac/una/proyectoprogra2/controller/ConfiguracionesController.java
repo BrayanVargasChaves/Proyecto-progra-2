@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,8 +40,6 @@ public class ConfiguracionesController extends Controller implements Initializab
     @FXML
     private MFXTextField txfNombreUsuario;
     @FXML
-    private MFXToggleButton TbtnTemaOscuro;
-    @FXML
     private MFXButton btnIniciarSesion;
     @FXML
     private MFXButton btnVolver;
@@ -50,7 +50,7 @@ public class ConfiguracionesController extends Controller implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @Override
     public void initialize() {
@@ -78,6 +78,8 @@ public class ConfiguracionesController extends Controller implements Initializab
 
     @FXML
     private void onActionBtnVolver(ActionEvent event) {
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        ((Stage) root.getScene().getWindow()).close();
     }
-    
+
 }

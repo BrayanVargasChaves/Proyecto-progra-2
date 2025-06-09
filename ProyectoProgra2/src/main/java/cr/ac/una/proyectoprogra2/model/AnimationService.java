@@ -65,9 +65,9 @@ public class AnimationService {
         st.setFromX(1);  st.setToX(0);
         st.setOnFinished(e -> {
             modelCard.setBocaArriba(modelCard.isIsFlip() ? 0 : 1);
-            cardView.setImage(controller.loadCardImage(
-                    modelCard, modelCard.isIsFlip()
-            ));
+         //   cardView.setImage(controller.loadCardImage(
+         //           modelCard, modelCard.isIsFlip()
+         //   ));
             ScaleTransition st2 = new ScaleTransition(Duration.millis(200), cardView);
             st2.setFromX(0);  st2.setToX(1);
             st2.play();
@@ -82,7 +82,7 @@ public class AnimationService {
             Node deckNode,
             GameController controller
     ) {
-        AnchorPane layer = controller.getAnimationLayer();
+     /*   AnchorPane layer = controller.getAnimationLayer();
         SequentialTransition seq = new SequentialTransition();
         int deckSize = deck.size() - 1;
         for (int col = 0; col < columnPanes.size(); col++) {
@@ -108,7 +108,7 @@ public class AnimationService {
             controller.assignDragAndClickEventsToEachCard();
             controller.updateHintPositions();
         });
-        seq.play();
+        seq.play();   */
     }
 
     /**
