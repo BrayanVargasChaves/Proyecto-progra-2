@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -43,6 +44,8 @@ public class ConfiguracionesController extends Controller implements Initializab
     private MFXButton btnIniciarSesion;
     @FXML
     private MFXButton btnVolver;
+    @FXML
+    private ImageView imvFondo;
 
     /**
      * Initializes the controller class.

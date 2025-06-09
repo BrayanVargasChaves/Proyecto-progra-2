@@ -25,10 +25,6 @@ public class UsuarioController implements Initializable {
     @FXML
     private MFXButton btnVolver;
     @FXML
-    private ImageView imvImagenDelantera;
-    @FXML
-    private ImageView imvDelanteraOscura;
-    @FXML
     private MFXRadioButton rdbCara1;
     @FXML
     private ToggleGroup imagenDelante;
@@ -36,10 +32,6 @@ public class UsuarioController implements Initializable {
     private MFXRadioButton rdbEscudo1;
     @FXML
     private ToggleGroup imagenDetras;
-    @FXML
-    private ImageView ImvDetras;
-    @FXML
-    private ImageView imvDetrasOscuro;
     @FXML
     private MFXRadioButton rdbCara2;
     @FXML
@@ -54,6 +46,16 @@ public class UsuarioController implements Initializable {
     private Label lblPersonalizada;
     @FXML
     private ImageView imvFondo;
+    @FXML
+    private ImageView imvDelantera;
+    @FXML
+    private ImageView imgDetras;
+    @FXML
+    private ImageView ImvDelantera2;
+    @FXML
+    private ImageView imvDetras2;
+    @FXML
+    private ImageView imvGuardar;
 
     /**
      * Initializes the controller class.
