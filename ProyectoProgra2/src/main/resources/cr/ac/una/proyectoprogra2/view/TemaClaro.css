@@ -29,7 +29,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-max-height:40px;
     -fx-text-fill:black;
     -fx-alignment:TOP_LEFT;
+    -fx-background-color: #1e1e2f;
+    -fx-border-color: #4a90e2;
 }
+
+.mfx-filter-combo-box .combo-popup .search-container {
+    -fx-background-color: black;
+    -fx-background-radius: 5;
+    -fx-border-color: #ebebeb;
+    -fx-border-radius: 5;
+    -fx-padding: 10 5 5 5;
+}
+
+.mfx-filter-combo-box .combo-popup .search-container .label{
+    -fx-text-fill: white;
+}
+
+.mfx-text-field .floating-text,
+.mfx-filter-combo-box .floating-text {
+    -fx-background-color: transparent !important;
+    -fx-background-insets: 0 !important;
+    -fx-background-radius: 0 !important;
+    -fx-padding: 0 !important;
+    -fx-text-fill: white;
+}
+
+
 
 .jfx-label-titulos{
     -fx-font-size: 24px;
@@ -42,7 +67,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .jfx-basic-labels{
     -fx-font-size: 15px;
     -fx-padding:5 0 5 0;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
 }
 
@@ -56,8 +81,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-alignment: center;
 }
 
+.mfx-toggle-button {
+    -mfx-main: #FFD700;
+    -mfx-secondary: #333333;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
 .separator{
-    -fx-background-color:#97a692;
+    -fx-background-color: darkkhaki;
 }
 
 .mfx-button:hover{
@@ -67,6 +100,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .jfx-button-salir, .jfx-button-salir:armed,.jfx-button-salir:focused{
     -fx-background-color:white;
     -fx-alignment:CENTER;
+}
+
+.jfx-toggle-button-tema {
+    -fx-fill: goldenrod;
+    -fx-padding: 10;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-font-size:14px;
 }
 
 .jfx-button-acerdaDe, .jfx-button-acercaDe:armed,.jfx-button-acerdaDe:focused{
@@ -82,7 +123,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color:white;
 }
 
-.jfx-button-Editar, .jfx-button-Editar:armed, .jfx-button-Editar:focused{
+.jfx-button-logIn, .jfx-button-Editar:armed, .jfx-button-Editar:focused{
     -fx-background-color:white;
 }
 
@@ -111,8 +152,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-alignment:CENTER;
 }
 
+.jfx-button-volver, .jfx-button-guardar:armed, .jfx-button-guardar:focused{
+    -fx-background-color:white;
+    -fx-alignment:CENTER;
+}
+
+.jfx-button-personalizar, .jfx-button-guardar:armed, .jfx-button-guardar:focused{
+    -fx-background-color:white;
+    -fx-alignment:CENTER;
+}
+
 .jfx-button-agregar > ImageView{
     -fx-image:url("../resources/add.png");
+}
+
+.jfx-button-volver > ImageView{
+    -fx-image:url("../resources/volver.png");
+}
+
+.jfx-button-personalizar > ImageView{
+    -fx-image:url("../resources/editar.png");
 }
 
 .jfx-button-Estadistica > ImageView{
@@ -128,8 +187,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-image:url("../resources/eliminar.png");
 }
 
-.jfx-button-Editar > ImageView{
-    -fx-image:url("../resources/editar.png");
+.jfx-tema{
+    -fx-image:url("../resources/tema.png");
+}
+
+.jfx-button-logIn> ImageView{
+    -fx-image:url("../resources/logIn.png");
 }
 
 .jfx-button-empezar > ImageView{
@@ -152,13 +215,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .jfx-button-ajustes > ImageView{
-        -fx-image:url("../resources/ajustesWhiteTheme.png");
+    -fx-image:url("../resources/ajustesWhiteTheme.png");
 }
 
 .jfx-fondoPrincipal{
-    -fx-image:url("../resources/fondo.png");
+    -fx-image:url("../resources/fondoClaro.png");
 }
 .jfx-button-salir> ImageView{
-        -fx-image:url("../resources/exit.png");
+    -fx-image:url("../resources/exit.png");
 }
 
