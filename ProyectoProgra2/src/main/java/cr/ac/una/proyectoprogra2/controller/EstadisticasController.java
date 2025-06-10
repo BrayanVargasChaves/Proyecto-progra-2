@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
  *
  * @author monge
  */
-public class EstadisticasController implements Initializable {
+public class EstadisticasController extends Controller implements Initializable {
 
     @FXML
     private ImageView imvFondo;
@@ -46,6 +46,10 @@ public class EstadisticasController implements Initializable {
 
     @FXML
     private void onActionBtnVolver(ActionEvent event) {
+    }
+
+    @Override
+    public void initialize() {
     }
     
 }

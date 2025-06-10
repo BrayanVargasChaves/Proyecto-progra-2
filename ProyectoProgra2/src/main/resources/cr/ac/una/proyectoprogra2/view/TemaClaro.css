@@ -225,3 +225,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-image:url("../resources/exit.png");
 }
 
+.jfx-imvDelantera{
+    -fx-image:url("../resources/Cards1/A_Picas.png");
+}
+
+.jfx-imvTrasera{
+    -fx-image:url("../resources/Cards1/ReversoUNO.png");
+}
+
+.jfx-imvDelantera2{
+    -fx-image:url("../resources/Cards2/A_Picas.jpg");
+}
+
+.jfx-imvTrasera2{
+    -fx-image:url("../resources/Cards2/ReversoDOS.png");
+}

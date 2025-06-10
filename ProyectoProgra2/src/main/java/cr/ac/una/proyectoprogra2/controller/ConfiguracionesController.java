@@ -41,11 +41,11 @@ public class ConfiguracionesController extends Controller implements Initializab
     @FXML
     private MFXButton btnVolver;
     @FXML
-    private ImageView imvFondo;
     private MFXFilterComboBox<?> fcbUsuario;
     @FXML
     private MFXToggleButton tgbTema;
     @FXML
+    private ImageView imgFondo;
     
 
     /**
@@ -69,7 +69,8 @@ public class ConfiguracionesController extends Controller implements Initializab
 
     @FXML
     private void onActionBtnPersinalizarUsuario(ActionEvent event) {
-        
+        FlowController.getInstance().goViewInWindow("UsuarioView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML

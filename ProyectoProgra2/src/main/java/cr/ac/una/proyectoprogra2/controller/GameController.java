@@ -24,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -203,6 +204,15 @@ public class GameController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnDeck(ActionEvent e) {
+        boolean hayColumnaVacia = cardsInBoard.stream().anyMatch(List::isEmpty);
+        if (hayColumnaVacia) {
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Movimiento inválido");
+        alerta.setHeaderText(null);
+        alerta.setContentText("No se puede repartir cartas mientras haya columnas vacías.");
+        alerta.showAndWait();
+        return;
+        }
         if (cardsInDeck.isEmpty()) {
             return;
         }
@@ -550,9 +560,9 @@ public class GameController extends Controller implements Initializable {
         String rawSuit = card.getSuit();
         // Si sigues usando A_Hearts.png:
         String cardName = cardValue + "_" + rawSuit.substring(0, 1).toUpperCase()
-                + rawSuit.substring(1).toLowerCase() + ".PNG";
-        String backName = "ReversoUNO.png";
-        String basePath = "/cr/ac/una/proyectoprogra2/resources/";
+                + rawSuit.substring(1).toLowerCase() + ".JPG";
+        String backName = "Reverso.png";
+        String basePath = "/cr/ac/una/proyectoprogra2/resources/Cards2/";
         String fullPath = basePath + (isFlip ? cardName : backName);
 
         System.out.println("DEBUG: buscando recurso → " + fullPath);
