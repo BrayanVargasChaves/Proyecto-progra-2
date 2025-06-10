@@ -4,6 +4,7 @@ import cr.ac.una.proyectoprogra2.model.Card;
 import cr.ac.una.proyectoprogra2.util.CardFactory;
 import cr.ac.una.proyectoprogra2.model.AnimationService;
 import cr.ac.una.proyectoprogra2.model.Sonidos;
+import cr.ac.una.proyectoprogra2.util.AppContext;
 import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.scene.shape.Rectangle;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
@@ -123,14 +125,21 @@ public class GameController extends Controller implements Initializable {
     private AnchorPane GamePane;
     @FXML
     private ImageView imgFondo;
+    private boolean cronometroActivo = false;
+    private Thread cronometroThread;
+    int puntosIniciales = 500;
+    int puntuacionActual;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        puntuacionActual = puntosIniciales;
+        iniciarCronometro();
+        lbPuntuacion.setText(String.valueOf(puntosIniciales));    
         Sonidos.asignarSonido(btnTerminarMasTarde);
         Sonidos.asignarSonido(btnRendirce);
         Sonidos.asignarSonidoPista(btnPista);
         Sonidos.asignarSonidoDeck(btnDeck);
-        Sonidos.reproducirLoop("sonidoAmbiente");
+        Sonidos.reproducirLoop("sonidoAmbiente.mp3");
         
         recHintStart.setVisible(false);
         recHintEnd.setVisible(false);
@@ -144,7 +153,8 @@ public class GameController extends Controller implements Initializable {
         buildCardValues();
         animationService = new AnimationService();
 
-        CardFactory.getInstance().createDistribution(1);
+        String diff = ((String) AppContext.getInstance().get("dificultad"));
+        CardFactory.getInstance().createDistribution(diff);
         cardsInBoard = CardFactory.getInstance().getCardsInColumns();
         cardsInDeck = CardFactory.getInstance().getCardsInDeck();
         cardsInFoundations = new ArrayList<>();
@@ -156,24 +166,17 @@ public class GameController extends Controller implements Initializable {
         foundationPanes = Arrays.asList(
                 pnPila1, pnPila2, pnPila3, pnPila4,
                 pnPila5, pnPila6, pnPila7, pnPila8
-        );
-
-        // 🔽 AÑADIR ESTA PARTE: crear los ImageView de las cartas del mazo
-        Pane deckParent = (Pane) btnDeck.getParent(); // Asegúrate que sea un AnchorPane o StackPane
+        ); 
+        Pane deckParent = (Pane) btnDeck.getParent(); 
         for (Card card : cardsInDeck) {
-            ImageView imageView = createCardImageView(card); // Usa tu propio método
-            imageView.setVisible(false); // Opcional: ocultar hasta que se animen
+            ImageView imageView = createCardImageView(card); 
+            imageView.setVisible(false);
             deckParent.getChildren().add(imageView);
         }
-
         renderColumns();
         GamePane.widthProperty().addListener((obs, oldVal, newVal) -> redistribuirSeparacionPanes());
         redistribuirSeparacionPanes();
-
-// Llamarlo una vez al iniciar
         redistribuirSeparacionPanes();
-
-        // 🔽 LLAMADA a la animación después de añadir los ImageView
         animationService.initialAnimation(
                 cardsInBoard,
                 cardsInDeck,
@@ -188,12 +191,34 @@ public class GameController extends Controller implements Initializable {
         root.setMaxHeight(640);
         root.setMaxWidth(400);
     }
+    
+   private void iniciarCronometro() {
+    cronometroActivo = true;
+    cronometroThread = new Thread(() -> {
+        int segundosTranscurridos = 0;
+        while (cronometroActivo) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                break;
+            }
+            segundosTranscurridos++;
+            int minutos = segundosTranscurridos / 60;
+            int segundos = segundosTranscurridos % 60;
+            Platform.runLater(() -> {
+                lbTime.setText(String.format("%02d:%02d", minutos, segundos));
+            });
+        }
+    });
+    cronometroThread.setDaemon(true);
+    cronometroThread.start();
+}
 
     private void redistribuirSeparacionPanes() {
         double totalWidth = GamePane.getWidth();
         int cantidadPanes = columnPanes.size();
 
-        double paneWidth = columnPanes.get(0).getPrefWidth(); // Todos tienen el mismo ancho
+        double paneWidth = columnPanes.get(0).getPrefWidth(); 
         double espacioTotalDisponible = totalWidth - (cantidadPanes * paneWidth);
 
         if (espacioTotalDisponible < 0) {
@@ -206,7 +231,6 @@ public class GameController extends Controller implements Initializable {
             Pane pane = columnPanes.get(i);
             double layoutX = espacioEntrePanes + i * (paneWidth + espacioEntrePanes);
             pane.setLayoutX(layoutX);
-            // No tocamos layoutY ni altura
         }
     }
 
@@ -231,10 +255,9 @@ public class GameController extends Controller implements Initializable {
             return;
         }
 
-        double offset = 15; // Desplazamiento vertical para apilar cartas
+        double offset = 15; 
         SequentialTransition seq = new SequentialTransition();
 
-        // Obtener la posición del mazo (botón) en escena para iniciar la animación desde ahí
         Bounds deckBounds = btnDeck.localToScene(btnDeck.getBoundsInLocal());
         double startX = deckBounds.getMinX();
         double startY = deckBounds.getMinY();
@@ -249,53 +272,38 @@ public class GameController extends Controller implements Initializable {
             Card card = cardsInDeck.get(deckIndex);
             ImageView iv = createCardImageView(card);
 
-            // Añadir ImageView a la capa de animación y posicionarlo sobre el mazo
             iv.setLayoutX(startX);
             iv.setLayoutY(startY);
             animationLayer.getChildren().add(iv);
 
             Pane targetPane = columnPanes.get(col);
-
-            // Obtener la última carta visible en el pane de la columna
             ImageView lastCardView = null;
             if (!targetPane.getChildren().isEmpty()) {
-                // Suponemos que las cartas son ImageView y que la última agregada está abajo
-                // Buscar el ImageView con la mayor posición Y
                 lastCardView = targetPane.getChildren().stream()
                         .filter(n -> n instanceof ImageView)
                         .map(n -> (ImageView) n)
                         .max((iv1, iv2) -> Double.compare(iv1.getLayoutY(), iv2.getLayoutY()))
                         .orElse(null);
             }
-
-            // Definir destino: si hay carta, justo debajo; si no, al tope del pane
             double destX, destY;
             if (lastCardView != null) {
                 Bounds lastCardBounds = lastCardView.localToScene(lastCardView.getBoundsInLocal());
                 destX = lastCardBounds.getMinX();
-                destY = lastCardBounds.getMinY() + offset; // posición un poco abajo
+                destY = lastCardBounds.getMinY() + offset;
             } else {
                 Bounds paneBounds = targetPane.localToScene(targetPane.getBoundsInLocal());
                 destX = paneBounds.getMinX();
                 destY = paneBounds.getMinY();
             }
-
-            // Convertir posiciones absolutas a relativas dentro del animationLayer
             Point2D startInLayer = animationLayer.sceneToLocal(startX, startY);
             Point2D destInLayer = animationLayer.sceneToLocal(destX, destY);
-
-            // Inicialmente colocar la carta en el punto de inicio dentro del animationLayer
             iv.setLayoutX(startInLayer.getX());
             iv.setLayoutY(startInLayer.getY());
-
-            // Crear la animación de movimiento hacia la posición calculada
             TranslateTransition tt = new TranslateTransition(Duration.millis(500), iv);
             tt.setFromX(0);
             tt.setFromY(0);
             tt.setToX(destInLayer.getX() - startInLayer.getX());
             tt.setToY(destInLayer.getY() - startInLayer.getY());
-
-            // Animación de volteo (usa tu método existente)
             SequentialTransition flip = animationService.flipCard(iv, card, this);
 
             tt.setOnFinished(evt -> {
@@ -328,6 +336,7 @@ public class GameController extends Controller implements Initializable {
     @FXML
     private void onActionBtnPista(ActionEvent e) {
         updateHintPositions();
+         onActionLbHint(e);
     }
 
     private void attachGameWonListener() {
@@ -537,7 +546,6 @@ public class GameController extends Controller implements Initializable {
 
     }
 
-    // Metodo para crear las imv de las cartas que van en el mazo
     public void renderDeck() {
         pnDeck.getChildren().clear();
         for (Card card : cardsInDeck) {
@@ -546,7 +554,6 @@ public class GameController extends Controller implements Initializable {
         }
     }
 
-    // Metodo para crear las imv de las cartas que van en las pilas
     private void renderFoundations() {
         for (int foundation = 0; foundation < cardsInFoundations.size(); foundation++) {
             Pane foundationPane = foundationPanes.get(foundation);
@@ -559,7 +566,6 @@ public class GameController extends Controller implements Initializable {
         }
     }
 
-    // Metodo para obtener la imagen de la carta sabiendo su valor
     public ImageView createCardImageView(Card card) {
         ImageView imv = new ImageView(loadCardImage(card, card.isIsFlip()));
         imv.setFitWidth(50);
@@ -567,12 +573,9 @@ public class GameController extends Controller implements Initializable {
         return imv;
     }
 
-    // Metodo para obtener el path de la carta
-    //NOTA: CUANDO SE TENGA LA OPCION 2 DEL FRENTE, SE DEBE MODIFICAR ESTO
     public Image loadCardImage(Card card, boolean isFlip) {
         String cardValue = card.getValue();
         String rawSuit = card.getSuit();
-        // Si sigues usando A_Hearts.png:
         String cardName = cardValue + "_" + rawSuit.substring(0, 1).toUpperCase()
                 + rawSuit.substring(1).toLowerCase() + ".JPG";
         String backName = "Reverso.png";
@@ -583,19 +586,11 @@ public class GameController extends Controller implements Initializable {
         URL imageUrl = getClass().getResource(fullPath);
         System.out.println("DEBUG: imageUrl = " + imageUrl);
         if (imageUrl == null) {
-            imageUrl = getClass().getResource(basePath + "ReversoUNO.PNG");
-            /*
-            throw new IllegalArgumentException(
-                    "No encontré la imagen en el classpath: " + fullPath);
-             */
-
+            imageUrl = getClass().getResource(basePath + "ReversoUNO.PNG");           
         }
         return new Image(imageUrl.toExternalForm());
     }
 
-
-    /*Asigna a cada carta de forma indivual un evento para arrastrar con el click
-      sostenido o un evento con el click individual*/
     public void assignDragAndClickEventsToEachCard() {
         // Se recorre cada columna
         for (int col = 0; col < columnPanes.size(); col++) {
@@ -613,7 +608,6 @@ public class GameController extends Controller implements Initializable {
         }
     }
 
-    //Metodo que asigna cada metodo a cada carta correspondiente
     private void addDragAndClickHandlers(ImageView imv, Card card, int columnIndex, int cardIndex) {
         // Flag mutable para saber si el usuario arrastró la carta
         final boolean[] dragging = {false};
@@ -862,6 +856,8 @@ public class GameController extends Controller implements Initializable {
             assignDragAndClickEventsToEachCard();
         }
         updateHintPositions();
+        puntuacionActual = Math.max(0, puntuacionActual - 1);
+        lbPuntuacion.setText(String.valueOf(puntuacionActual));
     }
 
     // Metodo para borrar una pila completa de una columna
@@ -915,7 +911,7 @@ public class GameController extends Controller implements Initializable {
                quitamos de la columna*/
             tt.setOnFinished(evt -> {
                 transferCardToFoundation(toRemove);
-                column.remove(toRemove);
+                column.remove(toRemove);              
             });
             // Agregamos la animacion a la sequencia para que se vea fluido
             seq.getChildren().add(tt);
@@ -943,6 +939,8 @@ public class GameController extends Controller implements Initializable {
                     animationLayer.getChildren().removeIf(node -> node instanceof ImageView);
                     renderColumns();
                     renderFoundations();
+                    puntuacionActual += 100;
+                    lbPuntuacion.setText(String.valueOf(puntuacionActual));
                     assignDragAndClickEventsToEachCard();
                     if (foundationPanes.indexOf(targetPane) == 7) {//cambiar por size - 1
                         gameWon.set(true);
@@ -955,6 +953,8 @@ public class GameController extends Controller implements Initializable {
                 animationLayer.getChildren().removeIf(node -> node instanceof ImageView);
                 renderColumns();
                 renderFoundations();
+                puntuacionActual += 100;
+                lbPuntuacion.setText(String.valueOf(puntuacionActual));
                 assignDragAndClickEventsToEachCard();
                 if (foundationPanes.indexOf(targetPane) == 0) {
                     gameWon.set(true);

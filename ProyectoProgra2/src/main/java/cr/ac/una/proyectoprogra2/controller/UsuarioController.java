@@ -100,6 +100,14 @@ public class UsuarioController extends Controller implements Initializable {
 
     @FXML
     private void onToggleClicked(MouseEvent event) {
+       if(tgbTema.isSelected()){
+        root.getStylesheets().clear();
+        root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaOscuro.css").toExternalForm());
+       }
+       else{
+        root.getStylesheets().clear();
+        root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaClaro.css").toExternalForm());
+       }
     }
 
     @Override
@@ -334,5 +342,5 @@ public class UsuarioController extends Controller implements Initializable {
             usuarioDto.setCaraCartaImg(carpeta);  // Guardamos el nombre del archivo
         }
     }
-
+ 
 }

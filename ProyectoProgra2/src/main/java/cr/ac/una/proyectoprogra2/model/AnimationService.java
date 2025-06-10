@@ -68,7 +68,7 @@ public class AnimationService {
         return new SequentialTransition(shrink, expand);
     }
 
-    public void initialAnimation(
+   public void initialAnimation(
         List<List<Card>> columns,
         List<Card> deck,
         List<ImageView> deckCardViews,
