@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.DificultadController">
-    
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.DificultadController">
+   <children>
+      <ImageView fx:id="ImvFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox alignment="TOP_CENTER" layoutX="220.0" prefHeight="400.0" prefWidth="160.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="lblDificultad" alignment="CENTER" prefHeight="28.0" prefWidth="94.0" text="Dificultad">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <MFXButton fx:id="btnFacil" buttonType="RAISED" depthLevel="LEVEL4" onAction="#onActionBtnFacil" prefHeight="42.0" prefWidth="104.0" text="Facil" />
+                  <MFXButton fx:id="BtnNormal" buttonType="RAISED" depthLevel="LEVEL4" layoutX="38.0" layoutY="89.0" onAction="#onActionBtnNormal" prefHeight="42.0" prefWidth="104.0" text="Normal" />
+                  <MFXButton fx:id="btnDificil" buttonType="RAISED" depthLevel="LEVEL4" layoutX="38.0" layoutY="110.0" onAction="#onActionBtnDificil" prefHeight="42.0" prefWidth="104.0" text="Dificil" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+      <MFXButton fx:id="btnVolver" buttonType="RAISED" depthLevel="LEVEL4" layoutX="16.0" layoutY="343.0" onAction="#onActionBtnVolver" prefHeight="42.0" prefWidth="104.0" text="Volver" AnchorPane.bottomAnchor="14.600000000000001" AnchorPane.leftAnchor="16.0" />
+   </children>
 </AnchorPane>
