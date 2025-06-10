@@ -7,3 +7,163 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Usuario
 */
 
+* {
+    -fx-base-color-focus: darkgoldenrod;
+    -fx-base-color-etiquetas: #c0c0c0; /* gris claro */
+    -fx-base-color-titulos: #ffffff;   /* blanco */
+}
+
+.jfx-Panel-Borde {
+    -fx-background-color: #1e1e1e;     /* fondo oscuro */
+    -fx-border-color: #444444;
+    -fx-border-width: 5px;
+}
+
+.mfx-text-field {
+    -mfx-main: -fx-base-color-focus;
+    -fx-prompt-text-fill: -fx-base-color-etiquetas;
+    -mfx-float-mode: BORDER;
+    -fx-font-size: 14px;
+    -fx-min-height: 40px;
+    -fx-pref-height: 40px;
+    -fx-max-height: 40px;
+    -fx-text-fill: white;
+    -fx-alignment: TOP_LEFT;
+    -fx-background-color: #2b2b2b;
+    -fx-border-color: darkgoldenrod;
+}
+
+.mfx-filter-combo-box .combo-popup .search-container {
+    -fx-background-color: #2b2b2b;
+    -fx-background-radius: 5;
+    -fx-border-color: #666666;
+    -fx-border-radius: 5;
+    -fx-padding: 10 5 5 5;
+}
+
+.mfx-filter-combo-box .combo-popup .search-container .label {
+    -fx-text-fill: white;
+}
+
+.mfx-text-field .floating-text,
+.mfx-filter-combo-box .floating-text {
+    -fx-background-color: transparent !important;
+    -fx-background-insets: 0 !important;
+    -fx-background-radius: 0 !important;
+    -fx-padding: 0 !important;
+    -fx-text-fill: white;
+}
+
+.jfx-label-titulos {
+    -fx-font-size: 24px;
+    -fx-padding: 5 0 5 0;
+    -fx-text-fill: -fx-base-color-titulos;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 2, 0.0, 1, 2);
+}
+
+.jfx-basic-labels {
+    -fx-font-size: 15px;
+    -fx-padding: 5 0 5 0;
+    -fx-text-fill: #dddddd;
+    -fx-font-weight: bold;
+}
+
+.separator {
+    -fx-background-color: #888888;
+}
+
+.jfx-button-agregar > ImageView{
+    -fx-image:url("../resources/add.png");
+}
+
+.jfx-button-volver > ImageView{
+    -fx-image:url("../resources/volver.png");
+}
+
+.jfx-button-personalizar > ImageView{
+    -fx-image:url("../resources/editar.png");
+}
+
+.jfx-button-Estadistica > ImageView{
+    -fx-image:url("../resources/Stats.png");
+}
+
+.jfx-button-acercaDe > ImageView{
+    -fx-image:url("../resources/acercaDe.png");
+
+}
+
+.jfx-button-Eliminar > ImageView{
+    -fx-image:url("../resources/eliminar.png");
+}
+
+.jfx-tema{
+    -fx-image:url("../resources/tema.png");
+}
+
+.jfx-button-logIn> ImageView{
+    -fx-image:url("../resources/logIn.png");
+}
+
+.jfx-button-empezar > ImageView{
+    -fx-image:url("../resources/play.png");
+}
+
+.jfx-button-ajustes > ImageView{
+    -fx-image:url("../resources/ajustesWhiteTheme.png");
+}
+
+.jfx-button-eliminar-equipo > ImageView{
+    -fx-image:url("../resources/eliminar.png");
+}
+
+.jfx-ImageView{
+    -fx-image:url("../resources/AgregarImagen.png");
+}
+.jfx-usuarioImg{
+    -fx-image:url("../resources/user.png");
+}
+
+.jfx-pistaImg{
+    -fx-image:url("../resources/idea.png");
+}
+
+.jfx-usuarioImg{
+    -fx-image:url("../resources/user.png");
+}
+
+.jfx-button-ajustes > ImageView{
+    -fx-image:url("../resources/ajustesWhiteTheme.png");
+}
+
+.jfx-button-continuar> ImageView{
+    -fx-image:url("../resources/next.png");
+}
+
+.jfx-fondoPrincipal{
+    -fx-image:url("../resources/fondo.png");
+}
+.jfx-button-salir> ImageView{
+    -fx-image:url("../resources/exit.png");
+}
+
+.jfx-button-guardar> ImageView{
+    -fx-image:url("../resources/diskette.png");
+}
+
+.jfx-imvDelantera{
+    -fx-image:url("../resources/Cards1/A_Picas.png");
+}
+
+.jfx-imvTrasera{
+    -fx-image:url("../resources/Cards1/Reverso.png");
+}
+
+.jfx-imvDelantera2{
+    -fx-image:url("../resources/Cards2/A_Picas.jpg");
+}
+
+.jfx-imvTrasera2{
+    -fx-image:url("../resources/Cards2/Reverso.png");
+}
