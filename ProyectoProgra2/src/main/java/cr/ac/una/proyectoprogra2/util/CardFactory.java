@@ -28,52 +28,52 @@ public class CardFactory {
         return instance;
     }
 
-    public void createDistribution(int difficulty) {
-        List<Card> allCards = generateAllCards(difficulty);
-        Collections.shuffle(allCards);
+   public void createDistribution(String difficulty) {
+    List<Card> allCards = generateAllCards(difficulty);
+    Collections.shuffle(allCards);
 
-        cardsInColumns.clear();
-        cardsInDeck.clear();
-
-        // Crear 10 columnas vacías
-        for (int i = 0; i < 10; i++) {
-            cardsInColumns.add(new ArrayList<>());
-        }
-
-        // Repartir 54 cartas en columnas (6 primeras columnas con 6 cartas, 4 restantes con 5)
-        int index = 0;
-        for (int i = 0; i < 54; i++) {
-            List<Card> column = cardsInColumns.get(i % 10);
+    cardsInColumns.clear();
+    cardsInDeck.clear();
+    for (int i = 0; i < 10; i++) {
+        cardsInColumns.add(new ArrayList<>());
+    }
+    int index = 0;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 6; j++) {
             Card card = allCards.get(index++);
-            // Solo la última carta de cada columna se muestra boca arriba
-            int posInCol = column.size();
-            card.setBocaArriba((posInCol == 5 || (i % 10 >= 6 && posInCol == 4)) ? 1 : 0);
-            column.add(card);
-        }
-
-        // Las cartas restantes van a la baraja
-        while (index < allCards.size()) {
-            cardsInDeck.add(allCards.get(index++));
+            card.setBocaArriba(j == 5 ? 1 : 0); 
+            cardsInColumns.get(i).add(card);
         }
     }
+    for (int i = 4; i < 10; i++) {
+        for (int j = 0; j < 5; j++) {
+            Card card = allCards.get(index++);
+            card.setBocaArriba(j == 4 ? 1 : 0);
+            cardsInColumns.get(i).add(card);
+        }
+    }
+    while (index < allCards.size()) {
+        cardsInDeck.add(allCards.get(index++));
+    }
+}
 
-    private List<Card> generateAllCards(int difficulty) {
+    private List<Card> generateAllCards(String difficulty) {
         List<Card> cards = new ArrayList<>();
         String[] suits;
         int sets;
 
         switch (difficulty) {
-            case 1:
+            case "f":
                 suits = new String[]{"Picas"};
-                sets = 8; // 8 sets de 13 = 104 cartas
+                sets = 8; 
                 break;
-            case 2:
+            case "m":
                 suits = new String[]{"Picas", "Corazones"};
-                sets = 4; // 4 sets por palo
+                sets = 4; 
                 break;
-            case 4:
+            case "d":
                 suits = new String[]{"Picas", "Corazones", "Trevor", "Diamante"};
-                sets = 2; // 2 sets por palo
+                sets = 2; 
                 break;
             default:
                 suits = new String[]{"Picas"};

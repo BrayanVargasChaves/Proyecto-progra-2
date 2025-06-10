@@ -43,6 +43,7 @@ public class PrincipalController extends Controller implements Initializable {
     private AnchorPane root;
     @FXML
     private Label lblUsuario;
+    
     private static Scene scene;
 
 
@@ -60,8 +61,8 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnJugar(ActionEvent event) {
-        FlowController.getInstance().goViewInWindow("GameView");
-        ((Stage) root.getScene().getWindow()).close();
+        FlowController.getInstance().goViewInWindow("DificultadView");
+        ((Stage) root.getScene().getWindow()).close();      
     }
 
     @FXML
@@ -87,6 +88,10 @@ public class PrincipalController extends Controller implements Initializable {
         ((Stage) root.getScene().getWindow()).close();
     }
 
+    public AnchorPane getRoot(){
+       return root; 
+    }
+    
     @Override
     public void initialize() {
     }
