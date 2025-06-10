@@ -36,13 +36,12 @@ public class DificultadController extends Controller implements Initializable {
     private MFXButton BtnNormal;
     @FXML
     private MFXButton btnDificil;
-    @FXML
     private MFXButton btnVolver;
     @FXML
     private Label lblDificultad;
     
     private Stage stage;
-    
+        
    
 
     /**
@@ -51,10 +50,10 @@ public class DificultadController extends Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Sonidos.asignarSonido(btnFacil);
-        Sonidos.asignarSonido(BtnNormal);
-        Sonidos.asignarSonido(btnDificil);
-        Sonidos.asignarSonido(btnVolver);
+       // Sonidos.asignarSonido(btnFacil);
+       // Sonidos.asignarSonido(BtnNormal);
+        //Sonidos.asignarSonido(btnDificil);
+        //Sonidos.asignarSonido(btnVolver);
         ImvFondo.fitHeightProperty().bind(root.heightProperty());
         ImvFondo.fitWidthProperty().bind(root.widthProperty());
         root.setMaxHeight(640);

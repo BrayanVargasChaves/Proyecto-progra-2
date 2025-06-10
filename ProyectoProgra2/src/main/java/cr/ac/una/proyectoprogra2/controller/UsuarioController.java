@@ -100,14 +100,13 @@ public class UsuarioController extends Controller implements Initializable {
 
     @FXML
     private void onToggleClicked(MouseEvent event) {
-       if(tgbTema.isSelected()){
-        root.getStylesheets().clear();
-        root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaOscuro.css").toExternalForm());
-       }
-       else{
-        root.getStylesheets().clear();
-        root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaClaro.css").toExternalForm());
-       }
+        if (tgbTema.isSelected()) {
+            root.getStylesheets().clear();
+            root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaOscuro.css").toExternalForm());
+        } else {
+            root.getStylesheets().clear();
+            root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaClaro.css").toExternalForm());
+        }
     }
 
     @Override
@@ -204,20 +203,16 @@ public class UsuarioController extends Controller implements Initializable {
 
     private void bindUsuario() {
         try {
-            // Listener para actualizar los campos cuando el objeto cambie
             usuarioProperty.addListener((obs, oldVal, newVal) -> {
                 if (oldVal != null) {
-                    // Desvincula los campos previos
                     txfNombreUsuario.textProperty().unbindBidirectional(oldVal.getNombreUsuarioProperty());
                     BindingUtils.unbindToggleGroupToProperty(Diseño, oldVal.getImagenCartaProperty());
                     //BindingUtils.unbindToggleGroupToProperty(imagenDelante, oldVal.getCaraCartaImgProperty());
                 }
 
                 if (newVal != null) {
-                    // Vincula los campos actuales
                     txfNombreUsuario.textProperty().bindBidirectional(newVal.getNombreUsuarioProperty());
 
-                    // Aquí vinculamos los RadioButton a las propiedades del DTO
                     BindingUtils.bindToggleGroupToProperty(Diseño, newVal.getImagenCartaProperty());
                     //BindingUtils.bindToggleGroupToProperty(imagenDelante, newVal.getCaraCartaImgProperty());
                 }
@@ -229,7 +224,7 @@ public class UsuarioController extends Controller implements Initializable {
     }
 
     private void onActionBtnEliminar(ActionEvent event) {
-        try {
+        /*   try {
             if (this.usuarioDto.getId() == null) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar Usuario", getStage(), "Favor consultar usuario a eliminar.");
             } else {
@@ -246,12 +241,12 @@ public class UsuarioController extends Controller implements Initializable {
         } catch (Exception ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, "Error guardando el usuario.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar usuario", getStage(), "Ocurrió un error eliminando el usuario.");
-        }
+        } */
     }
 
     @FXML
     private void onActionBtnGuardar(ActionEvent event) {
-        try {
+        /*  try {
             String invalidos = validarRequeridos();
             if (!invalidos.isBlank()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), invalidos);
@@ -272,7 +267,7 @@ public class UsuarioController extends Controller implements Initializable {
         } catch (Exception ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, "Error guardando el usuario.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), "Ocurrió un error guardando el usuario.");
-        }
+        }  */
     }
 
     private void cargarEmpleado(Long id) {
@@ -282,24 +277,21 @@ public class UsuarioController extends Controller implements Initializable {
     @FXML
     private void onActionRdbDiseño1(ActionEvent event) {
         if (rdbDiseño1.isSelected()) {
-            // Cuando se selecciona el diseño 1, solo guardamos el nombre de la carpeta "Cards1"
-            String carpeta = "Cards1";  // Carpeta "Cards1"
+            String carpeta = "Cards1";
 
-            // Asignamos solo el nombre de la carpeta al DTO
             usuarioDto.setImagenCarta(carpeta);
-            usuarioDto.setCaraCartaImg(carpeta);// Guardamos solo el nombre de la carpeta
+            usuarioDto.setCaraCartaImg(carpeta);
         }
     }
 
     @FXML
     private void onActionRdbDiseño2(ActionEvent event) {
         if (rdbDiseño2.isSelected()) {
-            // Cuando se selecciona el diseño 2, solo guardamos el nombre de la carpeta "Cards2"
-            String carpeta = "Cards2";  // Carpeta "Cards2"
 
-            // Asignamos solo el nombre de la carpeta al DTO
+            String carpeta = "Cards2";
+
             usuarioDto.setImagenCarta(carpeta);
-            usuarioDto.setCaraCartaImg(carpeta);// Guardamos solo el nombre de la carpeta
+            usuarioDto.setCaraCartaImg(carpeta);
         }
     }
 
@@ -316,19 +308,14 @@ public class UsuarioController extends Controller implements Initializable {
             Image image = new Image(file.toURI().toString());
             imvPersonalizada.setImage(image);
 
-            // Si es una imagen personalizada, la guardamos en la carpeta cardsUser
-            String carpeta = "cardsUser";  // Carpeta "cardsUser"
+            String carpeta = "cardsUser"; 
 
-            // Aquí el nombre de la imagen será generado dinámicamente con el nombre de usuario y el sufijo "Diseño"
             String nombreImagenPersonalizada = usuarioDto.getNombreUsuario() + "Diseño.jpg";  // Nombre personalizado
 
-            // Ruta completa donde se almacenará la imagen personalizada
             String rutaCompleta = "/cr/ac/una/proyectoprogra2/resources/" + carpeta + "/" + nombreImagenPersonalizada;
 
-            // Verificamos si ya existe la imagen personalizada en cardsUser
             File imagenExistente = new File(rutaCompleta);
             if (imagenExistente.exists()) {
-                // Si existe, la eliminamos primero
                 boolean eliminado = imagenExistente.delete();
                 if (eliminado) {
                     System.out.println("Imagen personalizada eliminada.");
@@ -337,10 +324,9 @@ public class UsuarioController extends Controller implements Initializable {
                 }
             }
 
-            // Guardamos la carpeta y el nombre del archivo
-            usuarioDto.setImagenCarta(carpeta);  // Guardamos "cardsUser" como la carpeta
-            usuarioDto.setCaraCartaImg(carpeta);  // Guardamos el nombre del archivo
+            usuarioDto.setImagenCarta(carpeta);
+            usuarioDto.setCaraCartaImg(carpeta);
         }
     }
- 
+
 }
