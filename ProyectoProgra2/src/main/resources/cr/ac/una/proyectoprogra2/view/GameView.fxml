@@ -60,9 +60,9 @@
                   <Pane fx:id="pnFila8" layoutX="413.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
                   <Pane fx:id="pnFila9" layoutX="470.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
                   <Pane fx:id="pnFila10" layoutX="528.0" layoutY="14.0" prefHeight="170.0" prefWidth="50.0" />
-                  <Pane fx:id="pnBaraja" layoutX="533.0" layoutY="208.0" prefHeight="50.0" prefWidth="40.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                  <Pane fx:id="pnBaraja" layoutX="533.0" layoutY="208.0" prefHeight="50.0" prefWidth="40.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                      <children>
-                        <ImageView fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imvDeck" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
                         <MFXButton fx:id="btnDeck" onAction="#onActionBtnDeck" prefHeight="50.0" prefWidth="40.0" style="-fx-opacity: 0;" />
                      </children>
                   </Pane>

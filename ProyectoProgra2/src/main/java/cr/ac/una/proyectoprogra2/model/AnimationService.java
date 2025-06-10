@@ -123,9 +123,9 @@ public class AnimationService {
 
     seq.setOnFinished(evt -> {
         layer.getChildren().removeIf(n -> n instanceof ImageView);
-        controller.renderizarColumnas();
+        controller.renderColumns();
         controller.assignDragAndClickEventsToEachCard();
-        controller.actualizarPosicionPista();
+        controller.updateHintPositions();
     });
 
     seq.play();
