@@ -45,17 +45,16 @@ public class PrincipalController extends Controller implements Initializable {
     private Label lblUsuario;
     private static Scene scene;
 
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ImvFondo.fitHeightProperty().bind(root.heightProperty());
-        ImvFondo.fitWidthProperty().bind(root.widthProperty()); 
+        ImvFondo.fitWidthProperty().bind(root.widthProperty());
         root.setMaxHeight(640);
         root.setMaxWidth(400);
-       
+
     }
 
     @FXML
@@ -66,19 +65,19 @@ public class PrincipalController extends Controller implements Initializable {
 
     @FXML
     private void onActionBtnAcercaDe(ActionEvent event) {
-                FlowController.getInstance().goViewInWindow("AcercaDeView");
+        FlowController.getInstance().goViewInWindow("AcercaDeView");
         ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
     private void onActionBtnConfiguraciones(ActionEvent event) {
-                FlowController.getInstance().goViewInWindow("configuracionesView");
+        FlowController.getInstance().goViewInWindow("configuracionesView");
         ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
     private void onActionBtnEstadisticas(ActionEvent event) {
-                FlowController.getInstance().goViewInWindow("EstadisticasView");
+        FlowController.getInstance().goViewInWindow("EstadisticasView");
         ((Stage) root.getScene().getWindow()).close();
     }
 

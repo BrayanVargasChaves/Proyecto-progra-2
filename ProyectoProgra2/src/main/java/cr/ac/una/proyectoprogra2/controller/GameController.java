@@ -121,6 +121,8 @@ public class GameController extends Controller implements Initializable {
     private Pane pnBaraja;
     @FXML
     private AnchorPane GamePane;
+    @FXML
+    private ImageView imgFondo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -180,6 +182,11 @@ public class GameController extends Controller implements Initializable {
                 btnDeck,
                 this
         );
+        
+                imgFondo.fitHeightProperty().bind(root.heightProperty());
+        imgFondo.fitWidthProperty().bind(root.widthProperty()); 
+        root.setMaxHeight(640);
+        root.setMaxWidth(400);
     }
 
     private void redistribuirSeparacionPanes() {

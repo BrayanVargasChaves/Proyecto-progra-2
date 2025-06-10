@@ -47,7 +47,11 @@ public class DificultadController implements Initializable {
         Sonidos.asignarSonido(BtnNormal);
         Sonidos.asignarSonido(btnDificil);
         Sonidos.asignarSonido(btnVolver);
-    }    
+        ImvFondo.fitHeightProperty().bind(root.heightProperty());
+        ImvFondo.fitWidthProperty().bind(root.widthProperty());
+        root.setMaxHeight(640);
+        root.setMaxWidth(400);
+    }
 
     @FXML
     private void onActionBtnFacil(ActionEvent event) {
@@ -64,5 +68,5 @@ public class DificultadController implements Initializable {
     @FXML
     private void onActionBtnVolver(ActionEvent event) {
     }
-    
+
 }
