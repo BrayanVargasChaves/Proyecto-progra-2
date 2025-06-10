@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.model.Sonidos;
 import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
@@ -43,6 +44,7 @@ public class AcercaDeController extends Controller implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Sonidos.asignarSonido(btnCerrar);
         cargarCreditos();
         animarCreditos();
 

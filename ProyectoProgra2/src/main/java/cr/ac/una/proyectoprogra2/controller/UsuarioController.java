@@ -11,6 +11,7 @@ import cr.ac.una.proyectoprogra2.util.FlowController;
 import cr.ac.una.proyectoprogra2.util.Formato;
 import cr.ac.una.proyectoprogra2.util.Mensaje;
 import cr.ac.una.proyectoprogra2.util.Respuesta;
+import cr.ac.una.proyectoprogra2.model.Sonidos;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -51,10 +52,6 @@ public class UsuarioController extends Controller implements Initializable {
     @FXML
     private MFXButton btnVolver;
     @FXML
-    private ImageView imvImagenDelantera;
-    @FXML
-    private ImageView imvDelanteraOscura;
-    @FXML
     private MFXRadioButton rdbCara1;
     @FXML
     private ToggleGroup imagenDelante;
@@ -62,10 +59,6 @@ public class UsuarioController extends Controller implements Initializable {
     private MFXRadioButton rdbEscudo1;
     @FXML
     private ToggleGroup imagenDetras;
-    @FXML
-    private ImageView ImvDetras;
-    @FXML
-    private ImageView imvDetrasOscuro;
     @FXML
     private MFXRadioButton rdbCara2;
     @FXML
@@ -90,10 +83,19 @@ public class UsuarioController extends Controller implements Initializable {
     private UsuarioDto usuarioDto;
     private ObjectProperty<UsuarioDto> usuarioProperty = new SimpleObjectProperty<>();
     private List<Node> requeridos = new ArrayList();
-
+    private ImageView imvDelantera;
+    @FXML
+    private ImageView imgDetras;
+    @FXML
+    private ImageView ImvDelantera2;
+    @FXML
+    private ImageView imvDetras2;
+    @FXML
+    private ImageView imvGuardar;
     /**
      * Initializes the controller class.
      */
+   
     @FXML
     private void onActionBtnVolver(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("PrincipalView");
@@ -155,7 +157,7 @@ public class UsuarioController extends Controller implements Initializable {
         indicarRequeridos();
 
         imvPersonalizada.setOnMouseClicked(event -> {
-            //Sonidos.reproducir("click.wav");
+            Sonidos.reproducir("click.wav");
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Seleccionar Imagen");
             fileChooser.getExtensionFilters().addAll(
@@ -189,6 +191,8 @@ public class UsuarioController extends Controller implements Initializable {
             event.setDropCompleted(success);
             event.consume();
         });
+        Sonidos.asignarSonido(btnGuardar);
+        Sonidos.asignarSonido(btnVolver);
     }
 
     @Override
