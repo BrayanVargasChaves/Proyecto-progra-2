@@ -12,6 +12,7 @@ import cr.ac.una.proyectoprogra2.util.Formato;
 import cr.ac.una.proyectoprogra2.util.Mensaje;
 import cr.ac.una.proyectoprogra2.util.Respuesta;
 import cr.ac.una.proyectoprogra2.model.Sonidos;
+import cr.ac.una.proyectoprogra2.model.ThemeManager;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -100,13 +101,9 @@ public class UsuarioController extends Controller implements Initializable {
 
     @FXML
     private void onToggleClicked(MouseEvent event) {
-        if (tgbTema.isSelected()) {
-            root.getStylesheets().clear();
-            root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaOscuro.css").toExternalForm());
-        } else {
-            root.getStylesheets().clear();
-            root.getStylesheets().add(getClass().getResource("/cr/ac/una/proyectoprogra2/view/TemaClaro.css").toExternalForm());
-        }
+        boolean isDarkMode = tgbTema.isSelected();
+        ThemeManager.setTheme(root, isDarkMode);
+
     }
 
     @Override

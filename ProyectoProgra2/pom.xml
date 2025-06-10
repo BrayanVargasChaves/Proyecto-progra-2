@@ -52,6 +52,8 @@
                     <release>21</release>
                 </configuration>
             </plugin>
+
+            <!-- Plugin para JavaFX -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -61,40 +63,39 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
                     </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin para crear el JAR ejecutable con dependencias -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
                     <execution>
-                        <!-- Configuration for manual attach debugging -->
-                        <!-- Usage: mvn clean javafx:run@debug -->
-                        <id>debug</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
                         <configuration>
-                            <options>
-                                <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=localhost:8000</option>
-                            </options>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <!-- Configuration for automatic IDE debugging -->
-                        <id>ide-debug</id>
-                        <configuration>
-                            <options>
-                                <option>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</option>
-                            </options>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <!-- Configuration for automatic IDE profiling -->
-                        <id>ide-profile</id>
-                        <configuration>
-                            <options>
-                                <option>${profiler.jvmargs.arg1}</option>
-                                <option>${profiler.jvmargs.arg2}</option>
-                                <option>${profiler.jvmargs.arg3}</option>
-                                <option>${profiler.jvmargs.arg4}</option>
-                                <option>${profiler.jvmargs.arg5}</option>
-                            </options>
+                            <artifactSet>
+                                <excludes>
+                                    <!-- Excluye dependencias duplicadas, si es necesario -->
+                                    <exclude>org.openjfx:javafx-controls</exclude>
+                                    <exclude>org.openjfx:javafx-fxml</exclude>
+                                    <exclude>org.openjfx:javafx-media</exclude>
+                                </excludes>
+                            </artifactSet>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>cr.ac.una.proyectoprogra2.App</mainClass>
+                                </transformer>
+                            </transformers>
                         </configuration>
                     </execution>
                 </executions>
