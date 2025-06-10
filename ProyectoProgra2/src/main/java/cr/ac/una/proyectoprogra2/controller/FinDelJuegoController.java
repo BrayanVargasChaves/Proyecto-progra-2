@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -32,6 +33,10 @@ public class FinDelJuegoController implements Initializable {
     private MFXButton btnContinuar;
     @FXML
     private ImageView imvFondo;
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private Label lblResultado;
 
     /**
      * Initializes the controller class.
@@ -40,10 +45,14 @@ public class FinDelJuegoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Sonidos.reproducir("gol.mp3");
         Sonidos.asignarSonido(btnContinuar);
-        cargarEstadisticas((UsuarioDto)AppContext.getInstance().get("usuario"), (String)AppContext.getInstance().get("duracion"));
-    } 
-    
-    public void cargarEstadisticas(UsuarioDto usuario, String duracion){
+        cargarEstadisticas((UsuarioDto) AppContext.getInstance().get("usuario"), (String) AppContext.getInstance().get("duracion"));
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
+        root.setMaxHeight(640);
+        root.setMaxWidth(400);
+    }
+
+    public void cargarEstadisticas(UsuarioDto usuario, String duracion) {
         vbxParametros.getChildren().clear();
         vbxValores.getChildren().clear();
         vbxParametros.getChildren().addAll(new Label("Partidas Jugadas:"),
@@ -51,17 +60,17 @@ public class FinDelJuegoController implements Initializable {
                 new Label("Partidas Perdidas:"),
                 new Label("Puntos:"),
                 new Label("Duracion:"));
-        
+
         vbxValores.getChildren().addAll(new Label(String.valueOf(usuario.getPartidasGanadas() + usuario.getPartidasPerdidas())),
                 new Label(String.valueOf(usuario.getPartidasGanadas())),
                 new Label(String.valueOf(usuario.getPartidasPerdidas())),
                 new Label(String.valueOf(usuario.getPuntajeTotal())),
                 new Label(duracion));
-        
+
     }
 
     @FXML
     private void onActionBtnContinuar(ActionEvent event) {
     }
-    
+
 }

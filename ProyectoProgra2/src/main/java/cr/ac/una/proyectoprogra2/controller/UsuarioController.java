@@ -42,7 +42,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
 /**
  * FXML Controller class
  *
@@ -51,7 +50,7 @@ import javafx.stage.Stage;
 public class UsuarioController extends Controller implements Initializable {
 
     @FXML
-    private MFXButton btnVolver;   
+    private MFXButton btnVolver;
     @FXML
     private ImageView imvPersonalizada;
     @FXML
@@ -84,7 +83,7 @@ public class UsuarioController extends Controller implements Initializable {
     private ImageView imvGuardar;
     @FXML
     private ToggleGroup Diseño;
-   
+
     @FXML
     private MFXRadioButton rdbDiseño1;
     @FXML
@@ -93,7 +92,6 @@ public class UsuarioController extends Controller implements Initializable {
     /**
      * Initializes the controller class.
      */
-   
     @FXML
     private void onActionBtnVolver(ActionEvent event) {
         FlowController.getInstance().goViewInWindow("PrincipalView");
@@ -114,9 +112,8 @@ public class UsuarioController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        rdbDiseño1.setUserData("");        
+        rdbDiseño1.setUserData("");
         rdbDiseño2.setUserData("");
-        
 
         txfNombreUsuario.delegateSetTextFormatter(Formato.getInstance().maxLengthFormat(40));
         usuarioDto = new UsuarioDto();
@@ -161,6 +158,11 @@ public class UsuarioController extends Controller implements Initializable {
         });
         Sonidos.asignarSonido(btnGuardar);
         Sonidos.asignarSonido(btnVolver);
+
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
+        root.setMaxHeight(640);
+        root.setMaxWidth(400);
     }
 
     @Override
@@ -208,7 +210,7 @@ public class UsuarioController extends Controller implements Initializable {
                     // Desvincula los campos previos
                     txfNombreUsuario.textProperty().unbindBidirectional(oldVal.getNombreUsuarioProperty());
                     BindingUtils.unbindToggleGroupToProperty(Diseño, oldVal.getImagenCartaProperty());
-                  //BindingUtils.unbindToggleGroupToProperty(imagenDelante, oldVal.getCaraCartaImgProperty());
+                    //BindingUtils.unbindToggleGroupToProperty(imagenDelante, oldVal.getCaraCartaImgProperty());
                 }
 
                 if (newVal != null) {
@@ -217,7 +219,7 @@ public class UsuarioController extends Controller implements Initializable {
 
                     // Aquí vinculamos los RadioButton a las propiedades del DTO
                     BindingUtils.bindToggleGroupToProperty(Diseño, newVal.getImagenCartaProperty());
-                  //BindingUtils.bindToggleGroupToProperty(imagenDelante, newVal.getCaraCartaImgProperty());
+                    //BindingUtils.bindToggleGroupToProperty(imagenDelante, newVal.getCaraCartaImgProperty());
                 }
             });
 
@@ -284,7 +286,7 @@ public class UsuarioController extends Controller implements Initializable {
             String carpeta = "Cards1";  // Carpeta "Cards1"
 
             // Asignamos solo el nombre de la carpeta al DTO
-            usuarioDto.setImagenCarta(carpeta); 
+            usuarioDto.setImagenCarta(carpeta);
             usuarioDto.setCaraCartaImg(carpeta);// Guardamos solo el nombre de la carpeta
         }
     }

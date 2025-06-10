@@ -5,6 +5,7 @@
 package cr.ac.una.proyectoprogra2.controller;
 
 import cr.ac.una.proyectoprogra2.model.Sonidos;
+import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,8 +37,11 @@ public class EstadisticasController extends Controller implements Initializable 
     private TableColumn<?, ?> colPerdidos;
     @FXML
     private TableColumn<?, ?> colPuntos;
-    @FXML
     private MFXButton btnVolver;
+    @FXML
+    private AnchorPane root;
+    @FXML
+    private MFXButton btnVolver1;
 
     /**
      * Initializes the controller class.
@@ -43,15 +49,27 @@ public class EstadisticasController extends Controller implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        Sonidos.asignarSonido(btnVolver);
-    }    
+        if (btnVolver != null) {
+            btnVolver.setOnMouseEntered(event -> {
+                Sonidos.asignarSonido(btnVolver);
+            });
+        } else {
+            System.out.println("El botón no ha sido inicializado correctamente");
+        }
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
+        root.setMaxHeight(640);
+        root.setMaxWidth(400);
+    }
 
     @FXML
     private void onActionBtnVolver(ActionEvent event) {
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @Override
     public void initialize() {
     }
-    
+
 }

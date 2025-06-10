@@ -8,13 +8,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="cr.ac.una.proyectoprogra2.controller.EstadisticasController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@TemaClaro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.EstadisticasController">
    <children>
-      <ImageView fx:id="imvFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="imvFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" styleClass="jfx-fondoPrincipal" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TableView fx:id="tblEstadisticas" prefHeight="386.0" prefWidth="581.0" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tblEstadisticas" prefHeight="335.0" prefWidth="495.0" HBox.hgrow="ALWAYS">
                <columns>
                   <TableColumn fx:id="colPartidas" prefWidth="103.19997864961624" text="Partidas" />
                   <TableColumn fx:id="colGanados" prefWidth="140.0" text="Victorias" />
@@ -25,7 +24,11 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </TableView>
-            <MFXButton fx:id="btnVolver" onAction="#onActionBtnVolver" prefHeight="50.0" prefWidth="143.0" styleClass="jfx-button-salir" text="Volver" />
+            <MFXButton fx:id="btnVolver1" onAction="#onActionBtnVolver" prefHeight="41.0" prefWidth="65.0" styleClass="jfx-button-volver" text=" ">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
+               </graphic>
+            </MFXButton>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -47,6 +47,10 @@ public class AcercaDeController extends Controller implements Initializable {
         Sonidos.asignarSonido(btnCerrar);
         cargarCreditos();
         animarCreditos();
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty());
+        root.setMaxHeight(640);
+        root.setMaxWidth(400);
 
     }
 
@@ -73,7 +77,7 @@ public class AcercaDeController extends Controller implements Initializable {
                 new Label("2025"));
         VbCreditos.getChildren().forEach(n -> {
             if (n instanceof Label l) {
-                l.setStyle("-fx-text-fill: white; -fx-font-size: 18px;");
+                l.setStyle("-fx-text-fill: black; -fx-font-size: 18px;");
             }
         });
     }

@@ -7,7 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     Author     : Usuario
 */
 *{
-    -fx-base-color-focus:#09b6bc;
+    -fx-base-color-focus:darkgoldenrod;
     -fx-base-color-etiquetas:#4d4d4d;
     -fx-base-color-titulos:#000000;
 
@@ -29,12 +29,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-max-height:40px;
     -fx-text-fill:black;
     -fx-alignment:TOP_LEFT;
-    -fx-background-color: #1e1e2f;
-    -fx-border-color: #4a90e2;
+    -fx-background-color: white;
+    -fx-border-color: darkgoldenrod;
 }
 
 .mfx-filter-combo-box .combo-popup .search-container {
-    -fx-background-color: black;
+    -fx-background-color: white;
     -fx-background-radius: 5;
     -fx-border-color: #ebebeb;
     -fx-border-radius: 5;
@@ -162,6 +162,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-alignment:CENTER;
 }
 
+.jfx-button-continuar, .jfx-button-guardar:armed, .jfx-button-guardar:focused{
+    -fx-background-color:white;
+    -fx-alignment:CENTER;
+}
+
 .jfx-button-agregar > ImageView{
     -fx-image:url("../resources/add.png");
 }
@@ -214,8 +219,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-image:url("../resources/user.png");
 }
 
+.jfx-pistaImg{
+    -fx-image:url("../resources/idea.png");
+}
+
+.jfx-usuarioImg{
+    -fx-image:url("../resources/user.png");
+}
+
 .jfx-button-ajustes > ImageView{
     -fx-image:url("../resources/ajustesWhiteTheme.png");
+}
+
+.jfx-button-continuar> ImageView{
+    -fx-image:url("../resources/next.png");
 }
 
 .jfx-fondoPrincipal{
@@ -223,6 +240,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 .jfx-button-salir> ImageView{
     -fx-image:url("../resources/exit.png");
+}
+
+.jfx-button-guardar> ImageView{
+    -fx-image:url("../resources/diskette.png");
 }
 
 .jfx-imvDelantera{
