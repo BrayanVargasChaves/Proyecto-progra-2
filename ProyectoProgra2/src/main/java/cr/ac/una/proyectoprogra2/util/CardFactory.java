@@ -68,11 +68,11 @@ public class CardFactory {
                 sets = 8; // 8 sets de 13 = 104 cartas
                 break;
             case 2:
-                suits = new String[]{"spades", "Corazones"};
+                suits = new String[]{"Picas", "Corazones"};
                 sets = 4; // 4 sets por palo
                 break;
             case 4:
-                suits = new String[]{"Picas", "Corazones", "Trevor", "Diamantes"};
+                suits = new String[]{"Picas", "Corazones", "Trevor", "Diamante"};
                 sets = 2; // 2 sets por palo
                 break;
             default:

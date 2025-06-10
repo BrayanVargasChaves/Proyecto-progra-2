@@ -42,12 +42,12 @@ public class ConfiguracionesController extends Controller implements Initializab
     @FXML
     private MFXButton btnVolver;
     @FXML
-    private ImageView imvFondo;
     private MFXFilterComboBox<?> fcbUsuario;
     @FXML
-    private MFXToggleButton tgbTema;
+    private ImageView imgFondo;
     @FXML
-    
+    private MFXButton btnEliminarUsuario;
+
 
     /**
      * Initializes the controller class.
@@ -58,8 +58,8 @@ public class ConfiguracionesController extends Controller implements Initializab
         Sonidos.asignarSonido(btnPersonalizarUsuario);
         Sonidos.asignarSonido(btnIniciarSesion);
         Sonidos.asignarSonido(btnVolver);
-        imvFondo.fitHeightProperty().bind(root.heightProperty());
-        imvFondo.fitWidthProperty().bind(root.widthProperty()); 
+        imgFondo.fitHeightProperty().bind(root.heightProperty());
+        imgFondo.fitWidthProperty().bind(root.widthProperty()); 
         root.setMaxHeight(640);
         root.setMaxWidth(400);    }
 
@@ -69,12 +69,14 @@ public class ConfiguracionesController extends Controller implements Initializab
 
     @FXML
     private void onActionBtnAnadirUsuario(ActionEvent event) {
-        
+        FlowController.getInstance().goViewInWindow("UsuarioView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
     private void onActionBtnPersinalizarUsuario(ActionEvent event) {
-        
+        FlowController.getInstance().goViewInWindow("UsuarioView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
@@ -89,11 +91,11 @@ public class ConfiguracionesController extends Controller implements Initializab
     }
 
     @FXML
-    private void onToggleClicked(MouseEvent event) {
+    private void onKeyPressedNombreUsuario(KeyEvent event) {
     }
 
     @FXML
-    private void onKeyPressedNombreUsuario(KeyEvent event) {
+    private void onActionBtnEliminarUsuario(ActionEvent event) {
     }
 
 }

@@ -16,12 +16,12 @@ public class UsuarioDto {
 
     private StringProperty id;
     private StringProperty nombreUsuario;
-    private StringProperty imagenCarta;
-    private StringProperty caraCartaImg;
+    private ObjectProperty<String> imagenCarta;
+    private ObjectProperty<String> caraCartaImg;
     private IntegerProperty puntajeTotal;
     private IntegerProperty partidasPerdidas;
     private IntegerProperty partidasGanadas;
-    private StringProperty modoOscuro;
+    //private ObjectProperty<String> modoOscuro;
     private Long version;
     private Boolean modificado;
 
@@ -31,12 +31,12 @@ public class UsuarioDto {
     public UsuarioDto() {
         this.id = new SimpleStringProperty("");
         this.nombreUsuario = new SimpleStringProperty("");
-        this.imagenCarta = new SimpleStringProperty("");
-        this.caraCartaImg = new SimpleStringProperty("");
+        this.imagenCarta = new SimpleObjectProperty("");
+        this.caraCartaImg = new SimpleObjectProperty("");
         this.puntajeTotal = new SimpleIntegerProperty(0);
         this.partidasPerdidas = new SimpleIntegerProperty(0);
         this.partidasGanadas = new SimpleIntegerProperty(0);
-        this.modoOscuro = new SimpleStringProperty("");
+        //this.modoOscuro = new SimpleObjectProperty("");
         this.modificado = false;
     }
 
@@ -66,9 +66,9 @@ public class UsuarioDto {
         if (usuario.getPartidasGanadas() != null) {
             this.partidasGanadas.set(usuario.getPartidasGanadas());
         }
-        if (usuario.getModoOscuro() != null) {
-            this.modoOscuro.set(usuario.getModoOscuro());
-        }
+      //  if (usuario.getModoOscuro() != null) {
+       //     this.modoOscuro.set(usuario.getModoOscuro());
+      //  }
         this.version = usuario.getVersion();
     }
 
@@ -132,13 +132,13 @@ public class UsuarioDto {
         this.partidasGanadas.set(partidasGanadas);
     }
 
-    public String getModoOscuro() {
-        return modoOscuro.get();
-    }
+  //  public String getModoOscuro() {
+  //      return modoOscuro.get();
+  //  }
 
-    public void setModoOscuro(String modoOscuro) {
-        this.modoOscuro.set(modoOscuro);
-    }
+  //  public void setModoOscuro(String modoOscuro) {
+  //      this.modoOscuro.set(modoOscuro);
+  //  }
 
     public Long getVersion() {
         return version;
@@ -157,38 +157,38 @@ public class UsuarioDto {
     }
 
     // Property getters para binding
-    public StringProperty idProperty() {
+    public StringProperty getIdProperty() {
         return id;
     }
 
-    public StringProperty nombreUsuarioProperty() {
+    public StringProperty getNombreUsuarioProperty() {
         return nombreUsuario;
     }
 
-    public StringProperty imagenCartaProperty() {
+    public ObjectProperty getImagenCartaProperty() {
         return imagenCarta;
     }
 
-    public StringProperty caraCartaImgProperty() {
+    public ObjectProperty getCaraCartaImgProperty() {
         return caraCartaImg;
     }
 
-    public IntegerProperty puntajeTotalProperty() {
+    public IntegerProperty getPuntajeTotalProperty() {
         return puntajeTotal;
     }
 
-    public IntegerProperty partidasPerdidasProperty() {
+    public IntegerProperty getPartidasPerdidasProperty() {
         return partidasPerdidas;
     }
 
-    public IntegerProperty partidasGanadasProperty() {
+    public IntegerProperty getPartidasGanadasProperty() {
         return partidasGanadas;
     }
 
-    public StringProperty modoOscuroProperty() {
-        return modoOscuro;
-    }
-
+  //  public ObjectProperty getModoOscuroProperty() {
+  //      return modoOscuro;
+  //  }
+    
     @Override
     public int hashCode() {
         int hash = 3;
