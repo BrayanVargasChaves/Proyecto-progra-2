@@ -10,11 +10,14 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
@@ -42,6 +45,8 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "USUARIO_ID_GENERATOR", sequenceName = "una.USUARIO_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_ID_GENERATOR")
     @Basic(optional = false)
     @Column(name = "ID_USUARIO")
     private Long id;
@@ -77,9 +82,10 @@ public class Usuario implements Serializable {
         this.id = usuarioDto.getId();
         actualizar(usuarioDto);
     }
+
     public void actualizar(UsuarioDto usuarioDto) {
         this.nombreUsuario = usuarioDto.getNombreUsuario();
-     
+
         this.imagenCarta = usuarioDto.getImagenCarta();
         this.caraCartaImg = usuarioDto.getCaraCartaImg();
         this.puntajeTotal = usuarioDto.getPuntajeTotal();
@@ -87,7 +93,7 @@ public class Usuario implements Serializable {
         this.partidasGanadas = usuarioDto.getPartidasGanadas();
         this.version = usuarioDto.getVersion();
     }
-    
+
     public Usuario(Long id) {
         this.id = id;
     }
