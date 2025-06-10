@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.model.Sonidos;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import java.net.URL;
@@ -63,6 +64,8 @@ public class UsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Sonidos.asignarSonido(btnGuardar);
+        Sonidos.asignarSonido(btnVolver);
     }    
 
     @FXML

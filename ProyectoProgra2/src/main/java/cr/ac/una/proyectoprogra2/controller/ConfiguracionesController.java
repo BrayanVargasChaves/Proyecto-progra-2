@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.model.Sonidos;
 import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -53,8 +54,12 @@ public class ConfiguracionesController extends Controller implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imgFondo.fitHeightProperty().bind(root.heightProperty());
-        imgFondo.fitWidthProperty().bind(root.widthProperty()); 
+        Sonidos.asignarSonido(btnAnadirUsuario);
+        Sonidos.asignarSonido(btnPersonalizarUsuario);
+        Sonidos.asignarSonido(btnIniciarSesion);
+        Sonidos.asignarSonido(btnVolver);
+        imvFondo.fitHeightProperty().bind(root.heightProperty());
+        imvFondo.fitWidthProperty().bind(root.widthProperty()); 
         root.setMaxHeight(640);
         root.setMaxWidth(400);    }
 
