@@ -1,7 +1,6 @@
 package cr.ac.una.proyectoprogra2.model;
 
 import cr.ac.una.proyectoprogra2.controller.GameController;
-import cr.ac.una.proyectoprogra2.model.Card;
 import javafx.animation.ScaleTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -15,10 +14,9 @@ import javafx.util.Duration;
 
 import java.util.List;
 
-/**
- * Servicio que agrupa las animaciones del juego (movimiento de cartas, volteo, victoria y derrota).
- */
 public class AnimationService {
+
+    private static final double OFFSET_Y = 30;
 
     public TranslateTransition moveCardToPane(
             Node fromNode,
@@ -27,28 +25,21 @@ public class AnimationService {
             boolean stack,
             AnchorPane animationLayer
     ) {
-        // Coordenadas absolutas de la carta
         Bounds boundsInScene = cardView.localToScene(cardView.getBoundsInLocal());
-        Point2D start = animationLayer.sceneToLocal(
-                boundsInScene.getMinX(), boundsInScene.getMinY()
-        );
+        Point2D start = animationLayer.sceneToLocal(boundsInScene.getMinX(), boundsInScene.getMinY());
 
-        // Sacamos la carta de donde esté (pane o botón)
         if (fromNode instanceof Pane) {
-            ((Pane)fromNode).getChildren().remove(cardView);
+            ((Pane) fromNode).getChildren().remove(cardView);
         } else {
-            // asumimos que el deck es un botón dentro de un Pane padre
-            ((Pane)fromNode.getParent()).getChildren().remove(cardView);
+            ((Pane) fromNode.getParent()).getChildren().remove(cardView);
         }
+
         animationLayer.getChildren().add(cardView);
         cardView.setLayoutX(start.getX());
         cardView.setLayoutY(start.getY());
 
-        // Destino
         Bounds targetBounds = toPane.localToScene(toPane.getBoundsInLocal());
-        Point2D end = animationLayer.sceneToLocal(
-                targetBounds.getMinX(), targetBounds.getMinY()
-        );
+        Point2D end = animationLayer.sceneToLocal(targetBounds.getMinX(), targetBounds.getMinY());
 
         TranslateTransition tt = new TranslateTransition(Duration.millis(300), cardView);
         tt.setToX(end.getX() - start.getX());
@@ -56,64 +47,90 @@ public class AnimationService {
         return tt;
     }
 
-    public ScaleTransition flipCard(
+    public SequentialTransition flipCard(
             ImageView cardView,
             Card modelCard,
             GameController controller
     ) {
-        ScaleTransition st = new ScaleTransition(Duration.millis(200), cardView);
-        st.setFromX(1);  st.setToX(0);
-        st.setOnFinished(e -> {
+        ScaleTransition shrink = new ScaleTransition(Duration.millis(150), cardView);
+        shrink.setFromX(1);
+        shrink.setToX(0);
+
+        ScaleTransition expand = new ScaleTransition(Duration.millis(150), cardView);
+        expand.setFromX(0);
+        expand.setToX(1);
+
+        shrink.setOnFinished(e -> {
             modelCard.setBocaArriba(modelCard.isIsFlip() ? 0 : 1);
-            cardView.setImage(controller.loadCardImage(
-                    modelCard, modelCard.isIsFlip()
-            ));
-            ScaleTransition st2 = new ScaleTransition(Duration.millis(200), cardView);
-            st2.setFromX(0);  st2.setToX(1);
-            st2.play();
+            cardView.setImage(controller.loadCardImage(modelCard, modelCard.isIsFlip()));
         });
-        return st;
+
+        return new SequentialTransition(shrink, expand);
     }
 
     public void initialAnimation(
-            List<List<Card>> columns,
-            List<Card> deck,
-            List<Pane> columnPanes,
-            Node deckNode,
-            GameController controller
-    ) {
-        AnchorPane layer = controller.getAnimationLayer();
-        SequentialTransition seq = new SequentialTransition();
-        int deckSize = deck.size() - 1;
-        for (int col = 0; col < columnPanes.size(); col++) {
-            final int target = col;
-            ImageView cardView = (ImageView) ((Pane)deckNode.getParent())
-                    .getChildren().get(deckSize - col);
-            Card card = deck.get(deckSize - col);
+        List<List<Card>> columns,
+        List<Card> deck,
+        List<ImageView> deckCardViews,
+        List<Pane> columnPanes,
+        Node deckNode,
+        GameController controller
+) {
+    AnchorPane layer = controller.getAnimationLayer();
+    SequentialTransition seq = new SequentialTransition();
+    int deckSize = deck.size() - 1;
 
-            TranslateTransition tt = moveCardToPane(
-                    deckNode, columnPanes.get(col), cardView, true, layer
-            );
-            ScaleTransition flip = flipCard(cardView, card, controller);
+    for (int col = 0; col < columnPanes.size(); col++) {
+        final int target = col;
+        int deckIndex = deckSize - col;
 
-            tt.setOnFinished(evt -> {
-                columns.get(target).add(card);
-                deck.remove(deckSize - target);
-            });
-            seq.getChildren().addAll(tt, flip);
+        if (deckIndex < 0 || deckIndex >= deckCardViews.size()) {
+            System.err.println("Error: deckIndex fuera de rango: " + deckIndex);
+            continue;
         }
-        seq.setOnFinished(evt -> {
-            layer.getChildren().removeIf(n -> n instanceof ImageView);
-            controller.renderColumns();
-            controller.assignDragAndClickEventsToEachCard();
-            controller.updateHintPositions();
+
+        ImageView cardView = deckCardViews.get(deckIndex);
+        Card card = deck.get(deckIndex);
+
+        // Detectar si es la última carta de la columna
+        boolean isFinalCard = (col == 4 || col == 5);
+
+        if (isFinalCard) {
+            // IMPORTANTE: cambiar estado del modelo y la imagen ANTES de mover
+            card.setBocaArriba(1);
+            cardView.setImage(controller.loadCardImage(card, true));
+        } else {
+            card.setBocaArriba(0);  // asegurar que no estén boca arriba antes del flip
+            cardView.setImage(controller.loadCardImage(card, false));
+        }
+
+        TranslateTransition tt = moveCardToPane(deckNode, columnPanes.get(col), cardView, true, layer);
+
+        SequentialTransition flip;
+        if (isFinalCard) {
+            flip = new SequentialTransition(); // No animación
+        } else {
+            flip = flipCard(cardView, card, controller);
+        }
+
+        tt.setOnFinished(evt -> {
+            columns.get(target).add(card);
+            deck.remove(deckIndex);
         });
-        seq.play();
+
+        seq.getChildren().addAll(tt, flip);
     }
 
-    /**
-     * Reproduce animación de victoria (destellos en las fundaciones).
-     */
+    seq.setOnFinished(evt -> {
+        layer.getChildren().removeIf(n -> n instanceof ImageView);
+        controller.renderColumns();
+        controller.assignDragAndClickEventsToEachCard();
+        controller.updateHintPositions();
+    });
+
+    seq.play();
+}
+
     public void playVictoryAnimation(List<Pane> foundationPanes, AnchorPane animationLayer) {
         for (Pane pane : foundationPanes) {
             for (Node node : pane.getChildren()) {
@@ -131,9 +148,6 @@ public class AnimationService {
         }
     }
 
-    /**
-     * Reproduce animación de derrota (shake en las columnas).
-     */
     public void defeatAnimation(List<Pane> columnPanes, Node deckPane, List<Pane> foundationPanes) {
         for (Pane pane : columnPanes) {
             TranslateTransition tt = new TranslateTransition(Duration.millis(50), pane);

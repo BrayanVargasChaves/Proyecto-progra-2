@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
@@ -11,18 +11,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.ConfiguracionesController">
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@TemaClaro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.ConfiguracionesController">
    <children>
-      <ImageView fx:id="imvFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="imgFondo" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" styleClass="jfx-fondoPrincipal" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <HBox layoutX="77.0" layoutY="137.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="50.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <MFXTextField fx:id="txfNombreUsuario" floatingText="Nombre de Usuario" maxWidth="1.7976931348623157E308" onAction="#onActionTxfNombreUsuario" prefHeight="50.0" prefWidth="200.0" />
-                        <MFXButton fx:id="btnIniciarSesion" onAction="#onActionBtnIniciarSesion" text="Iniciar Sesion" />
-                        <MFXToggleButton fx:id="TbtnTemaOscuro" text="Tema Oscuro" />
+                        <MFXTextField fx:id="txfNombreUsuario" floatingText="Nombre de Usuario" maxWidth="1.7976931348623157E308" onKeyPressed="#onKeyPressedNombreUsuario" prefHeight="50.0" prefWidth="200.0" />
+                        <MFXButton fx:id="btnIniciarSesion" onAction="#onActionBtnIniciarSesion" styleClass="jfx-button-logIn" text="Iniciar Sesion">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></MFXButton>
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -33,17 +36,34 @@
                   </VBox>
                   <HBox prefHeight="50.0" prefWidth="200.0">
                      <children>
-                        <MFXButton fx:id="btnVolver" onAction="#onActionBtnVolver" prefHeight="50.0" prefWidth="75.0" text="Volver" />
+                        <MFXButton fx:id="btnVolver" onAction="#onActionBtnVolver" prefHeight="41.0" prefWidth="109.0" styleClass="jfx-button-volver" text="Volver">
+                           <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></MFXButton>
                      </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
                   </HBox>
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
             <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="50.0" HBox.hgrow="ALWAYS">
                <children>
-                  <MFXButton fx:id="btnAnadirUsuario" onAction="#onActionBtnAnadirUsuario" prefHeight="50.0" prefWidth="150.0" text="Añadir Usuario" />
-                  <MFXButton fx:id="btnPersonalizarUsuario" layoutX="108.0" layoutY="185.0" onAction="#onActionBtnPersinalizarUsuario" prefHeight="50.0" prefWidth="150.0" text="Personalizar Usuario" />
-                  <MFXComboBox fx:id="CbxElejirUsuario" floatingText="Seleccionar Usuario" onAction="#onActionCbxElejirUsuario" prefHeight="50.0" prefWidth="150.0" />
+                  <MFXButton fx:id="btnAnadirUsuario" onAction="#onActionBtnAnadirUsuario" prefHeight="50.0" prefWidth="166.0" styleClass="jfx-button-agregar" text="Añadir Usuario">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic></MFXButton>
+                  <MFXButton fx:id="btnPersonalizarUsuario" layoutX="108.0" layoutY="185.0" onAction="#onActionBtnPersinalizarUsuario" prefHeight="50.0" prefWidth="191.0" styleClass="jfx-button-personalizar" text="Personalizar Usuario">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic></MFXButton>
+                  <MFXFilterComboBox fx:id="fcbUsuario" floatMode="BORDER" floatingText="Invitado" prefWidth="209.0" />
+                  <MFXToggleButton fx:id="tgbTema" contentDisposition="RIGHT" onMouseClicked="#onToggleClicked" text="Tema">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="jfx-tema" />
+                     </graphic>
+                  </MFXToggleButton>
                </children>
             </VBox>
          </children>

@@ -3,6 +3,7 @@ package cr.ac.una.proyectoprogra2.controller;
 import cr.ac.una.proyectoprogra2.model.Card;
 import cr.ac.una.proyectoprogra2.util.CardFactory;
 import cr.ac.una.proyectoprogra2.model.AnimationService;
+import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.image.Image;
@@ -29,6 +30,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class GameController extends Controller implements Initializable {
 
@@ -60,6 +63,7 @@ public class GameController extends Controller implements Initializable {
     private Pane pnFila9;
     @FXML
     private Pane pnFila10;
+
     private Pane pnDeck;
     @FXML
     private Pane pnPila1;
@@ -102,6 +106,7 @@ public class GameController extends Controller implements Initializable {
     private int hintCardIndex;
     private int hintTargetColumnIndex;
     private int lastHintTargetColumnIndex;
+    private List<ImageView> deckCardViews = new ArrayList<>();
     @FXML
     private AnchorPane root;
     @FXML
@@ -110,6 +115,10 @@ public class GameController extends Controller implements Initializable {
     private MFXButton btnRendirce;
     @FXML
     private MFXButton btnPista;
+    @FXML
+    private Pane pnBaraja;
+    @FXML
+    private AnchorPane GamePane;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -139,20 +148,57 @@ public class GameController extends Controller implements Initializable {
                 pnPila5, pnPila6, pnPila7, pnPila8
         );
 
+        // 🔽 AÑADIR ESTA PARTE: crear los ImageView de las cartas del mazo
+        Pane deckParent = (Pane) btnDeck.getParent(); // Asegúrate que sea un AnchorPane o StackPane
+        for (Card card : cardsInDeck) {
+            ImageView imageView = createCardImageView(card); // Usa tu propio método
+            imageView.setVisible(false); // Opcional: ocultar hasta que se animen
+            deckParent.getChildren().add(imageView);
+        }
+
         renderColumns();
-        assignDragAndClickEventsToEachCard();
+        GamePane.widthProperty().addListener((obs, oldVal, newVal) -> redistribuirSeparacionPanes());
+        redistribuirSeparacionPanes();
+
+// Llamarlo una vez al iniciar
+        redistribuirSeparacionPanes();
+
+        // 🔽 LLAMADA a la animación después de añadir los ImageView
         animationService.initialAnimation(
                 cardsInBoard,
                 cardsInDeck,
+                deckCardViews,
                 columnPanes,
-                btnDeck, // use button as source
+                btnDeck,
                 this
         );
     }
 
+    private void redistribuirSeparacionPanes() {
+        double totalWidth = GamePane.getWidth();
+        int cantidadPanes = columnPanes.size();
+
+        double paneWidth = columnPanes.get(0).getPrefWidth(); // Todos tienen el mismo ancho
+        double espacioTotalDisponible = totalWidth - (cantidadPanes * paneWidth);
+
+        if (espacioTotalDisponible < 0) {
+            espacioTotalDisponible = 0;
+        }
+
+        double espacioEntrePanes = espacioTotalDisponible / (cantidadPanes + 1);
+
+        for (int i = 0; i < cantidadPanes; i++) {
+            Pane pane = columnPanes.get(i);
+            double layoutX = espacioEntrePanes + i * (paneWidth + espacioEntrePanes);
+            pane.setLayoutX(layoutX);
+            // No tocamos layoutY ni altura
+        }
+    }
+
     @FXML
     private void onActionTerminarMasTarde(ActionEvent e) {
-        // TODO: implement save state and exit logic
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
@@ -161,39 +207,98 @@ public class GameController extends Controller implements Initializable {
             return;
         }
 
-        int deckSize = cardsInDeck.size() - 1;
+        double offset = 15; // Desplazamiento vertical para apilar cartas
         SequentialTransition seq = new SequentialTransition();
+
+        // Obtener la posición del mazo (botón) en escena para iniciar la animación desde ahí
+        Bounds deckBounds = btnDeck.localToScene(btnDeck.getBoundsInLocal());
+        double startX = deckBounds.getMinX();
+        double startY = deckBounds.getMinY();
+
         for (int col = 0; col < columnPanes.size(); col++) {
             final int target = col;
-            Card card = cardsInDeck.get(deckSize - col);
+            int deckIndex = cardsInDeck.size() - 1 - col;
+            if (deckIndex < 0) {
+                continue;
+            }
+
+            Card card = cardsInDeck.get(deckIndex);
             ImageView iv = createCardImageView(card);
 
-            TranslateTransition tt = animationService.moveCardToPane(
-                    btnDeck, // use button as source
-                    columnPanes.get(col),
-                    iv,
-                    true,
-                    animationLayer
-            );
-            ScaleTransition flip = animationService.flipCard(iv, card, this);
+            // Añadir ImageView a la capa de animación y posicionarlo sobre el mazo
+            iv.setLayoutX(startX);
+            iv.setLayoutY(startY);
+            animationLayer.getChildren().add(iv);
+
+            Pane targetPane = columnPanes.get(col);
+
+            // Obtener la última carta visible en el pane de la columna
+            ImageView lastCardView = null;
+            if (!targetPane.getChildren().isEmpty()) {
+                // Suponemos que las cartas son ImageView y que la última agregada está abajo
+                // Buscar el ImageView con la mayor posición Y
+                lastCardView = targetPane.getChildren().stream()
+                        .filter(n -> n instanceof ImageView)
+                        .map(n -> (ImageView) n)
+                        .max((iv1, iv2) -> Double.compare(iv1.getLayoutY(), iv2.getLayoutY()))
+                        .orElse(null);
+            }
+
+            // Definir destino: si hay carta, justo debajo; si no, al tope del pane
+            double destX, destY;
+            if (lastCardView != null) {
+                Bounds lastCardBounds = lastCardView.localToScene(lastCardView.getBoundsInLocal());
+                destX = lastCardBounds.getMinX();
+                destY = lastCardBounds.getMinY() + offset; // posición un poco abajo
+            } else {
+                Bounds paneBounds = targetPane.localToScene(targetPane.getBoundsInLocal());
+                destX = paneBounds.getMinX();
+                destY = paneBounds.getMinY();
+            }
+
+            // Convertir posiciones absolutas a relativas dentro del animationLayer
+            Point2D startInLayer = animationLayer.sceneToLocal(startX, startY);
+            Point2D destInLayer = animationLayer.sceneToLocal(destX, destY);
+
+            // Inicialmente colocar la carta en el punto de inicio dentro del animationLayer
+            iv.setLayoutX(startInLayer.getX());
+            iv.setLayoutY(startInLayer.getY());
+
+            // Crear la animación de movimiento hacia la posición calculada
+            TranslateTransition tt = new TranslateTransition(Duration.millis(500), iv);
+            tt.setFromX(0);
+            tt.setFromY(0);
+            tt.setToX(destInLayer.getX() - startInLayer.getX());
+            tt.setToY(destInLayer.getY() - startInLayer.getY());
+
+            // Animación de volteo (usa tu método existente)
+            SequentialTransition flip = animationService.flipCard(iv, card, this);
+
             tt.setOnFinished(evt -> {
                 cardsInBoard.get(target).add(card);
-                cardsInDeck.remove(deckSize - target);
+                cardsInDeck.remove(deckIndex);
             });
+
             seq.getChildren().addAll(tt, flip);
         }
+
         seq.setOnFinished(evt -> {
             animationLayer.getChildren().removeIf(n -> n instanceof ImageView);
             renderColumns();
             assignDragAndClickEventsToEachCard();
             updateHintPositions();
         });
+
         seq.play();
     }
 
     @FXML
-    private void onActionBtnRendirce(ActionEvent e) {
+    private void onActionBtnRendirce(ActionEvent e) throws InterruptedException {
         gameFailed.set(true);
+        Thread.sleep(2000);
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        ((Stage) root.getScene().getWindow()).close();
+
     }
 
     @FXML
@@ -433,7 +538,7 @@ public class GameController extends Controller implements Initializable {
     // Metodo para obtener la imagen de la carta sabiendo su valor
     public ImageView createCardImageView(Card card) {
         ImageView imv = new ImageView(loadCardImage(card, card.isIsFlip()));
-        imv.setFitWidth(80);
+        imv.setFitWidth(50);
         imv.setPreserveRatio(true);
         return imv;
     }
@@ -442,24 +547,24 @@ public class GameController extends Controller implements Initializable {
     //NOTA: CUANDO SE TENGA LA OPCION 2 DEL FRENTE, SE DEBE MODIFICAR ESTO
     public Image loadCardImage(Card card, boolean isFlip) {
         String cardValue = card.getValue();
-        String rawSuit   = card.getSuit();
+        String rawSuit = card.getSuit();
         // Si sigues usando A_Hearts.png:
-        String cardName  = cardValue + "_" + rawSuit.substring(0,1).toUpperCase()
-                + rawSuit.substring(1).toLowerCase() + ".png";
-        String backName  = "back_blue.png";
-        String basePath  = "/cr/ac/una/proyectoprogra2/resources/";
-        String fullPath  = basePath + (isFlip ? cardName : backName);
+        String cardName = cardValue + "_" + rawSuit.substring(0, 1).toUpperCase()
+                + rawSuit.substring(1).toLowerCase() + ".PNG";
+        String backName = "ReversoUNO.png";
+        String basePath = "/cr/ac/una/proyectoprogra2/resources/";
+        String fullPath = basePath + (isFlip ? cardName : backName);
 
         System.out.println("DEBUG: buscando recurso → " + fullPath);
         URL imageUrl = getClass().getResource(fullPath);
         System.out.println("DEBUG: imageUrl = " + imageUrl);
         if (imageUrl == null) {
-            imageUrl = getClass().getResource(basePath + "back_blue.png");
-/*
+            imageUrl = getClass().getResource(basePath + "ReversoUNO.PNG");
+            /*
             throw new IllegalArgumentException(
                     "No encontré la imagen en el classpath: " + fullPath);
-                    */
- 
+             */
+
         }
         return new Image(imageUrl.toExternalForm());
     }
@@ -719,7 +824,7 @@ public class GameController extends Controller implements Initializable {
             Card cardToFlip = currentColumn.get(currentColumn.size() - 1);
             int lastIndex = currentColumnPane.getChildren().size() - 1;
             ImageView cardImageView = (ImageView) currentColumnPane.getChildren().get(lastIndex);
-            ScaleTransition flipAnimation = animationService.flipCard(cardImageView, cardToFlip, this);
+            SequentialTransition flipAnimation = animationService.flipCard(cardImageView, cardToFlip, this);
             flipAnimation.setOnFinished(flipEvt -> {
                 removeCompleteStackInColumn(numberTargetColumn);
                 assignDragAndClickEventsToEachCard();
@@ -805,7 +910,7 @@ public class GameController extends Controller implements Initializable {
                 ImageView cardImageView = (ImageView) columnPane.getChildren().get(columnPane.getChildren().size() - 1);
 
                 // se llama la animacion para girar la carta
-                ScaleTransition flipAnimation = animationService.flipCard(cardImageView, cardToFlip, this);
+                SequentialTransition flipAnimation = animationService.flipCard(cardImageView, cardToFlip, this);
 
                 flipAnimation.setOnFinished(flipEvt -> {
                     // Después del flip, usar los renders

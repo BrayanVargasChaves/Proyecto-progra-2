@@ -64,19 +64,19 @@ public class CardFactory {
 
         switch (difficulty) {
             case 1:
-                suits = new String[]{"spades"};
+                suits = new String[]{"Picas"};
                 sets = 8; // 8 sets de 13 = 104 cartas
                 break;
             case 2:
-                suits = new String[]{"spades", "hearts"};
+                suits = new String[]{"spades", "Corazones"};
                 sets = 4; // 4 sets por palo
                 break;
             case 4:
-                suits = new String[]{"spades", "hearts", "clubs", "diamonds"};
+                suits = new String[]{"Picas", "Corazones", "Trevor", "Diamantes"};
                 sets = 2; // 2 sets por palo
                 break;
             default:
-                suits = new String[]{"spades"};
+                suits = new String[]{"Picas"};
                 sets = 8;
                 break;
         }

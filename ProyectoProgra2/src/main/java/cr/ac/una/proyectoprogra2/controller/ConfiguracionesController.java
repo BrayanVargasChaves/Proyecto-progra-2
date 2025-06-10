@@ -4,8 +4,9 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import io.github.palexdev.materialfx.controls.MFXToggleButton;
 import java.net.URL;
@@ -16,8 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -25,9 +28,6 @@ import javafx.scene.layout.AnchorPane;
  * @author Usuario
  */
 public class ConfiguracionesController extends Controller implements Initializable {
-
-    private MFXToggleButton toggleBtnTemaOscuro;
-    private Label estadoTemaOscuro;
     @FXML
     private AnchorPane root;
     @FXML
@@ -35,25 +35,28 @@ public class ConfiguracionesController extends Controller implements Initializab
     @FXML
     private MFXButton btnPersonalizarUsuario;
     @FXML
-    private MFXComboBox<?> CbxElejirUsuario;
-    @FXML
     private MFXTextField txfNombreUsuario;
-    @FXML
-    private MFXToggleButton TbtnTemaOscuro;
     @FXML
     private MFXButton btnIniciarSesion;
     @FXML
     private MFXButton btnVolver;
     @FXML
     private ImageView imvFondo;
+    private MFXFilterComboBox<?> fcbUsuario;
+    @FXML
+    private MFXToggleButton tgbTema;
+    @FXML
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        imgFondo.fitHeightProperty().bind(root.heightProperty());
+        imgFondo.fitWidthProperty().bind(root.widthProperty()); 
+        root.setMaxHeight(640);
+        root.setMaxWidth(400);    }
 
     @Override
     public void initialize() {
@@ -61,26 +64,31 @@ public class ConfiguracionesController extends Controller implements Initializab
 
     @FXML
     private void onActionBtnAnadirUsuario(ActionEvent event) {
+        
     }
 
     @FXML
     private void onActionBtnPersinalizarUsuario(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionCbxElejirUsuario(ActionEvent event) {
-    }
-
-    @FXML
-    private void onActionTxfNombreUsuario(ActionEvent event) {
+        
     }
 
     @FXML
     private void onActionBtnIniciarSesion(ActionEvent event) {
+        
     }
 
     @FXML
     private void onActionBtnVolver(ActionEvent event) {
+        FlowController.getInstance().goViewInWindow("PrincipalView");
+        ((Stage) root.getScene().getWindow()).close();
     }
-    
+
+    @FXML
+    private void onToggleClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void onKeyPressedNombreUsuario(KeyEvent event) {
+    }
+
 }
