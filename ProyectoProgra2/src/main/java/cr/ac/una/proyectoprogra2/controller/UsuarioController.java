@@ -240,11 +240,8 @@ public class UsuarioController extends Controller implements Initializable {
                     // Desvincula los campos previos
                     txfNombreUsuario.textProperty().unbindBidirectional(oldVal.getNombreUsuarioProperty());
                     // Unbind los RadioButton
-                    //  rdbCara1.selectedProperty().unbindBidirectional(oldVal.getImagenCartaProperty());
                     BindingUtils.unbindToggleGroupToProperty(imagenDetras, oldVal.getImagenCartaProperty());
                     BindingUtils.unbindToggleGroupToProperty(imagenDelante, oldVal.getCaraCartaImgProperty());
-
-                    //rdbEscudo1.selectedProperty().unbindBidirectional(oldVal.getCaraCartaImgProperty());
                 }
 
                 if (newVal != null) {
@@ -252,8 +249,6 @@ public class UsuarioController extends Controller implements Initializable {
                     txfNombreUsuario.textProperty().bindBidirectional(newVal.getNombreUsuarioProperty());
 
                     // Aquí vinculamos los RadioButton a las propiedades del DTO
-                    //   rdbCara1.selectedProperty().bindBidirectional(newVal.getImagenCartaProperty());
-                    //  rdbEscudo1.selectedProperty().bindBidirectional(newVal.getCaraCartaImgProperty());
                     BindingUtils.bindToggleGroupToProperty(imagenDetras, newVal.getImagenCartaProperty());
                     BindingUtils.bindToggleGroupToProperty(imagenDelante, newVal.getCaraCartaImgProperty());
 
@@ -313,23 +308,6 @@ public class UsuarioController extends Controller implements Initializable {
     }
 
     private void cargarEmpleado(Long id) {
-        /*  try {
-            EmpleadoService empleadoService = new EmpleadoService();
-            Respuesta respuesta = empleadoService.getEmpleado(id);
-            if (respuesta.getEstado()) {
-                this.usuarioDto = (EmpleadoDto) respuesta.getResultado("Empleado");
-                this.usuarioProperty.setValue(this.usuarioDto);
-                validarAdministrador();
-                validarRequeridos();
-            } else {
-                new Mensaje().showModal(Alert.AlertType.ERROR, "Buscar Empleado", getStage(), respuesta.getMensaje());
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(EmpleadosController.class.getName()).log(Level.SEVERE, "Error Buscando el empleado.", ex);
-            new Mensaje().showModal(Alert.AlertType.ERROR, "Buscar Empleado", getStage(), "OcurriÃ³ un error Buscando el empleado.");
-        }
-
-         */
 
     }
 }

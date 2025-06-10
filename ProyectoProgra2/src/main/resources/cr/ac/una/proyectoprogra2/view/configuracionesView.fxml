@@ -3,14 +3,12 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
-<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@TemaClaro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.ConfiguracionesController">
    <children>
@@ -64,11 +62,6 @@
                      </graphic>
                   </MFXButton>
                   <MFXFilterComboBox fx:id="fcbUsuario" floatMode="BORDER" floatingText="Invitado" prefWidth="209.0" />
-                  <MFXToggleButton fx:id="tgbTema" contentDisposition="RIGHT" onMouseClicked="#onToggleClicked" text="Tema">
-                     <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="jfx-tema" />
-                     </graphic>
-                  </MFXToggleButton>
                </children>
             </VBox>
          </children>
