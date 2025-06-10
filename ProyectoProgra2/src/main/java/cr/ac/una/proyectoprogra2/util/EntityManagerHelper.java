@@ -21,7 +21,7 @@ public class EntityManagerHelper {
 
     static {
         try {
-            emf = Persistence.createEntityManagerFactory("UnaPlanillaPU");
+            emf = Persistence.createEntityManagerFactory("ProyectoProgra2PU");
             em = emf.createEntityManager();
         } catch (ExceptionInInitializerError e) {
             throw e;
@@ -35,7 +35,7 @@ public class EntityManagerHelper {
 
     public static EntityManager getManager() {
         if (em == null) {
-            emf = Persistence.createEntityManagerFactory("UnaPlanillaPU");
+            emf = Persistence.createEntityManagerFactory("ProyectoProgra2PU");
             em = emf.createEntityManager();
         }
         return em;

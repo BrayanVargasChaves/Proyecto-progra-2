@@ -169,7 +169,7 @@ public class Carta implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Carta[ idCarta=" + id + " ]";
+        return "cr.ac.una.proyectoprogra2.model.Carta[ idCarta=" + id + " ]";
     }
 
 }
