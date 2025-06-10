@@ -47,7 +47,7 @@
                </children>
             </VBox>
             <Separator orientation="VERTICAL" prefHeight="200.0" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="50.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="20.0" HBox.hgrow="ALWAYS">
                <children>
                   <MFXButton fx:id="btnAnadirUsuario" onAction="#onActionBtnAnadirUsuario" prefHeight="50.0" prefWidth="166.0" styleClass="jfx-button-agregar" text="Añadir Usuario">
                      <graphic>
@@ -57,6 +57,11 @@
                      <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
                      </graphic></MFXButton>
+                  <MFXButton fx:id="btnEliminarUsuario" onAction="#onActionBtnEliminarUsuario" prefHeight="50.0" prefWidth="166.0" styleClass="jfx-button-Eliminar" text="Eliminar Usuario">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </MFXButton>
                   <MFXFilterComboBox fx:id="fcbUsuario" floatMode="BORDER" floatingText="Invitado" prefWidth="209.0" />
                   <MFXToggleButton fx:id="tgbTema" contentDisposition="RIGHT" onMouseClicked="#onToggleClicked" text="Tema">
                      <graphic>

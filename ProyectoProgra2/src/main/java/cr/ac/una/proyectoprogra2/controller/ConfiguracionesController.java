@@ -44,6 +44,8 @@ public class ConfiguracionesController extends Controller implements Initializab
     private MFXToggleButton tgbTema;
     @FXML
     private ImageView imgFondo;
+    @FXML
+    private MFXButton btnEliminarUsuario;
 
     /**
      * Initializes the controller class.
@@ -61,7 +63,8 @@ public class ConfiguracionesController extends Controller implements Initializab
 
     @FXML
     private void onActionBtnAnadirUsuario(ActionEvent event) {
-        
+        FlowController.getInstance().goViewInWindow("UsuarioView");
+        ((Stage) root.getScene().getWindow()).close();
     }
 
     @FXML
@@ -86,6 +89,10 @@ public class ConfiguracionesController extends Controller implements Initializab
 
     @FXML
     private void onKeyPressedNombreUsuario(KeyEvent event) {
+    }
+
+    @FXML
+    private void onActionBtnEliminarUsuario(ActionEvent event) {
     }
 
 }

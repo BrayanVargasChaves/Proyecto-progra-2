@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.model;
 
+import cr.ac.una.proyectoprogra2.model.dtos.UsuarioDto;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -70,6 +71,21 @@ public class Usuario implements Serializable {
     private List<Juego> juegos;
 
     public Usuario() {
+    }
+
+    public Usuario(UsuarioDto usuarioDto) {
+        this.id = usuarioDto.getId();
+        actualizar(usuarioDto);
+    }
+    public void actualizar(UsuarioDto usuarioDto) {
+        this.nombreUsuario = usuarioDto.getNombreUsuario();
+     
+        this.imagenCarta = usuarioDto.getImagenCarta();
+        this.caraCartaImg = usuarioDto.getCaraCartaImg();
+        this.puntajeTotal = usuarioDto.getPuntajeTotal();
+        this.partidasPerdidas = usuarioDto.getPartidasPerdidas();
+        this.partidasGanadas = usuarioDto.getPartidasGanadas();
+        this.version = usuarioDto.getVersion();
     }
     
     public Usuario(Long id) {
