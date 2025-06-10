@@ -40,7 +40,7 @@ public class Sonidos {
 
     public static void reproducirLoop(String nombreArchivo) {
         try {
-            URL url = Sonidos.class.getResource("/cr/ac/una/tareaprogra2/resources/sonidos/" + nombreArchivo);
+            URL url = Sonidos.class.getResource("/cr/ac/una/proyectoprogra2/resources/sonidos/" + nombreArchivo);
             if (url == null) {
                 System.out.println("No se encontró el sonido para loop: " + nombreArchivo);
                 return;
@@ -77,5 +77,15 @@ public class Sonidos {
     public static void asignarSonidoEmpezar(MFXButton btn) {
         btn.setOnMouseEntered(e -> reproducir("hover.wav"));
         btn.addEventHandler(ActionEvent.ACTION, e -> reproducir("clickEmpezar.mp3"));
+    }
+    
+    public static void asignarSonidoDeck(MFXButton btn) {
+        btn.setOnMouseEntered(e -> reproducir("hover.wav"));
+        btn.addEventHandler(ActionEvent.ACTION, e -> reproducir("deck.mp3"));
+    }
+    
+    public static void asignarSonidoPista(MFXButton btn) {
+        btn.setOnMouseEntered(e -> reproducir("notification.mp3"));
+        btn.addEventHandler(ActionEvent.ACTION, e -> reproducir("click.wav"));
     }
 }

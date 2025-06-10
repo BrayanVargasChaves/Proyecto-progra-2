@@ -2,6 +2,8 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.MFXToggleButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -9,11 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@TemaClaro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cr.ac.una.proyectoprogra2.controller.UsuarioController">
    <children>
-      <ImageView fx:id="imvFondo" fitHeight="403.0" fitWidth="604.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <ImageView fx:id="imvFondo" fitHeight="403.0" fitWidth="619.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <MFXButton fx:id="btnVolver" buttonType="RAISED" depthLevel="LEVEL4" layoutX="470.0" layoutY="13.0" onAction="#onActionBtnVolver" prefHeight="50.0" prefWidth="106.0" text="Volver" AnchorPane.rightAnchor="23.599999999999994" AnchorPane.topAnchor="13.0" />
       <VBox layoutX="4.800000190734863" layoutY="78.0" AnchorPane.bottomAnchor="132.8" AnchorPane.leftAnchor="4.7999999999999545" AnchorPane.rightAnchor="9.599999809265114" AnchorPane.topAnchor="78.0">
          <children>
@@ -30,7 +31,8 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="18.0" prefWidth="224.0" spacing="100.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXRadioButton fx:id="rdbCara1" prefHeight="18.0" prefWidth="41.0" selected="true" text="Diseño 1" HBox.hgrow="ALWAYS">
+
+                              <MFXRadioButton fx:id="rdbDiseño1" onAction="#onActionRdbDiseño1" prefHeight="18.0" prefWidth="41.0" selected="true" text="Diseño 1" HBox.hgrow="ALWAYS">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="Diseño" />
                                  </toggleGroup>
@@ -50,7 +52,8 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="18.0" prefWidth="224.0" spacing="100.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <MFXRadioButton fx:id="rdbCara2" prefHeight="18.0" prefWidth="41.0" text="Diseño 2" toggleGroup="$Diseño" HBox.hgrow="ALWAYS" />
+
+                              <MFXRadioButton fx:id="rdbDiseño2" onAction="#onActionRdbDiseño2" prefHeight="18.0" prefWidth="41.0" text="Diseño 2" toggleGroup="$Diseño" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                      </children>
@@ -66,11 +69,12 @@
             <ImageView fx:id="imvGuardar" fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
       </MFXButton>
-      <Label fx:id="lblNombreUsuario" alignment="CENTER" layoutX="52.0" layoutY="14.0" prefHeight="50.0" prefWidth="202.0" text="Invitado" AnchorPane.leftAnchor="52.0" AnchorPane.topAnchor="14.0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <Label fx:id="lblPersonalizada" layoutX="13.0" layoutY="338.0" prefHeight="18.0" prefWidth="77.0" text="Personalizada:" AnchorPane.bottomAnchor="46.60000000000002" AnchorPane.leftAnchor="13.0" />
+      <MFXTextField fx:id="txfNombreUsuario" floatMode="BORDER" floatingText="Nombre Usuario" layoutX="25.0" layoutY="23.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="268.0" />
+      <MFXToggleButton fx:id="tgbTema" contentDisposition="RIGHT" layoutX="319.0" layoutY="312.0" onMouseClicked="#onToggleClicked" prefHeight="50.0" prefWidth="137.0" text="Tema">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="jfx-tema" />
+         </graphic>
+      </MFXToggleButton>
    </children>
 </AnchorPane>

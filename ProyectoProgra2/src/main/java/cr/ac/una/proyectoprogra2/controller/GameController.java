@@ -3,6 +3,7 @@ package cr.ac.una.proyectoprogra2.controller;
 import cr.ac.una.proyectoprogra2.model.Card;
 import cr.ac.una.proyectoprogra2.util.CardFactory;
 import cr.ac.una.proyectoprogra2.model.AnimationService;
+import cr.ac.una.proyectoprogra2.model.Sonidos;
 import cr.ac.una.proyectoprogra2.util.FlowController;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.scene.shape.Rectangle;
@@ -123,6 +124,12 @@ public class GameController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Sonidos.asignarSonido(btnTerminarMasTarde);
+        Sonidos.asignarSonido(btnRendirce);
+        Sonidos.asignarSonidoPista(btnPista);
+        Sonidos.asignarSonidoDeck(btnDeck);
+        Sonidos.reproducirLoop("sonidoAmbiente");
+        
         recHintStart.setVisible(false);
         recHintEnd.setVisible(false);
         recSelectedCard.setVisible(false);
@@ -609,6 +616,7 @@ public class GameController extends Controller implements Initializable {
 
         // Primer evento: Cuando presiona el ratón sobre la carta
         imv.setOnMousePressed(e -> {
+            Sonidos.reproducir("carta.mp3");
             // Guardamos posición original para poder devolver la carta
             originalPos[0] = imv.getLayoutX();
             originalPos[1] = imv.getLayoutY();
@@ -638,6 +646,7 @@ public class GameController extends Controller implements Initializable {
 
         // Tercer evento: Al soltar el ratón o soltar arrastre o ejecutar click
         imv.setOnMouseReleased(e -> {
+            Sonidos.reproducir("carta.mp3");
             //si el dragging es true, entonces restaura la posicion inicial de la carta
             if (dragging[0]) {
                 // Se revisa si el usuario puso cartas en otra columna

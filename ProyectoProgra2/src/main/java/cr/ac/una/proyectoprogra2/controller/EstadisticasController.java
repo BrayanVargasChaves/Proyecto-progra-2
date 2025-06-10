@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.model.Sonidos;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +43,7 @@ public class EstadisticasController extends Controller implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Sonidos.asignarSonido(btnVolver);
     }    
 
     @FXML

@@ -4,6 +4,7 @@
  */
 package cr.ac.una.proyectoprogra2.controller;
 
+import cr.ac.una.proyectoprogra2.model.Sonidos;
 import cr.ac.una.proyectoprogra2.model.dtos.UsuarioDto;
 import cr.ac.una.proyectoprogra2.util.AppContext;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -13,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 /**
@@ -28,12 +30,16 @@ public class FinDelJuegoController implements Initializable {
     private VBox vbxValores;
     @FXML
     private MFXButton btnContinuar;
+    @FXML
+    private ImageView imvFondo;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Sonidos.reproducir("gol.mp3");
+        Sonidos.asignarSonido(btnContinuar);
         cargarEstadisticas((UsuarioDto)AppContext.getInstance().get("usuario"), (String)AppContext.getInstance().get("duracion"));
     } 
     
