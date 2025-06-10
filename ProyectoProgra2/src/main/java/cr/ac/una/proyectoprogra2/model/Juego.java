@@ -182,7 +182,7 @@ public class Juego implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Juego[ idJuego=" + id + " ]";
+        return "cr.ac.una.proyectoprogra2.model.Juego[ idJuego=" + id + " ]";
     }
 
     public Integer getPuntaje() {

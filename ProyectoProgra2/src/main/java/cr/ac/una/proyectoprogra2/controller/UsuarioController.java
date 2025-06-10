@@ -42,6 +42,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+
 /**
  * FXML Controller class
  *
@@ -198,10 +199,8 @@ public class UsuarioController extends Controller implements Initializable {
                 if (oldVal != null) {
                     // Desvincula los campos previos
                     txfNombreUsuario.textProperty().unbindBidirectional(oldVal.getNombreUsuarioProperty());
-                    // Unbind los RadioButton
-                    //  rdbCara1.selectedProperty().unbindBidirectional(oldVal.getImagenCartaProperty());
                     BindingUtils.unbindToggleGroupToProperty(Diseño, oldVal.getImagenCartaProperty());
-                   // BindingUtils.unbindToggleGroupToProperty(imagenDelante, oldVal.getCaraCartaImgProperty());
+                  //BindingUtils.unbindToggleGroupToProperty(imagenDelante, oldVal.getCaraCartaImgProperty());
                 }
 
                 if (newVal != null) {
@@ -209,13 +208,8 @@ public class UsuarioController extends Controller implements Initializable {
                     txfNombreUsuario.textProperty().bindBidirectional(newVal.getNombreUsuarioProperty());
 
                     // Aquí vinculamos los RadioButton a las propiedades del DTO
-                    //   rdbCara1.selectedProperty().bindBidirectional(newVal.getImagenCartaProperty());
-                    //  rdbEscudo1.selectedProperty().bindBidirectional(newVal.getCaraCartaImgProperty());
                     BindingUtils.bindToggleGroupToProperty(Diseño, newVal.getImagenCartaProperty());
-                   // BindingUtils.bindToggleGroupToProperty(imagenDelante, newVal.getCaraCartaImgProperty());
-
-
-                    // No es necesario vincular tgbTema, ya que puede ser nulo.
+                  //BindingUtils.bindToggleGroupToProperty(imagenDelante, newVal.getCaraCartaImgProperty());
                 }
             });
 
@@ -253,6 +247,8 @@ public class UsuarioController extends Controller implements Initializable {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), invalidos);
             } else {
                 UsuarioService usuarioService = new UsuarioService();
+
+                // Guardamos la carpeta seleccionada, no las imágenes
                 Respuesta respuesta = usuarioService.guardarUsuario(this.usuarioDto);
                 if (respuesta.getEstado()) {
                     this.usuarioDto = (UsuarioDto) respuesta.getResultado("Usuario");
@@ -275,10 +271,66 @@ public class UsuarioController extends Controller implements Initializable {
 
     @FXML
     private void onActionRdbDiseño1(ActionEvent event) {
+        if (rdbDiseño1.isSelected()) {
+            // Cuando se selecciona el diseño 1, solo guardamos el nombre de la carpeta "Cards1"
+            String carpeta = "Cards1";  // Carpeta "Cards1"
+
+            // Asignamos solo el nombre de la carpeta al DTO
+            usuarioDto.setImagenCarta(carpeta); 
+            usuarioDto.setCaraCartaImg(carpeta);// Guardamos solo el nombre de la carpeta
+        }
     }
 
     @FXML
     private void onActionRdbDiseño2(ActionEvent event) {
+        if (rdbDiseño2.isSelected()) {
+            // Cuando se selecciona el diseño 2, solo guardamos el nombre de la carpeta "Cards2"
+            String carpeta = "Cards2";  // Carpeta "Cards2"
+
+            // Asignamos solo el nombre de la carpeta al DTO
+            usuarioDto.setImagenCarta(carpeta);
+            usuarioDto.setCaraCartaImg(carpeta);// Guardamos solo el nombre de la carpeta
+        }
+    }
+
+    @FXML
+    private void onMouseClickedImgPersonalizada(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar Imagen");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+        File file = fileChooser.showOpenDialog(root.getScene().getWindow());
+        if (file != null) {
+            imagenSeleccionada = file;
+            Image image = new Image(file.toURI().toString());
+            imvPersonalizada.setImage(image);
+
+            // Si es una imagen personalizada, la guardamos en la carpeta cardsUser
+            String carpeta = "cardsUser";  // Carpeta "cardsUser"
+
+            // Aquí el nombre de la imagen será generado dinámicamente con el nombre de usuario y el sufijo "Diseño"
+            String nombreImagenPersonalizada = usuarioDto.getNombreUsuario() + "Diseño.jpg";  // Nombre personalizado
+
+            // Ruta completa donde se almacenará la imagen personalizada
+            String rutaCompleta = "/cr/ac/una/proyectoprogra2/resources/" + carpeta + "/" + nombreImagenPersonalizada;
+
+            // Verificamos si ya existe la imagen personalizada en cardsUser
+            File imagenExistente = new File(rutaCompleta);
+            if (imagenExistente.exists()) {
+                // Si existe, la eliminamos primero
+                boolean eliminado = imagenExistente.delete();
+                if (eliminado) {
+                    System.out.println("Imagen personalizada eliminada.");
+                } else {
+                    System.out.println("No se pudo eliminar la imagen personalizada existente.");
+                }
+            }
+
+            // Guardamos la carpeta y el nombre del archivo
+            usuarioDto.setImagenCarta(carpeta);  // Guardamos "cardsUser" como la carpeta
+            usuarioDto.setCaraCartaImg(carpeta);  // Guardamos el nombre del archivo
+        }
     }
 
 }

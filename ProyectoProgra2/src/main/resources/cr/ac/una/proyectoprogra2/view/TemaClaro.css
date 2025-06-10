@@ -230,7 +230,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .jfx-imvTrasera{
-    -fx-image:url("../resources/Cards1/ReversoUNO.png");
+    -fx-image:url("../resources/Cards1/Reverso.png");
 }
 
 .jfx-imvDelantera2{
@@ -238,5 +238,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .jfx-imvTrasera2{
-    -fx-image:url("../resources/Cards2/ReversoDOS.png");
+    -fx-image:url("../resources/Cards2/Reverso.png");
 }

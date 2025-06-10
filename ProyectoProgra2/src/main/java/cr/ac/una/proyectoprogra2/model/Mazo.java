@@ -124,7 +124,7 @@ public class Mazo implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Mazo[ idMazo=" + id + " ]";
+        return "cr.ac.una.proyectoprogra2.model.Mazo[ idMazo=" + id + " ]";
     }
 
     public Long getVersion() {

@@ -13,7 +13,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -21,8 +20,6 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -85,7 +82,6 @@ public class Usuario implements Serializable {
 
     public void actualizar(UsuarioDto usuarioDto) {
         this.nombreUsuario = usuarioDto.getNombreUsuario();
-
         this.imagenCarta = usuarioDto.getImagenCarta();
         this.caraCartaImg = usuarioDto.getCaraCartaImg();
         this.puntajeTotal = usuarioDto.getPuntajeTotal();
@@ -200,7 +196,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "cr.ac.una.unaplanilla.model.Usuario[ idUsuario=" + id + " ]";
+        return "cr.ac.una.proyectoprogra2.model.Usuario[ idUsuario=" + id + " ]";
     }
 
 }

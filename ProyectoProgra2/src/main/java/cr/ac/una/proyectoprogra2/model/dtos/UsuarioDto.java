@@ -5,8 +5,13 @@
 package cr.ac.una.proyectoprogra2.model.dtos;
 
 import cr.ac.una.proyectoprogra2.model.Usuario;
-import javafx.beans.property.*;
 import java.util.Objects;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 /**
  *
@@ -45,37 +50,20 @@ public class UsuarioDto {
      */
     public UsuarioDto(Usuario usuario) {
         this();
-        if (usuario.getId() != null) {
-            this.id.set(usuario.getId().toString());
-        }
-        if (usuario.getNombreUsuario() != null) {
-            this.nombreUsuario.set(usuario.getNombreUsuario());
-        }
-        if (usuario.getImagenCarta() != null) {
-            this.imagenCarta.set(usuario.getImagenCarta());
-        }
-        if (usuario.getCaraCartaImg() != null) {
-            this.caraCartaImg.set(usuario.getCaraCartaImg());
-        }
-        if (usuario.getPuntajeTotal() != null) {
-            this.puntajeTotal.set(usuario.getPuntajeTotal());
-        }
-        if (usuario.getPartidasPerdidas() != null) {
-            this.partidasPerdidas.set(usuario.getPartidasPerdidas());
-        }
-        if (usuario.getPartidasGanadas() != null) {
-            this.partidasGanadas.set(usuario.getPartidasGanadas());
-        }
-      //  if (usuario.getModoOscuro() != null) {
-       //     this.modoOscuro.set(usuario.getModoOscuro());
-      //  }
+        this.id.set(usuario.getId().toString());
+        this.nombreUsuario.set(usuario.getNombreUsuario());
+        this.imagenCarta.set(usuario.getImagenCarta());
+        this.caraCartaImg.set(usuario.getCaraCartaImg());
+        this.puntajeTotal.set(usuario.getPuntajeTotal());
+        this.partidasPerdidas.set(usuario.getPartidasPerdidas());
+        this.partidasGanadas.set(usuario.getPartidasGanadas());
         this.version = usuario.getVersion();
     }
 
     // Getters y setters de valor
     public Long getId() {
-        if (id.get() != null && !id.get().isBlank()) {
-            return Long.valueOf(id.get());
+        if (this.id.get() != null && !this.id.get().isBlank()) {
+            return Long.valueOf(this.id.get());
         }
         return null;
     }
@@ -132,14 +120,12 @@ public class UsuarioDto {
         this.partidasGanadas.set(partidasGanadas);
     }
 
-  //  public String getModoOscuro() {
-  //      return modoOscuro.get();
-  //  }
-
-  //  public void setModoOscuro(String modoOscuro) {
-  //      this.modoOscuro.set(modoOscuro);
-  //  }
-
+    //  public String getModoOscuro() {
+    //      return modoOscuro.get();
+    //  }
+    //  public void setModoOscuro(String modoOscuro) {
+    //      this.modoOscuro.set(modoOscuro);
+    //  }
     public Long getVersion() {
         return version;
     }
@@ -185,14 +171,14 @@ public class UsuarioDto {
         return partidasGanadas;
     }
 
-  //  public ObjectProperty getModoOscuroProperty() {
-  //      return modoOscuro;
-  //  }
-    
+    //  public ObjectProperty getModoOscuroProperty() {
+    //      return modoOscuro;
+    //  }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -210,6 +196,7 @@ public class UsuarioDto {
         final UsuarioDto other = (UsuarioDto) obj;
         return Objects.equals(this.id.get(), other.id.get());
     }
+
 
     @Override
     public String toString() {
